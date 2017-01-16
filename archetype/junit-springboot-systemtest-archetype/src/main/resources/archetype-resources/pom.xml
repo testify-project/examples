@@ -101,10 +101,9 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <argLine>${jacocoFailesafeArgs} -client -Xms512m -Xmx2048m</argLine>
-                    <forkCount>1C</forkCount>
+                    <argLine>\${jacocoFailesafeArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <forkCount>0.75C</forkCount>
                     <reuseForks>false</reuseForks>
-                    <parallel>classes</parallel>
                     <includes>
                         <include>**/*ST.java</include>
                     </includes>

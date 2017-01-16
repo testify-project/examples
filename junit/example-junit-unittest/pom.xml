@@ -71,9 +71,9 @@
                 <version>${plugin.surefire}</version>
                 <configuration>
                     <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
-                    <forkCount>1</forkCount>
+                    <forkCount>0.75C</forkCount>
                     <reuseForks>true</reuseForks>
-                    <parallel>classesAndMethods</parallel>
+                    <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
             </plugin>

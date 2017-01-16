@@ -35,7 +35,11 @@ do
     EXAMPLE_SRC_DIR="$DIR/target/generated-sources/archetype/src"
     ARCHETYPE_DIR="$ARCHETYPES_DIR/$MODULE_NAME-archetype"
     ARCHETYPE_SRC_DIR="$ARCHETYPE_DIR/src"
-  
+
+    # Escape certain configuration properties so they are not replaced        
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoSurefireArgs}/\\\$\{jacocoSurefireArgs\}/g'
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoFailesafeArgs}/\\\$\{jacocoFailesafeArgs\}/g'
+
     echo "Replacing $ARCHETYPE_SRC_DIR with $EXAMPLE_SRC_DIR"
     rm -rf "$ARCHETYPE_SRC_DIR"
     cp -R $EXAMPLE_SRC_DIR $ARCHETYPE_DIR
@@ -45,7 +49,7 @@ echo "Building Archetypes"
 
 pushd $CURRENT_DIR
 cd $ARCHETYPES_DIR
-mvn -B -TC1 clean install -Pbuild
+mvn -B clean install -Pbuild
 popd
 
 echo "Arechetypes Updated. All Done!"

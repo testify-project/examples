@@ -1,0 +1,58 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+/*
+ * Copyright 2016-2017 Sharmarke Aden.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package examples.greeting;
+
+import examples.greeting.entity.GreetingEntity;
+import java.util.Optional;
+import static java.util.Optional.ofNullable;
+import java.util.UUID;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import org.jvnet.hk2.annotations.Service;
+
+/**
+ * A service that retrieve an existing greeting.
+ *
+ * @author saden
+ */
+@Transactional
+@Service
+public class GetGreeting {
+
+    private final EntityManager entityManager;
+
+    @Inject
+    GetGreeting(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    /**
+     * Get a greeting with the given id.
+     *
+     * @param id the greeting id
+     * @return the optional containing the greeting, empty otherwise
+     */
+    public Optional<GreetingEntity> getGreeting(UUID id) {
+        GreetingEntity result = entityManager.find(GreetingEntity.class, id);
+
+        return ofNullable(result);
+    }
+
+}

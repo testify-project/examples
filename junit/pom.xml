@@ -39,12 +39,21 @@
         <module>example-junit-hk2-integrationtest</module>
         <module>example-junit-jersey-systemtest</module>
         <module>example-junit-guice-integrationtest</module>
+        <module>example-junit-resourceprovider</module>
     </modules>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.version>2.4</archetype.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>
@@ -67,7 +76,7 @@
                         <version>${archetype.version}</version>
                         <executions>
                             <execution>
-                                <id>archetype-jar</id>
+                                <id>archetype-generate-sources</id>
                                 <phase>generate-sources</phase>
                                 <goals>
                                     <goal>create-from-project</goal>

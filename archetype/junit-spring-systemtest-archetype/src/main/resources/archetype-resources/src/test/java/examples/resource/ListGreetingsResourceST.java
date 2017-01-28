@@ -18,17 +18,8 @@
  */
 package examples.resource;
 
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.ConfigHandler;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.SpringSystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
 import examples.GreetingApplication;
-import examples.repository.entity.GreetingEntity;
+import examples.resource.repository.entity.GreetingEntity;
 import fixture.TestModule;
 import java.util.List;
 import javax.ws.rs.client.ClientBuilder;
@@ -41,13 +32,22 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.testify.ClientInstance;
+import org.testify.annotation.Application;
+import org.testify.annotation.ConfigHandler;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.system.SpringSystemTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.SystemTests;
 
 /**
  *
  * @author saden
  */
 @Application(GreetingApplication.class)
-@Module(value = TestModule.class)
+@Module(TestModule.class)
 @RequiresContainer(value = "postgres", version = "9.4")
 @Category({ContainerTests.class, SystemTests.class})
 @RunWith(SpringSystemTest.class)

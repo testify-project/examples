@@ -15,7 +15,7 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
+import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,9 +26,9 @@ import java.util.UUID;
  */
 public class RemoveGreeting {
 
-    private final Map<UUID, GreetingEntity> datastore;
+    private final Map<UUID, GreetingModel> datastore;
 
-    RemoveGreeting(Map<UUID, GreetingEntity> datastore) {
+    RemoveGreeting(Map<UUID, GreetingModel> datastore) {
         this.datastore = datastore;
     }
 

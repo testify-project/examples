@@ -52,7 +52,7 @@ import org.testify.tools.category.IntegrationTests;
  *
  * @author saden
  */
-@Module(value = TestModule.class)
+@Module(TestModule.class)
 @Module(GreetingsModule.class)
 @RequiresContainer(value = "postgres", version = "9.4")
 @Category({ContainerTests.class, IntegrationTests.class})

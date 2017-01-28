@@ -15,8 +15,8 @@
  */
 package examples.resource;
 
-import examples.repository.GreetingRepository;
-import examples.repository.entity.GreetingEntity;
+import examples.resource.repository.GreetingRepository;
+import examples.resource.repository.entity.GreetingEntity;
 import javax.inject.Inject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

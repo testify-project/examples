@@ -15,10 +15,7 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.junit.UnitTest;
-import examples.greeting.entity.GreetingEntity;
+import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,6 +25,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fake;
+import org.testify.junit.UnitTest;
 
 /**
  * A unit test that demonstrates discovery of collaborators based on an
@@ -44,7 +44,7 @@ public class RemoveGreetingTest {
     RemoveGreeting cut;
 
     @Fake("datastore")
-    Map<UUID, GreetingEntity> store;
+    Map<UUID, GreetingModel> store;
 
     @Test
     public void givenMapStoreNewRemoveGreetingShouldNotDoWorkInConstructor() {
@@ -60,7 +60,7 @@ public class RemoveGreetingTest {
     public void givenNullRemoveGreetingShouldDoNothing() {
         //Arrange
         UUID id = null;
-        GreetingEntity greeting = null;
+        GreetingModel greeting = null;
         given(store.remove(id)).willReturn(greeting);
 
         //Act
@@ -74,7 +74,7 @@ public class RemoveGreetingTest {
     public void givenNoneExistentidRemoveGreetingShouldDoNothing() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        GreetingEntity greeting = null;
+        GreetingModel greeting = null;
         given(store.remove(id)).willReturn(greeting);
 
         //Act
@@ -88,7 +88,7 @@ public class RemoveGreetingTest {
     public void givenExistingidRemoveGreetingShouldShouldRemoveGreeting() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        GreetingEntity greeting = mock(GreetingEntity.class);
+        GreetingModel greeting = mock(GreetingModel.class);
         given(store.remove(id)).willReturn(greeting);
 
         //Act

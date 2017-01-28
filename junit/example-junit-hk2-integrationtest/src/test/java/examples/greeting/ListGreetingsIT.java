@@ -15,12 +15,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.RequiresResource;
-import org.testify.resource.hsql.InMemoryHSQLResource;
-import org.testify.junit.integration.HK2IntegrationTest;
 import examples.greeting.entity.GreetingEntity;
 import java.util.Collection;
 import static java.util.Collections.EMPTY_LIST;
@@ -34,6 +28,12 @@ import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fake;
+import org.testify.annotation.Fixture;
+import org.testify.annotation.RequiresResource;
+import org.testify.junit.integration.HK2IntegrationTest;
+import org.testify.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

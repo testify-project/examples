@@ -34,7 +34,9 @@ public class GreetingsResourceConfig extends ResourceConfig {
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
         property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
         register(GreetingsFeature.class);
-        register(new LoggingFeature(Logger.getGlobal(), LoggingFeature.Verbosity.PAYLOAD_ANY));
+        LoggingFeature loggingFeature = new LoggingFeature(Logger.getGlobal(), LoggingFeature.Verbosity.PAYLOAD_ANY);
+
+        register(loggingFeature);
     }
 
 }

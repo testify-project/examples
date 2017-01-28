@@ -15,15 +15,6 @@
  */
 package examples.resource;
 
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.ConfigHandler;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.SpringBootSystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
 import examples.GreetingApplication;
 import examples.resource.repository.entity.GreetingEntity;
 import fixture.TestConfigHandler;
@@ -36,6 +27,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.testify.ClientInstance;
+import org.testify.annotation.Application;
+import org.testify.annotation.ConfigHandler;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.system.SpringBootSystemTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.SystemTests;
 
 /**
  *

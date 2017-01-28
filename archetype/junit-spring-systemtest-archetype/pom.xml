@@ -29,6 +29,6 @@
     
     <name>Testify JUnit Spring MVC System Test Archetype</name>
     <description>Creates a new quickstart project to system test Spring MVC application with Testify, JUnit, Mockito, and AssertJ.</description>
-    <url>https://github.com/FitburIO/testify/tree/develop/examples/example-junit-spring-systemtest</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-spring-systemtest</url>
 
 </project>

@@ -18,12 +18,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresResource;
-import org.testify.resource.hsql.InMemoryHSQLResource;
-import org.testify.junit.integration.SpringIntegrationTest;
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
@@ -33,6 +27,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.Real;
+import org.testify.annotation.RequiresResource;
+import org.testify.junit.integration.SpringIntegrationTest;
+import org.testify.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -80,7 +80,7 @@ public class GetGreetingIT {
     }
 
     @Test
-    public void givenExistentKeyGetGreetingShouldReturnGreeting() {
+    public void givenExistentKeyGetGreetingShouldReturnGreetingEntity() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 

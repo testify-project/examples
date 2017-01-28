@@ -24,7 +24,7 @@
     <name>Example JUnit Spring Integration Test</name>
     <description>Creates a new quickstart project to integration test Spring modules and services with Testify, JUnit, Mockito, and AssertJ.</description>
     <version>${version}</version>
-    <url>https://github.com/FitburIO/testify/tree/develop/examples/${artifactId}</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit/${artifactId}</url>
 
     <properties>
         <!-- Global Properties -->

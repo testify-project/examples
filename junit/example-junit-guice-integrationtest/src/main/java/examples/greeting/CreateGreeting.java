@@ -38,10 +38,10 @@ public class CreateGreeting {
     /**
      * Create a new greeting.
      *
-     * @param model the greeting entity that will be created
+     * @param entity the greeting entity that will be created
      */
-    public void createGreeting(GreetingEntity model) {
-        entityManager.persist(model);
+    public void createGreeting(GreetingEntity entity) {
+        entityManager.persist(entity);
 
     }
 }

@@ -42,12 +42,12 @@ public class UpdateGreeting {
      * Update an existing greeting.
      *
      * @param id the id of the existing greeting
-     * @param model the greeting entity
+     * @param entity the greeting entity
      */
-    public void updateGreeting(UUID id, GreetingEntity model) {
-        GreetingEntity entity = entityManager.getReference(GreetingEntity.class, id);
-        entity.setPhrase(model.getPhrase());
+    public void updateGreeting(UUID id, GreetingEntity entity) {
+        GreetingEntity existingEntity = entityManager.getReference(GreetingEntity.class, id);
+        existingEntity.setPhrase(entity.getPhrase());
 
-        entityManager.persist(entity);
+        entityManager.persist(existingEntity);
     }
 }

@@ -15,8 +15,6 @@
  */
 package fixture;
 
-import org.testify.ContainerInstance;
-import org.testify.annotation.Fixture;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.EntityManagerFactory;
@@ -28,6 +26,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.testify.ContainerInstance;
+import org.testify.annotation.Fixture;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running

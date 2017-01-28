@@ -25,7 +25,7 @@ echo "Building Examples"
 
 pushd $CURRENT_DIR
 cd $EXAMPLES_DIR
-mvn -B -TC1 clean install -Parchetype -Pvalidate
+mvn -B clean install -Parchetype -Pvalidate
 popd
 
 echo "Copying Generated Example Arechtypes to Arechtype Modules"
@@ -39,6 +39,9 @@ do
     # Escape certain configuration properties so they are not replaced        
     find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoSurefireArgs}/\\\$\{jacocoSurefireArgs\}/g'
     find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoFailesafeArgs}/\\\$\{jacocoFailesafeArgs\}/g'
+
+    # Updating goal.txt to verify
+    find -name "goal.txt" -exec sh -c "echo verify > {}" \;
 
     echo "Replacing $ARCHETYPE_SRC_DIR with $EXAMPLE_SRC_DIR"
     rm -rf "$ARCHETYPE_SRC_DIR"

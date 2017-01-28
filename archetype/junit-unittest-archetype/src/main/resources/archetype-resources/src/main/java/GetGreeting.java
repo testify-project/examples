@@ -18,7 +18,7 @@
  */
 package ${package};
 
-import ${package}.entity.GreetingEntity;
+import ${package}.model.GreetingModel;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,9 +30,9 @@ import java.util.UUID;
  */
 public class GetGreeting {
 
-    private final Map<UUID, GreetingEntity> store;
+    private final Map<UUID, GreetingModel> store;
 
-    GetGreeting(Map<UUID, GreetingEntity> store) {
+    GetGreeting(Map<UUID, GreetingModel> store) {
         this.store = store;
     }
 
@@ -42,7 +42,7 @@ public class GetGreeting {
      * @param id the greeting id
      * @return the optional containing the greeting, empty otherwise
      */
-    public Optional<GreetingEntity> getGreeting(UUID id) {
+    public Optional<GreetingModel> getGreeting(UUID id) {
         return Optional.ofNullable(store.get(id));
     }
 

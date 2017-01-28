@@ -39,6 +39,7 @@
         <module>junit-hk2-integrationtest-archetype</module>
         <module>junit-jersey-systemtest-archetype</module>
         <module>junit-guice-integrationtest-archetype</module>
+        <module>junit-resourceprovider-archetype</module>
     </modules>
 
     <properties>
@@ -77,6 +78,5 @@
                 <version>${archetype.version}</version>
             </extension>
         </extensions>
-
     </build>
 </project>

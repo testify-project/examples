@@ -15,7 +15,6 @@
  */
 package fixture;
 
-import org.testify.ContainerInstance;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Singleton;
@@ -33,6 +32,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.testify.ContainerInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running

@@ -15,12 +15,13 @@
  */
 package examples.resource;
 
-import examples.repository.GreetingRepository;
-import examples.repository.entity.GreetingEntity;
+import examples.resource.repository.GreetingRepository;
+import examples.resource.repository.entity.GreetingEntity;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,10 +41,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpdateGreetingResource {
 
     private final GreetingRepository greetingRepository;
+    private final ModelMapper modelMapper;
 
     @Inject
-    UpdateGreetingResource(GreetingRepository greetingRepository) {
+    UpdateGreetingResource(GreetingRepository greetingRepository, ModelMapper modelMapper) {
         this.greetingRepository = greetingRepository;
+        this.modelMapper = modelMapper;
     }
 
     @RequestMapping(
@@ -56,8 +59,14 @@ public class UpdateGreetingResource {
     public ResponseEntity updateGreeting(@NotNull @PathVariable("id") UUID id,
             @Valid @RequestBody GreetingEntity model) {
 
-        model.setId(id);
-        GreetingEntity result = greetingRepository.save(model);
+        GreetingEntity existingEntity = greetingRepository.findOne(id);
+
+        if (existingEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        modelMapper.map(model, existingEntity);
+        greetingRepository.save(existingEntity);
 
         return ResponseEntity.accepted().build();
     }

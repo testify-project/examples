@@ -15,14 +15,6 @@
  */
 package examples.resource;
 
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.SpringBootSystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
 import examples.GreetingApplication;
 import fixture.TestModule;
 import javax.ws.rs.client.WebTarget;
@@ -32,6 +24,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.testify.ClientInstance;
+import org.testify.annotation.Application;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.system.SpringBootSystemTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.SystemTests;
 
 /**
  *

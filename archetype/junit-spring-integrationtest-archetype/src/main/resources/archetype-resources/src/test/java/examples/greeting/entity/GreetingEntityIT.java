@@ -18,10 +18,6 @@
  */
 package examples.greeting.entity;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresResource;
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
@@ -29,6 +25,10 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.Real;
+import org.testify.annotation.RequiresResource;
 import org.testify.junit.integration.SpringIntegrationTest;
 import org.testify.resource.hsql.InMemoryHSQLResource;
 

@@ -15,8 +15,7 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
-import java.util.HashMap;
+import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,8 +26,11 @@ import java.util.UUID;
  */
 public class UpdateGreeting {
 
-    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private final Map<UUID, GreetingEntity> store = new HashMap<>();
+    private final Map<UUID, GreetingModel> store;
+
+    public UpdateGreeting(Map<UUID, GreetingModel> store) {
+        this.store = store;
+    }
 
     /**
      * Update greeting with the given id.
@@ -36,13 +38,9 @@ public class UpdateGreeting {
      * @param id the id
      * @param model the greeting model
      */
-    public void updateGreeting(UUID id, GreetingEntity model) {
-        GreetingEntity entity = store.get(id);
-
-        if (entity == null) {
-            throw new IllegalArgumentException("Entity not found.");
-        }
-
-        entity.setPhrase(model.getPhrase());
+    public void updateGreeting(UUID id, GreetingModel model) {
+        store.computeIfPresent(id, (k, v) -> {
+            return model;
+        });
     }
 }

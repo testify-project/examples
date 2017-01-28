@@ -18,14 +18,14 @@ package examples.greeting;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * A service that creates a new greeting.
  *
  * @author saden
  */
-@Component
+@Service
 public class CreateGreeting {
 
     private final GreetingRepository greetingRepository;
@@ -38,9 +38,9 @@ public class CreateGreeting {
     /**
      * Create a new greeting.
      *
-     * @param model the greeting entity that will be created
+     * @param entity the greeting entity that will be created
      */
-    public void createGreeting(GreetingEntity model) {
-        greetingRepository.save(model);
+    public void createGreeting(GreetingEntity entity) {
+        greetingRepository.save(entity);
     }
 }

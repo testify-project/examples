@@ -15,12 +15,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresResource;
-import org.testify.annotation.Virtual;
-import org.testify.resource.hsql.InMemoryHSQLResource;
-import org.testify.junit.integration.SpringIntegrationTest;
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import java.util.UUID;
@@ -30,6 +24,12 @@ import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.willDoNothing;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresResource;
+import org.testify.annotation.Virtual;
+import org.testify.junit.integration.SpringIntegrationTest;
+import org.testify.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

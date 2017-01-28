@@ -15,20 +15,20 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.junit.UnitTest;
-import examples.greeting.entity.GreetingEntity;
+import examples.greeting.common.RandomUuidSupplier;
+import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fake;
+import org.testify.junit.UnitTest;
 
 /**
  * A unit test that demonstrates discovery of collaborators based only on its
@@ -44,46 +44,45 @@ public class CreateGreetingTest {
     CreateGreeting cut;
 
     @Fake
-    Map<UUID, GreetingEntity> datastore;
+    Map<UUID, GreetingModel> datastore;
+
+    @Fake
+    RandomUuidSupplier randomUuidSupplier;
 
     @Test
-    public void givenMapStoreNewGetGreetingShouldNotDoWorkInConstructor() {
+    public void givenMapStoreConstructorShouldNotDoWork() {
         //Act
-        CreateGreeting result = new CreateGreeting(datastore);
+        CreateGreeting result = new CreateGreeting(datastore, randomUuidSupplier);
 
         //Assert
         assertThat(result).isNotNull();
-        verifyZeroInteractions(datastore);
+        verifyZeroInteractions(datastore, randomUuidSupplier);
     }
 
     @Test
-    public void givenMapStoreNewCreateGreetingShouldNotDoWorkInConstructor() {
+    public void givenNullCreateGreetingShouldReturn() {
+        //Arrange
+        GreetingModel model = null;
+
         //Act
-        CreateGreeting result = new CreateGreeting(datastore);
-
-        //Assert
-        assertThat(result).isNotNull();
-        verifyZeroInteractions(datastore);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void givenNullGreetingShouldThrowException() {
-        GreetingEntity model = null;
-
+        //Note that since we are using a fake Map to store values an NPE will
+        //not be thrown but some Map implementations do not allow null values
         cut.createGreeting(model);
     }
 
     @Test
     public void givenExistingGreetingUpdateGreetingShouldUpdate() {
         //Arrange
-        GreetingEntity model = mock(GreetingEntity.class);
+        GreetingModel model = mock(GreetingModel.class);
+        UUID id = UUID.fromString("aa216415-1b8e-4ab9-8531-fcbd25d5966f");
+        given(randomUuidSupplier.get()).willReturn(id);
 
         //Act
         cut.createGreeting(model);
 
         //Assert
-        verify(datastore).put(any(UUID.class), eq(model));
-        verify(model).setId(any(UUID.class));
+        verify(randomUuidSupplier).get();
+        verify(datastore).put(id, model);
     }
 
 }

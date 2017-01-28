@@ -30,8 +30,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author saden
  */
-@Transactional
 @Path("greetings")
+@Transactional
 public class ListGreetingsResource {
 
     private final EntityManager entityManager;

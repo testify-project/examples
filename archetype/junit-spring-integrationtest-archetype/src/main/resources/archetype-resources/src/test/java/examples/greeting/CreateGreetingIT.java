@@ -18,13 +18,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.integration.SpringIntegrationTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.IntegrationTests;
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
@@ -34,6 +27,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.Real;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.integration.SpringIntegrationTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.IntegrationTests;
 
 /**
  * An integration test that demonstrates the ability to:

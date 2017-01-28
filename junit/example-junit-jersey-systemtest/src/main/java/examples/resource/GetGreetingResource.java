@@ -35,8 +35,8 @@ import static javax.ws.rs.core.Response.status;
  *
  * @author saden
  */
-@Transactional
 @Path("greetings")
+@Transactional
 public class GetGreetingResource {
 
     private final EntityManager entityManager;

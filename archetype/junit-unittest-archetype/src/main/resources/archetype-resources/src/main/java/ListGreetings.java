@@ -18,7 +18,7 @@
  */
 package ${package};
 
-import ${package}.entity.GreetingEntity;
+import ${package}.model.GreetingModel;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
@@ -30,9 +30,9 @@ import java.util.UUID;
  */
 public class ListGreetings {
 
-    private final Map<UUID, GreetingEntity> store;
+    private final Map<UUID, GreetingModel> store;
 
-    ListGreetings(Map<UUID, GreetingEntity> store) {
+    ListGreetings(Map<UUID, GreetingModel> store) {
         this.store = store;
     }
 
@@ -41,7 +41,7 @@ public class ListGreetings {
      *
      * @return a collection of all the greetings, empty collection otherwise
      */
-    public Collection<GreetingEntity> listGreetings() {
+    public Collection<GreetingModel> listGreetings() {
         return store.values();
     }
 }

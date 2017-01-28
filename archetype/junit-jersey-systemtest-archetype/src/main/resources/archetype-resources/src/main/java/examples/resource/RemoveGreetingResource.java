@@ -34,8 +34,8 @@ import javax.ws.rs.core.Response;
  *
  * @author saden
  */
-@Transactional
 @Path("greetings")
+@Transactional
 public class RemoveGreetingResource {
 
     private final EntityManager entityManager;

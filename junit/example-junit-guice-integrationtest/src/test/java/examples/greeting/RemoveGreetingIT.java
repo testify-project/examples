@@ -15,13 +15,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresResource;
-import org.testify.annotation.Virtual;
-import org.testify.resource.hsql.InMemoryHSQLResource;
-import org.testify.junit.integration.GuiceIntegrationTest;
 import examples.GreetingsModule;
 import examples.greeting.entity.GreetingEntity;
 import java.util.UUID;
@@ -33,6 +26,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fixture;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresResource;
+import org.testify.annotation.Virtual;
+import org.testify.junit.integration.GuiceIntegrationTest;
+import org.testify.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

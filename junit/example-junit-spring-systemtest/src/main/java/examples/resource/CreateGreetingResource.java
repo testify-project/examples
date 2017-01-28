@@ -15,10 +15,12 @@
  */
 package examples.resource;
 
-import examples.repository.GreetingRepository;
-import examples.repository.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
+import examples.resource.repository.GreetingRepository;
+import examples.resource.repository.entity.GreetingEntity;
 import javax.inject.Inject;
 import javax.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.http.HttpStatus;
@@ -39,10 +41,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CreateGreetingResource {
 
     private final GreetingRepository greetingRepository;
+    private final ModelMapper modelMapper;
 
     @Inject
-    CreateGreetingResource(GreetingRepository greetingRepository) {
+    CreateGreetingResource(GreetingRepository greetingRepository, ModelMapper modelMapper) {
         this.greetingRepository = greetingRepository;
+        this.modelMapper = modelMapper;
     }
 
     @RequestMapping(
@@ -53,15 +57,14 @@ public class CreateGreetingResource {
                 MediaType.APPLICATION_FORM_URLENCODED_VALUE
             })
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity create(@Valid @RequestBody GreetingEntity model) {
-        model.setId(null);
-        GreetingEntity result = greetingRepository.save(model);
+    public ResponseEntity create(@Valid @RequestBody GreetingModel model) {
+        GreetingEntity entity = modelMapper.map(model, GreetingEntity.class);
+        entity = greetingRepository.save(entity);
 
         ControllerLinkBuilder link = linkTo(CreateGreetingResource.class)
-                .slash(result.getId().toString());
+                .slash(entity.getId().toString());
 
         return ResponseEntity.created(link.toUri()).build();
-
     }
 
 }

@@ -15,14 +15,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.Module;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.integration.HK2IntegrationTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.IntegrationTests;
 import examples.greeting.entity.GreetingEntity;
 import fixture.TestModule;
 import java.util.UUID;
@@ -34,6 +26,14 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.mock;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fixture;
+import org.testify.annotation.Module;
+import org.testify.annotation.Real;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.integration.HK2IntegrationTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.IntegrationTests;
 
 /**
  * An integration test that demonstrates the ability to:

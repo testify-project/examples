@@ -18,7 +18,7 @@
  */
 package examples.resource;
 
-import examples.repository.GreetingRepository;
+import examples.resource.repository.GreetingRepository;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;

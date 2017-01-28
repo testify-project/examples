@@ -15,17 +15,8 @@
  */
 package examples.resource;
 
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.ConfigHandler;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.Jersey2SystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
 import examples.GreetingsResourceConfig;
-import examples.resource.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
 import fixture.TestConfigHandler;
 import fixture.TestModule;
 import javax.ws.rs.client.Entity;
@@ -36,6 +27,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.testify.ClientInstance;
+import org.testify.annotation.Application;
+import org.testify.annotation.ConfigHandler;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Module;
+import org.testify.annotation.RequiresContainer;
+import org.testify.junit.system.Jersey2SystemTest;
+import org.testify.tools.category.ContainerTests;
+import org.testify.tools.category.SystemTests;
 
 /**
  *
@@ -55,8 +55,8 @@ public class CreateGreetingResourceST {
     @Test
     public void callToGetGreetingShouldReturn() {
         //Arrange 
-        GreetingEntity greetingEntity = new GreetingEntity("caio");
-        Entity<GreetingEntity> entity = Entity.json(greetingEntity);
+        GreetingModel model = new GreetingModel("caio");
+        Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
         Response response = cut.getTarget()

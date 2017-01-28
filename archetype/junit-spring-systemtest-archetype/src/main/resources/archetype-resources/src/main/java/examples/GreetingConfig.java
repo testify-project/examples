@@ -18,12 +18,16 @@
  */
 package examples;
 
+import examples.resource.repository.RepositoryPackage;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.convention.NamingConventions;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
@@ -42,7 +46,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @ComponentScan
-@EnableJpaRepositories("examples.repository")
+@EnableJpaRepositories(basePackageClasses = RepositoryPackage.class)
 public class GreetingConfig {
 
     /**
@@ -98,6 +102,26 @@ public class GreetingConfig {
         JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
 
         return transactionManager;
+    }
+
+    /**
+     * Provides a singleton model mapper instance.
+     *
+     * @return a model mapper instance
+     */
+    @Bean
+    ModelMapper modelMapper() {
+        ModelMapper mapper = new ModelMapper();
+
+        org.modelmapper.config.Configuration configuration = mapper.getConfiguration();
+        configuration.setMatchingStrategy(MatchingStrategies.STRICT);
+        configuration.setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
+        configuration.setMethodAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
+        configuration.setAmbiguityIgnored(false);
+        configuration.setDestinationNamingConvention(NamingConventions.JAVABEANS_MUTATOR);
+        configuration.setSourceNamingConvention(NamingConventions.JAVABEANS_ACCESSOR);
+
+        return mapper;
     }
 
 }

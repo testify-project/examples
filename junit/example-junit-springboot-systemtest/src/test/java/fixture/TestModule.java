@@ -15,7 +15,6 @@
  */
 package fixture;
 
-import org.testify.ContainerInstance;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -28,6 +27,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.testify.ContainerInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -40,7 +40,7 @@ public class TestModule {
 
     /**
      * Create a datasource that takes precedence (@Primary) over the production
-     * datasource.
+     * datasource that points to the postgres in the container resource.
      *
      * @param instance the container instance.
      * @return the test data source

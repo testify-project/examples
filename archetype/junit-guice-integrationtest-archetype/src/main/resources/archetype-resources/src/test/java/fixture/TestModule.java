@@ -18,9 +18,6 @@
  */
 package fixture;
 
-import org.testify.ContainerInstance;
-import org.testify.TestContext;
-import org.testify.annotation.Fixture;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.persist.jpa.JpaPersistModule;
@@ -35,6 +32,9 @@ import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 import org.postgresql.ds.PGSimpleDataSource;
+import org.testify.ContainerInstance;
+import org.testify.TestContext;
+import org.testify.annotation.Fixture;
 
 /**
  *

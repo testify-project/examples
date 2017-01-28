@@ -25,7 +25,7 @@
     <name>Example JUnit HK2 Integration Test</name>
     <description>Creates a new quickstart project to integration test HK2 modules and services with Testify, JUnit, Mockito, and AssertJ.</description>
     <version>${version}</version>
-    <url>https://github.com/FitburIO/testify/tree/develop/examples/${artifactId}</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit/${artifactId}</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

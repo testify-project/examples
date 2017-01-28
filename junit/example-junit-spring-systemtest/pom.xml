@@ -29,7 +29,7 @@
     
     <name>Example JUnit Spring System Test</name>
     <description>Creates a new quickstart project to system test Spring Application with Testify, JUnit, Mockito, and AssertJ.</description>
-    <url>https://github.com/FitburIO/testify/tree/develop/examples/example-junit-springt-systemtest</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-springt-systemtest</url>
 
     <properties>
         <!-- Global Properties -->
@@ -48,17 +48,18 @@
         <plugin.compiler>3.5.1</plugin.compiler>
         <plugin.failsafe>2.19.1</plugin.failsafe>
         <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        <modelmapper.version>0.7.7</modelmapper.version>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
-            <dependency> 
-                <groupId>org.springframework</groupId> 
-                <artifactId>spring-framework-bom</artifactId> 
-                <version>${spring.version}</version> 
-                <type>pom</type> 
-                <scope>import</scope> 
-            </dependency> 
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-releasetrain</artifactId>
@@ -68,7 +69,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -300,6 +301,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
         </dependency>
     </dependencies>
     

@@ -26,7 +26,7 @@
     <artifactId>example-junit-guice-integrationtest</artifactId>
     <name>Example JUnit Guice Integration Test</name>
     <description>Creates a new quickstart project to integration test Guice modules and services with Testify, JUnit, Mockito, and AssertJ.</description>
-    <url>https://github.com/FitburIO/testify/tree/develop/examples/example-junit-guice-integrationtest</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-guice-integrationtest</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

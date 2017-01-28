@@ -18,14 +18,14 @@ package examples.greeting;
 import examples.greeting.repository.GreetingRepository;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * A service that removes an existing greeting.
  *
  * @author saden
  */
-@Component
+@Service
 public class RemoveGreeting {
 
     private final GreetingRepository greetingRepository;

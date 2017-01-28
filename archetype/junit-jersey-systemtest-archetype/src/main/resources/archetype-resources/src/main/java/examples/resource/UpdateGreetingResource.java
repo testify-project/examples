@@ -19,6 +19,7 @@
 package examples.resource;
 
 import examples.resource.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -38,8 +39,8 @@ import javax.ws.rs.core.Response;
  *
  * @author saden
  */
-@Transactional
 @Path("greetings")
+@Transactional
 public class UpdateGreetingResource {
 
     private final EntityManager entityManager;
@@ -52,7 +53,7 @@ public class UpdateGreetingResource {
     @PUT
     @Path("{id}")
     @Consumes({APPLICATION_JSON, APPLICATION_FORM_URLENCODED})
-    public Response updateGreeting(@NotNull @PathParam("id") UUID id, @Valid GreetingEntity model) {
+    public Response updateGreeting(@NotNull @PathParam("id") UUID id, @Valid GreetingModel model) {
         GreetingEntity entity = entityManager.find(GreetingEntity.class, id);
 
         if (entity == null) {
@@ -60,7 +61,7 @@ public class UpdateGreetingResource {
         }
 
         entity.setPhrase(model.getPhrase());
-        entityManager.persist(model);
+        entityManager.persist(entity);
 
         return Response.accepted().build();
     }

@@ -15,12 +15,6 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresResource;
-import org.testify.resource.hsql.InMemoryHSQLResource;
-import org.testify.junit.integration.HK2IntegrationTest;
 import examples.greeting.entity.GreetingEntity;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,6 +23,12 @@ import javax.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fixture;
+import org.testify.annotation.Real;
+import org.testify.annotation.RequiresResource;
+import org.testify.junit.integration.HK2IntegrationTest;
+import org.testify.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

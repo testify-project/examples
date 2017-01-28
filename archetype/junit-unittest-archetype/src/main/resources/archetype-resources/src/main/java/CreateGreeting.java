@@ -18,7 +18,8 @@
  */
 package ${package};
 
-import ${package}.entity.GreetingEntity;
+import ${package}.common.RandomUuidSupplier;
+import ${package}.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,10 +30,12 @@ import java.util.UUID;
  */
 public class CreateGreeting {
 
-    private final Map<UUID, GreetingEntity> store;
+    private final Map<UUID, GreetingModel> store;
+    private final RandomUuidSupplier randomUuidSupplier;
 
-    CreateGreeting(Map<UUID, GreetingEntity> store) {
+    CreateGreeting(Map<UUID, GreetingModel> store, RandomUuidSupplier randomUuidSupplier) {
         this.store = store;
+        this.randomUuidSupplier = randomUuidSupplier;
     }
 
     /**
@@ -40,9 +43,8 @@ public class CreateGreeting {
      *
      * @param model the greeting model
      */
-    public void createGreeting(GreetingEntity model) {
-        UUID id = UUID.randomUUID();
+    public void createGreeting(GreetingModel model) {
+        UUID id = randomUuidSupplier.get();
         store.put(id, model);
-        model.setId(id);
     }
 }

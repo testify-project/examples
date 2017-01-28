@@ -18,17 +18,20 @@
  */
 package ${package};
 
+import ${package}.model.GreetingModel;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import org.testify.annotation.Cut;
 import org.testify.annotation.Virtual;
 import org.testify.junit.UnitTest;
-import ${package}.entity.GreetingEntity;
-import java.util.Map;
-import java.util.UUID;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 /**
  * A unit test that demonstrates discovery of initialized collaborators and
@@ -45,42 +48,37 @@ public class UpdateGreetingTest {
     UpdateGreeting cut;
 
     @Virtual
-    Map<UUID, GreetingEntity> store;
-
-    @Test(expected = IllegalArgumentException.class)
-    public void givenNullUUIDUpdateGreetingShouldThrowException() {
-        UUID id = null;
-        GreetingEntity model = mock(GreetingEntity.class);
-
-        cut.updateGreeting(id, model);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void givenNullGreetingShouldThrowException() {
-        UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        GreetingEntity model = null;
-
-        cut.updateGreeting(id, model);
-    }
+    Map<UUID, GreetingModel> store = new HashMap<>();
 
     @Test
-    public void givenExistingGreetingUpdateGreetingShouldUpdate() {
+    public void givenNonExistentIdUpdateShouldNotUpdateStore() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        String phrase = "caio";
-        GreetingEntity entity = mock(GreetingEntity.class);
-        GreetingEntity model = mock(GreetingEntity.class);
-
-        given(store.get(id)).willReturn(entity);
-        given(model.getPhrase()).willReturn(phrase);
+        GreetingModel model = mock(GreetingModel.class);
 
         //Act
         cut.updateGreeting(id, model);
 
         //Assert
-        verify(store).get(id);
-        verify(model).getPhrase();
-        verify(entity).setPhrase(phrase);
+        assertThat(store).doesNotContainEntry(id, model);
+    }
+
+    @Test
+    public void givenExistingGreetingUpdateGreetingShouldUpdateStore() {
+        //Arrange
+        UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
+        String phrase = "caio";
+        GreetingModel existingEntity = new GreetingModel(phrase);
+        store.put(id, existingEntity);
+
+        GreetingModel model = mock(GreetingModel.class);
+
+        //Act
+        cut.updateGreeting(id, model);
+
+        //Assert
+        assertThat(store).containsEntry(id, model);
+        verify(store).computeIfPresent(eq(id), any());
     }
 
 }

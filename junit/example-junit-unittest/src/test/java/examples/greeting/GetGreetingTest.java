@@ -15,10 +15,8 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.junit.UnitTest;
-import examples.greeting.entity.GreetingEntity;
+import examples.greeting.model.GreetingModel;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,12 +27,15 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import org.testify.annotation.CollaboratorProvider;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Virtual;
+import org.testify.junit.UnitTest;
 
 /**
  * A basic unit tests that demonstrates the ability to specify a class under
- * test and create and assign a mock instance of its collaborators to it. Notice
- * that the class under test is annotated with {@link Cut} and that its
- * collaborator is annotated with {@link Fake}.
+ * test's collaborators by annotating a method in the test class with
+ * {@link CollaboratorProvider}.
  *
  * @author saden
  */
@@ -44,8 +45,15 @@ public class GetGreetingTest {
     @Cut
     GetGreeting cut;
 
-    @Fake
-    Map<UUID, GreetingEntity> store;
+    @Virtual
+    Map<UUID, GreetingModel> store;
+
+    @CollaboratorProvider
+    Object[] collaborators() {
+        return new Object[]{
+            new HashMap<>()
+        };
+    }
 
     @Test
     public void givenMapStoreNewGetGreetingShouldNotDoWorkInConstructor() {
@@ -63,7 +71,7 @@ public class GetGreetingTest {
         UUID id = null;
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = cut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -76,7 +84,7 @@ public class GetGreetingTest {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = cut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -87,11 +95,11 @@ public class GetGreetingTest {
     public void givenExistentidGetGreetingShouldReturnOptionalWithAGreeting() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        GreetingEntity greeting = mock(GreetingEntity.class);
+        GreetingModel greeting = mock(GreetingModel.class);
         given(store.get(id)).willReturn(greeting);
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = cut.getGreeting(id);
 
         //Assert
         assertThat(result).contains(greeting);

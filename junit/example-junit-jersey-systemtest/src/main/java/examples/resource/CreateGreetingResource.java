@@ -16,6 +16,7 @@
 package examples.resource;
 
 import examples.resource.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
 import java.net.URI;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -27,28 +28,33 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import org.modelmapper.ModelMapper;
 
 /**
  * A resource that creates a new greeting.
  *
  * @author saden
  */
-@Transactional
 @Path("greetings")
+@Transactional
 public class CreateGreetingResource {
 
     private final EntityManager entityManager;
     private final UriInfo uriInfo;
+    private final ModelMapper modelMapper;
 
     @Inject
-    CreateGreetingResource(EntityManager entityManager, UriInfo uriInfo) {
+    CreateGreetingResource(EntityManager entityManager, UriInfo uriInfo, ModelMapper modelMapper) {
         this.entityManager = entityManager;
         this.uriInfo = uriInfo;
+        this.modelMapper = modelMapper;
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
-    public Response create(@Valid GreetingEntity entity) {
+    public Response create(@Valid GreetingModel model) {
+        GreetingEntity entity = modelMapper.map(model, GreetingEntity.class);
+
         entityManager.persist(entity);
 
         URI location = uriInfo.getAbsolutePathBuilder()

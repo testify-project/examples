@@ -23,14 +23,14 @@ import examples.greeting.repository.entity.GreetingEntity;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * A service that retrieve an existing greeting.
  *
  * @author saden
  */
-@Component
+@Service
 public class GetGreeting {
 
     private final GreetingRepository greetingRepository;

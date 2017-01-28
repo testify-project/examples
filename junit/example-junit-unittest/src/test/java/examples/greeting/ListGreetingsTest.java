@@ -15,10 +15,7 @@
  */
 package examples.greeting;
 
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.junit.UnitTest;
-import examples.greeting.entity.GreetingEntity;
+import examples.greeting.model.GreetingModel;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
@@ -29,6 +26,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import org.testify.annotation.Cut;
+import org.testify.annotation.Fake;
+import org.testify.junit.UnitTest;
 
 /**
  * A unit test that demonstrates the ability to verify class under test method
@@ -43,7 +43,7 @@ public class ListGreetingsTest {
     ListGreetings cut;
 
     @Fake
-    Map<UUID, GreetingEntity> store;
+    Map<UUID, GreetingModel> store;
 
     @Test
     public void givenMapStoreNewListGreetingShouldNotDoWorkInConstructor() {
@@ -58,7 +58,7 @@ public class ListGreetingsTest {
     @Test
     public void givenEmptyStoreListGreetingShouldReturnAnEmptyCollection() {
         //Act
-        Collection<GreetingEntity> result = cut.listGreetings();
+        Collection<GreetingModel> result = cut.listGreetings();
 
         //Assert
         assertThat(result).isEmpty();
@@ -72,11 +72,11 @@ public class ListGreetingsTest {
     public void givenStoreGreetingsListGreetingShouldReturnCollectionOfGreetings() {
         //Arrange
         @SuppressWarnings("unchecked")
-        Collection<GreetingEntity> greetings = mock(Collection.class);
+        Collection<GreetingModel> greetings = mock(Collection.class);
         given(store.values()).willReturn(greetings);
 
         //Act
-        Collection<GreetingEntity> result = cut.listGreetings();
+        Collection<GreetingModel> result = cut.listGreetings();
 
         //Assert
         assertThat(result).isSameAs(greetings);

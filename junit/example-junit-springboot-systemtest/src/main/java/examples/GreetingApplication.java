@@ -19,6 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.convention.NamingConventions;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -66,5 +70,20 @@ public class GreetingApplication {
                 .persistenceUnit("example.greeter")
                 .properties(properties)
                 .build();
+    }
+
+    @Bean
+    ModelMapper modelMapper() {
+        ModelMapper mapper = new ModelMapper();
+
+        Configuration configuration = mapper.getConfiguration();
+        configuration.setMatchingStrategy(MatchingStrategies.STRICT);
+        configuration.setFieldAccessLevel(Configuration.AccessLevel.PUBLIC);
+        configuration.setMethodAccessLevel(Configuration.AccessLevel.PUBLIC);
+        configuration.setAmbiguityIgnored(false);
+        configuration.setDestinationNamingConvention(NamingConventions.JAVABEANS_MUTATOR);
+        configuration.setSourceNamingConvention(NamingConventions.JAVABEANS_ACCESSOR);
+
+        return mapper;
     }
 }

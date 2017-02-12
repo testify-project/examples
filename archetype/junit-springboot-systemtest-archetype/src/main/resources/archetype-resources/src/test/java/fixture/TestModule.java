@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.testify.ContainerInstance;
+import org.testifyproject.ContainerInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -63,6 +63,14 @@ public class TestModule {
         return dataSource;
     }
 
+    /**
+     * Create and configure a test entity manager bean factory.
+     *
+     * @param builder the entity manager builder
+     * @param dataSource the test data source
+     * @param applicationContext the application context
+     * @return an entity manager bean factory
+     */
     @Primary
     @Bean
     LocalContainerEntityManagerFactoryBean testEntityManagerFactory(

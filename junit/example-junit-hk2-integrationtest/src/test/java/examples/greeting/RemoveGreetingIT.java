@@ -29,12 +29,12 @@ import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.mock;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.RequiresResource;
-import org.testify.annotation.Virtual;
-import org.testify.junit.integration.HK2IntegrationTest;
-import org.testify.resource.hsql.InMemoryHSQLResource;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Fixture;
+import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.Virtual;
+import org.testifyproject.junit.integration.HK2IntegrationTest;
+import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

@@ -26,11 +26,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import org.testify.ResourceInstance;
-import org.testify.TestContext;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fixture;
-import org.testify.junit.UnitTest;
+import org.testifyproject.ResourceInstance;
+import org.testifyproject.TestContext;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Fixture;
+import org.testifyproject.junit.UnitTest;
 
 /**
  *

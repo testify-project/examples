@@ -26,9 +26,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.junit.UnitTest;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Fake;
+import org.testifyproject.junit.UnitTest;
 
 /**
  * A unit test that demonstrates the ability to verify class under test method

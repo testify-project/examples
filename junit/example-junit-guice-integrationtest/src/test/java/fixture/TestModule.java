@@ -29,9 +29,9 @@ import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.testify.ContainerInstance;
-import org.testify.TestContext;
-import org.testify.annotation.Fixture;
+import org.testifyproject.ContainerInstance;
+import org.testifyproject.TestContext;
+import org.testifyproject.annotation.Fixture;
 
 /**
  *

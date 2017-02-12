@@ -29,9 +29,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Virtual;
-import org.testify.junit.UnitTest;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Virtual;
+import org.testifyproject.junit.UnitTest;
 
 /**
  * A unit test that demonstrates discovery of initialized collaborators and

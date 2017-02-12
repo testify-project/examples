@@ -29,13 +29,13 @@ import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Fake;
-import org.testify.annotation.Fixture;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresResource;
-import org.testify.junit.integration.GuiceIntegrationTest;
-import org.testify.resource.hsql.InMemoryHSQLResource;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Fake;
+import org.testifyproject.annotation.Fixture;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.junit.integration.GuiceIntegrationTest;
+import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

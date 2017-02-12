@@ -30,15 +30,15 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.ConfigHandler;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.SpringSystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
+import org.testifyproject.ClientInstance;
+import org.testifyproject.annotation.Application;
+import org.testifyproject.annotation.ConfigHandler;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.junit.system.SpringSystemTest;
+import org.testifyproject.tools.category.ContainerTests;
+import org.testifyproject.tools.category.SystemTests;
 
 /**
  *

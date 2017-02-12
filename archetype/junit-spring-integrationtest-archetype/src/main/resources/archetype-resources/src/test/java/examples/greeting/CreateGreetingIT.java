@@ -27,13 +27,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.Real;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.integration.SpringIntegrationTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.IntegrationTests;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.junit.integration.SpringIntegrationTest;
+import org.testifyproject.tools.category.ContainerTests;
+import org.testifyproject.tools.category.IntegrationTests;
 
 /**
  * An integration test that demonstrates the ability to:

@@ -21,14 +21,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.testify.examples</groupId>
+    <groupId>org.testify-project.examples</groupId>
     <artifactId>parent</artifactId>
-    <version>0.1.4-SNAPSHOT</version>
+    <version>0.9.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <name>Examples</name>
     <description>Parent module of Testify Examples and Archetypes</description>
-    <url>https://fitburio.github.io/examples</url>
+    <url>https://testify-project.github.io</url>
 
     <modules>
         <module>archetype</module>
@@ -49,8 +49,10 @@
         <netbeans.hint.license>apache20</netbeans.hint.license>
         <netbeans.hint.license.inceptionYear>2016</netbeans.hint.license.inceptionYear>
 
-        <!-- Build Dependency Versions -->
-        <buildtools.version>1.0.0-SNAPSHOT</buildtools.version>
+        <!-- Testify Dependency Versions -->
+        <buildtools.version>0.9.0-SNAPSHOT</buildtools.version>
+        <testify.version>0.9.0-SNAPSHOT</testify.version>
+        <resources.version>0.9.0-SNAPSHOT</resources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.1</plugin.resource>
@@ -360,13 +362,13 @@
                         <historyOutputLocation>${project.build.directory}/pit.history</historyOutputLocation>
                         <timeoutConstant>10000</timeoutConstant>
                         <targetClasses>
-                            <param>org.testify.*</param>
+                            <param>org.testifyproject.*</param>
                         </targetClasses>
                         <targetTests>
-                            <param>org.testify.*</param>
+                            <param>org.testifyproject.*</param>
                         </targetTests>
                         <excludedClasses>
-                            <param>org.testify.*.*BadTestSetup</param>
+                            <param>org.testifyproject.*.*BadTestSetup</param>
                         </excludedClasses>
                         <exportLineCoverage>true</exportLineCoverage>
                         <outputFormats>
@@ -388,7 +390,7 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.testify</groupId>
+                            <groupId>org.testify-project</groupId>
                             <artifactId>build-tools</artifactId>
                             <version>${buildtools.version}</version>
                         </dependency>
@@ -437,7 +439,7 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.testify</groupId>
+                            <groupId>org.testify-project</groupId>
                             <artifactId>build-tools</artifactId>
                             <version>${buildtools.version}</version>
                         </dependency>

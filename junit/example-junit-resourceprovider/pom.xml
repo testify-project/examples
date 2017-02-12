@@ -21,9 +21,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.testify.examples</groupId>
+        <groupId>org.testify-project.examples</groupId>
         <artifactId>junit</artifactId>
-        <version>0.1.4-SNAPSHOT</version>
+        <version>0.9.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>example-junit-resourceprovider</artifactId>
@@ -83,14 +83,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.testify</groupId>
+            <groupId>org.testify-project</groupId>
             <artifactId>api</artifactId>
-            <version>${project.version}</version>
+            <version>${testify.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.testify</groupId>
+            <groupId>org.testify-project</groupId>
             <artifactId>core</artifactId>
-            <version>${project.version}</version>
+            <version>${testify.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -100,21 +100,15 @@
 
         <!-- Test Deps -->
         <dependency>
-            <groupId>org.testify.junit</groupId>
+            <groupId>org.testify-project.junit</groupId>
             <artifactId>unit-test</artifactId>
-            <version>${project.version}</version>
+            <version>${testify.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testify.mock</groupId>
-            <artifactId>mockito</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testify.tools</groupId>
+            <groupId>org.testify-project.tools</groupId>
             <artifactId>test-logger</artifactId>
-            <version>${project.version}</version>
+            <version>${testify.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

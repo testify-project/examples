@@ -20,26 +20,27 @@ package examples.resource;
 
 import examples.GreetingApplication;
 import examples.resource.repository.entity.GreetingEntity;
-import fixture.TestConfigHandler;
 import fixture.TestModule;
 import java.util.List;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.OK;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-import org.testify.ClientInstance;
-import org.testify.annotation.Application;
-import org.testify.annotation.ConfigHandler;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Module;
-import org.testify.annotation.RequiresContainer;
-import org.testify.junit.system.SpringBootSystemTest;
-import org.testify.tools.category.ContainerTests;
-import org.testify.tools.category.SystemTests;
+import org.testifyproject.ClientInstance;
+import org.testifyproject.annotation.Application;
+import org.testifyproject.annotation.ConfigHandler;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.junit.system.SpringBootSystemTest;
+import org.testifyproject.tools.category.ContainerTests;
+import org.testifyproject.tools.category.SystemTests;
 
 /**
  *
@@ -47,7 +48,6 @@ import org.testify.tools.category.SystemTests;
  */
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
-@ConfigHandler(TestConfigHandler.class)
 @RequiresContainer(value = "postgres", version = "9.4")
 @Category({ContainerTests.class, SystemTests.class})
 @RunWith(SpringBootSystemTest.class)
@@ -55,6 +55,11 @@ public class ListGreetingsResourceST {
 
     @Cut
     ClientInstance<WebTarget> cut;
+
+    @ConfigHandler
+    void configureClient(ClientBuilder clientBuilder) {
+        clientBuilder.register(JacksonFeature.class);
+    }
 
     @Test
     public void callToListGreetingsShouldReturnGreetings() {

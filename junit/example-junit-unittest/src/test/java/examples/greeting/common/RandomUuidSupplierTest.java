@@ -19,8 +19,8 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testify.annotation.Cut;
-import org.testify.junit.UnitTest;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.junit.UnitTest;
 
 /**
  * Simple test case for the random uuid supplier class.

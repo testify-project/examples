@@ -30,10 +30,10 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testify.annotation.CollaboratorProvider;
-import org.testify.annotation.Cut;
-import org.testify.annotation.Virtual;
-import org.testify.junit.UnitTest;
+import org.testifyproject.annotation.CollaboratorProvider;
+import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Virtual;
+import org.testifyproject.junit.UnitTest;
 
 /**
  * A basic unit tests that demonstrates the ability to specify a class under

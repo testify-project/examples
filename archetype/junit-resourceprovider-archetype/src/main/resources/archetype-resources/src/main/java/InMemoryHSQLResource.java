@@ -23,10 +23,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.hsqldb.jdbc.JDBCDataSource;
-import org.testify.ResourceInstance;
-import org.testify.ResourceProvider;
-import org.testify.TestContext;
-import org.testify.core.impl.ResourceInstanceBuilder;
+import org.testifyproject.ResourceInstance;
+import org.testifyproject.ResourceProvider;
+import org.testifyproject.TestContext;
+import org.testifyproject.core.ResourceInstanceBuilder;
 
 /**
  * An implementation of ResourceProvider that provides an in-memory HSQL
@@ -34,7 +34,8 @@ import org.testify.core.impl.ResourceInstanceBuilder;
  *
  * @author saden
  */
-public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, DataSource, Connection> {
+public class InMemoryHSQLResource
+        implements ResourceProvider<JDBCDataSource, DataSource, Connection> {
 
     private JDBCDataSource server;
     private Connection client;
@@ -42,7 +43,8 @@ public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, Da
     @Override
     public JDBCDataSource configure(TestContext testContext) {
         JDBCDataSource dataSource = new JDBCDataSource();
-        dataSource.setUrl(format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName()));
+        String url = format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName());
+        dataSource.setUrl(url);
         dataSource.setUser("sa");
         dataSource.setPassword("");
 
@@ -50,17 +52,17 @@ public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, Da
     }
 
     @Override
-    public ResourceInstance<DataSource, Connection> start(TestContext testContext, JDBCDataSource dataSource) {
+    public ResourceInstance start(TestContext testContext,
+            JDBCDataSource dataSource) {
         try {
             server = dataSource;
             client = dataSource.getConnection();
 
-            return new ResourceInstanceBuilder<DataSource, Connection>()
+            return new ResourceInstanceBuilder()
                     .server(server, DataSource.class)
                     .client(client, Connection.class)
                     .build();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -72,8 +74,7 @@ public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, Da
                     .createStatement()
                     .executeQuery("SHUTDOWN");
             client.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
     }

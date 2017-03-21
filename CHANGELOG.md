@@ -13,6 +13,9 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+### Changed
+- Updated Spring, SpringBoot, Jersey and Guice versions
+
 ## [0.9.0] - 2017-03-21
 ### Added
 - Example JUnit4 Unit Test

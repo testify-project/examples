@@ -65,8 +65,8 @@ public class ListGreetingsResourceST {
 
         //Assert
         assertThat(response.getStatus()).isEqualTo(OK.getStatusCode());
-        GenericType<List<GreetingEntity>> genericType = new GenericType<List<GreetingEntity>>() {
-        };
+        GenericType<List<GreetingEntity>> genericType
+                = new GenericType<List<GreetingEntity>>() {};
         List<GreetingEntity> result = response.readEntity(genericType);
         assertThat(result).hasSize(1);
     }

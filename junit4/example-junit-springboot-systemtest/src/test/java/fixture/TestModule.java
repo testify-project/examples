@@ -71,7 +71,9 @@ public class TestModule {
     @Primary
     @Bean
     LocalContainerEntityManagerFactoryBean testEntityManagerFactory(
-            EntityManagerFactoryBuilder builder, DataSource dataSource, ApplicationContext applicationContext) {
+            EntityManagerFactoryBuilder builder,
+            DataSource dataSource,
+            ApplicationContext applicationContext) {
         Map<String, Object> properties = new HashMap<>();
         properties.put(DATASOURCE, dataSource);
         properties.put("hibernate.ejb.entitymanager_factory_name", applicationContext.getId());

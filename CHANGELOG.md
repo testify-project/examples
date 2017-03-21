@@ -13,6 +13,7 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.0] - 2017-03-21
 ### Added
 - Example JUnit4 Unit Test
 - Example JUnit4 Spring Integration Test

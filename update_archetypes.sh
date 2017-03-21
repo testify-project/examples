@@ -41,7 +41,7 @@ do
     find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoFailesafeArgs}/\\\$\{jacocoFailesafeArgs\}/g'
 
     # Updating goal.txt to verify
-    find -name "goal.txt" -exec sh -c "echo verify > {}" \;
+    #find -name "goal.txt" -exec sh -c "echo verify > {}" \;
 
     echo "Replacing $ARCHETYPE_SRC_DIR with $EXAMPLE_SRC_DIR"
     rm -rf "$ARCHETYPE_SRC_DIR"

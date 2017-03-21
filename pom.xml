@@ -298,9 +298,6 @@
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <subpackages>examples</subpackages>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-gpg-plugin</artifactId>

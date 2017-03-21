@@ -73,7 +73,7 @@ public class GreetingConfig {
      */
     @Bean
     PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager 
+        JpaTransactionManager transactionManager
                 = new JpaTransactionManager(entityManagerFactory);
 
         return transactionManager;

@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- * Copyright 2016-2017 Sharmarke Aden.
+ * Copyright 2016-2017 Testify Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import static javax.ws.rs.core.Response.Status.OK;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
@@ -36,9 +35,7 @@ import org.testifyproject.annotation.ConfigHandler;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.RequiresContainer;
-import org.testifyproject.junit.system.SpringSystemTest;
-import org.testifyproject.tools.category.ContainerTests;
-import org.testifyproject.tools.category.SystemTests;
+import org.testifyproject.junit4.system.SpringSystemTest;
 
 /**
  *
@@ -47,7 +44,6 @@ import org.testifyproject.tools.category.SystemTests;
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
 @RequiresContainer(value = "postgres", version = "9.4")
-@Category({ContainerTests.class, SystemTests.class})
 @RunWith(SpringSystemTest.class)
 public class GetGreetingResourceST {
 
@@ -62,7 +58,7 @@ public class GetGreetingResourceST {
     @Test
     public void callToGetGreetingShouldReturn() {
         //Act
-        Response response = cut.getTarget()
+        Response response = cut.getInstance()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

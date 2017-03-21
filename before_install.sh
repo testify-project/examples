@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2016-2017 Sharmarke Aden.
+# Copyright 2016-2017 Testify Project.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,8 +18,11 @@ set -e
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     echo "Decrypting Secrets"
-    openssl aes-256-cbc -K $encrypted_9f80527c2905_key -iv $encrypted_9f80527c2905_iv -in secrets.tar.gz.enc -out secrets.tar.gz -d
-    tar -xvzf secrets.tar.gz
+    openssl aes-256-cbc -K $encrypted_7ee043cd68ff_key -iv $encrypted_7ee043cd68ff_iv -in secrets.tar.gz.enc -out secrets.tar.gz -d
+    tar --strip-components 1 -xzf secrets.tar.gz
+    gpg --fast-import testifybot.asc
+    eval "$(ssh-agent -s)"
+    ssh-add testifybot_rsa
 fi
 
 echo "MAVEN_OPTS='-client -Xms512m -Xmx2048m'" > ~/.mavenrc

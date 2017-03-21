@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2016-2017 Sharmarke Aden.
+# Copyright 2016-2017 Testify Project.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 set -e
 
 CURRENT_DIR=$(pwd)
-EXAMPLES_DIR="$CURRENT_DIR/junit"
+EXAMPLES_DIR="$CURRENT_DIR/junit4"
 ARCHETYPES_DIR="$CURRENT_DIR/archetype"
 
 echo "Building Examples"

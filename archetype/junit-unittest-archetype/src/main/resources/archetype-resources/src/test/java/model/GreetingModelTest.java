@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- * Copyright 2016-2017 Sharmarke Aden.
+ * Copyright 2016-2017 Testify Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.CollaboratorProvider;
 import org.testifyproject.annotation.Cut;
-import org.testifyproject.junit.UnitTest;
+import org.testifyproject.junit4.UnitTest;
 
 /**
  * <p>

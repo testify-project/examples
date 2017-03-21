@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016-2017 Sharmarke Aden.
+    Copyright 2016-2017 Testify Project.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
 
     <groupId>${groupId}</groupId>
 
-    <name>Example JUnit Resource Provider</name>
+    <name>Example JUnit4 Resource Provider</name>
     <description>Creates a new quickstart project that demonstractes ResourceProvider SPI contract implementation.</description>
     <version>${version}</version>
     <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-requiredresource</url>
@@ -76,12 +76,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.testify-project</groupId>
+            <groupId>org.testifyproject</groupId>
             <artifactId>api</artifactId>
             <version>${testify.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.testify-project</groupId>
+            <groupId>org.testifyproject</groupId>
             <artifactId>core</artifactId>
             <version>${testify.version}</version>
         </dependency>
@@ -93,13 +93,13 @@
 
         <!-- Test Deps -->
         <dependency>
-            <groupId>org.testify-project.junit</groupId>
+            <groupId>org.testifyproject.junit4</groupId>
             <artifactId>unit-test</artifactId>
             <version>${testify.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testify-project.tools</groupId>
+            <groupId>org.testifyproject.tools</groupId>
             <artifactId>test-logger</artifactId>
             <version>${testify.version}</version>
             <scope>test</scope>

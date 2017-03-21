@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- * Copyright 2016-2017 Sharmarke Aden.
+ * Copyright 2016-2017 Testify Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,9 +58,9 @@ public class InMemoryHSQLResource
             server = dataSource;
             client = dataSource.getConnection();
 
-            return new ResourceInstanceBuilder()
-                    .server(server, DataSource.class)
-                    .client(client, Connection.class)
+            return new ResourceInstanceBuilder<DataSource, Connection>()
+                    .server(server, "inmemoryHSQLDataSource", DataSource.class)
+                    .client(client, "inmemoryHSQLConnection", Connection.class)
                     .build();
         } catch (SQLException e) {
             throw new IllegalStateException(e);

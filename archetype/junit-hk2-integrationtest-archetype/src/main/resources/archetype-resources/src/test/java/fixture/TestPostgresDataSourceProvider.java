@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- * Copyright 2016-2017 Sharmarke Aden.
+ * Copyright 2016-2017 Testify Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,8 +48,8 @@ public class TestPostgresDataSourceProvider implements Factory<DataSource> {
     @Override
     public DataSource provide() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getHost());
-        dataSource.setPortNumber(instance.findFirstPort().get());
+        dataSource.setServerName(instance.getAddress().getHostAddress());
+        dataSource.setPortNumber(instance.findFirstExposedPort().get());
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

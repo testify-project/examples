@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2016-2017 Testify Project.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.testifyproject.examples</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>org.testifyproject.examples</groupId>
+    <artifactId>junit4</artifactId>
+    <packaging>pom</packaging>
+
+    <name>JUnit 4 Examples</name>
+    <description>Parent module of example projects</description>
+
+    <modules>
+        <module>example-junit-unittest</module>
+        <module>example-junit-spring-integrationtest</module>
+        <module>example-junit-spring-systemtest</module>
+        <module>example-junit-springboot-systemtest</module>
+        <module>example-junit-hk2-integrationtest</module>
+        <module>example-junit-jersey-systemtest</module>
+        <module>example-junit-guice-integrationtest</module>
+        <module>example-junit-resourceprovider</module>
+    </modules>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <archetype.version>2.4</archetype.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!--
+                A profile to creating Archetypes from Example Projects. Enable
+                this profile with -P to create archetypes from example projects
+                and copy the resulting archetype projects to the Archetype
+                module.
+            -->
+            <id>archetype</id>
+            <activation>
+                <property>
+                    <name>archetype</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-archetype-plugin</artifactId>
+                        <version>${archetype.version}</version>
+                        <executions>
+                            <execution>
+                                <id>archetype-generate-sources</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>create-from-project</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <defaultEncoding>${project.build.sourceEncoding}</defaultEncoding>
+                            <propertyFile>${basedir}/achetype.properties</propertyFile>
+                            <keepParent>false</keepParent>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

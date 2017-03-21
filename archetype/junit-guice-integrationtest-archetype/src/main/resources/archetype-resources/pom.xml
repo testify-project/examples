@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016-2017 Sharmarke Aden.
+    Copyright 2016-2017 Testify Project.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -17,10 +17,13 @@
 
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <artifactId>${artifactId}</artifactId>
+
     <groupId>${groupId}</groupId>
-    <name>Example JUnit Guice Integration Test</name>
-    <description>Creates a new quickstart project to integration test Guice modules and services with Testify, JUnit, Mockito, and AssertJ.</description>
+
+    <name>Example JUnit4 Guice Integration Test</name>
+    <description>Creates a new quickstart project to integration test Guice modules and services with Testify, JUnit4, Mockito, and AssertJ.</description>
     <version>${version}</version>
     <url>https://github.com/testify-project/examples/tree/master/junit/${artifactId}</url>
 
@@ -84,25 +87,25 @@
     <dependencies>
         <!-- Testify Test Deps -->
         <dependency>
-            <groupId>org.testify-project.junit</groupId>
+            <groupId>org.testifyproject.junit4</groupId>
             <artifactId>guice-integration-test</artifactId>
             <version>${testify.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testify-project.resources</groupId>
+            <groupId>org.testifyproject.resources</groupId>
             <artifactId>hsql</artifactId>
             <version>${resources.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testify-project.container</groupId>
+            <groupId>org.testifyproject.container</groupId>
             <artifactId>docker</artifactId>
             <version>${testify.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testify-project.tools</groupId>
+            <groupId>org.testifyproject.tools</groupId>
             <artifactId>test-logger</artifactId>
             <version>${testify.version}</version>
             <scope>test</scope>

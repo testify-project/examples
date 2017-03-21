@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2016-2017 Testify Project.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.testifyproject.examples</groupId>
+        <artifactId>junit4</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>example-junit-resourceprovider</artifactId>
+
+    <name>Example JUnit4 Resource Provider</name>
+    <description>
+        Creates a new quickstart project that demonstractes ResourceProvider SPI contract implementation.
+    </description>
+    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-requiredresource</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <plugin.surefire>2.19.1</plugin.surefire>
+        <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        <hsqldb.version>[2.3.0,)</hsqldb.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${plugin.jacoco}</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>jacocoSurefireArgs</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.surefire}</version>
+                <configuration>
+                    <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <forkCount>0.75C</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testifyproject</groupId>
+            <artifactId>api</artifactId>
+            <version>${testify.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testifyproject</groupId>
+            <artifactId>core</artifactId>
+            <version>${testify.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+        </dependency>
+
+        <!-- Test Deps -->
+        <dependency>
+            <groupId>org.testifyproject.junit4</groupId>
+            <artifactId>unit-test</artifactId>
+            <version>${testify.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testifyproject.tools</groupId>
+            <artifactId>test-logger</artifactId>
+            <version>${testify.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

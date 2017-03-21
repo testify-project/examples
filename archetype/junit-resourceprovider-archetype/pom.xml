@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.testifyproject.archetypes</groupId>
         <artifactId>archetypes</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.0</version>
     </parent>
 
     <artifactId>junit-resourceprovider-archetype</artifactId>

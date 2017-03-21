@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.testifyproject.archetypes</groupId>
         <artifactId>archetypes</artifactId>
-        <version>0.9.1</version>
+        <version>0.9.2-SNAPSHOT</version>
     </parent>
     
     <artifactId>junit-hk2-integrationtest-archetype</artifactId>

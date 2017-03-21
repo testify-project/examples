@@ -13,6 +13,7 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.1] - 2017-03-21
 ### Changed
 - Updated Spring, SpringBoot, Jersey and Guice versions
 

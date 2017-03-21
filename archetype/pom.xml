@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.testifyproject.examples</groupId>
         <artifactId>parent</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
+        <version>0.9.1</version>
     </parent>
 
     <groupId>org.testifyproject.archetypes</groupId>

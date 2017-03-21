@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.testifyproject.examples</groupId>
         <artifactId>junit4</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
+        <version>0.9.1</version>
     </parent>
 
     <artifactId>example-junit-unittest</artifactId>

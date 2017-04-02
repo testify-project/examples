@@ -589,7 +589,7 @@
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>3.0.4</version>
                 <configuration>
-                    <onlyAnalyze>org.testifyproject.*</onlyAnalyze>
+                    <onlyAnalyze>examples.*</onlyAnalyze>
                 </configuration>
             </plugin>
             <plugin>

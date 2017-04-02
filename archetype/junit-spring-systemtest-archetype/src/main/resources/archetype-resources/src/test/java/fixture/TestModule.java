@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.testifyproject.ContainerInstance;
+import org.testifyproject.VirtualResourceInstance;
 import org.testifyproject.annotation.Fixture;
 
 /**
@@ -44,10 +44,10 @@ public class TestModule {
 
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("postgres") ContainerInstance instance) {
+    DataSource testDataSource(@Qualifier("postgres") VirtualResourceInstance virtualResourceInstance) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(virtualResourceInstance.getAddress().getHostAddress());
+        dataSource.setPortNumber(virtualResourceInstance.findFirstExposedPort().get());
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

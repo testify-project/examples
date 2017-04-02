@@ -31,7 +31,7 @@ import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
 
 /**
@@ -41,7 +41,7 @@ import org.testifyproject.junit4.system.Jersey2SystemTest;
 @Application(GreetingsResourceConfig.class)
 @Module(TestModule.class)
 @ConfigHandler(TestConfigHandler.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(Jersey2SystemTest.class)
 public class CreateGreetingResourceST {
 

@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.SpringBootSystemTest;
 
 /**
@@ -38,7 +38,7 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
  */
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(SpringBootSystemTest.class)
 public class RemoveGreetingResourceST {
 

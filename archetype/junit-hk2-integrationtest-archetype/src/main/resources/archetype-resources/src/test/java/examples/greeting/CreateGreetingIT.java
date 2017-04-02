@@ -30,7 +30,7 @@ import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 
 /**
@@ -38,7 +38,7 @@ import org.testifyproject.junit4.integration.HK2IntegrationTest;
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with a container based PostgreSQL
- * database using {@link RequiresContainer @RequiresContainer} annotation</li>
+ * database using {@link VirtualResource @VirtualResource} annotation</li>
  * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
  * <li>inject the class under test's real collaborating EntityManager instance
  * using {@link Real @Real} annotation</li>
@@ -49,7 +49,7 @@ import org.testifyproject.junit4.integration.HK2IntegrationTest;
  * @author saden
  */
 @Module(TestModule.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(HK2IntegrationTest.class)
 public class CreateGreetingIT {
 

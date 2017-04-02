@@ -2,8 +2,7 @@
 [![Build Status](https://travis-ci.org/testify-project/examples.svg?branch=develop)](https://travis-ci.org/testify-project/examples)
 [![Join the chat on Gitter](https://badges.gitter.im/testify-project/Lobby.svg)](https://gitter.im/testify-project/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![CodecovIO](https://codecov.io/github/testify-project/examples/coverage.svg?branch=develop)](https://codecov.io/github/testify-project/examples?branch=develop)
-[![Latest Release](https://img.shields.io/github/release/testify-project/examples.svg)](https://github.com/testify-project/examples/releases/latest)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.testifyproject/examples/badge.svg?style=flat)](http://repo1.maven.org/maven2/org/testifyproject/examples/)
+[![Maven Central](https://img.shields.io/maven-central/v/org.testifyproject.examples/parent.svg)]()
 [![License](https://img.shields.io/badge/license-Apache%20License%202-lightgrey.svg)](https://github.com/testify-project/examples/blob/develop/LICENSE)
 
 ## Overview

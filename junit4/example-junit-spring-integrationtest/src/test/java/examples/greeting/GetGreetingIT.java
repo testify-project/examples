@@ -27,7 +27,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -36,7 +36,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with an in-memory HSQL database using
- * {@link RequiresResource @RequiresResource} annotation</li>
+ * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
  * <li>inject the class under test's real collaborating GreetingRepository
  * instance using {@link Real @Real} annotation</li>
@@ -45,7 +45,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * @author saden
  */
 @Module(GreetingConfig.class)
-@RequiresResource(InMemoryHSQLResource.class)
+@LocalResource(InMemoryHSQLResource.class)
 @RunWith(SpringIntegrationTest.class)
 public class GetGreetingIT {
 

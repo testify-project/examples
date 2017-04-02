@@ -32,8 +32,8 @@ import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.testifyproject.ContainerInstance;
 import org.testifyproject.TestContext;
+import org.testifyproject.VirtualResourceInstance;
 import org.testifyproject.annotation.Fixture;
 
 /**
@@ -59,16 +59,17 @@ public class TestModule extends AbstractModule {
      * annotate this class with @Service because we don't want it to be
      * discovered and used every time.
      *
-     * @param instance the container instance
+     * @param virtualResourceInstance the container instance
      * @param testContext
      * @return a postgress data source
      */
     @Singleton
     @Provides
-    public DataSource testDataSource(@Named("postgres") ContainerInstance instance, TestContext testContext) {
+    public DataSource testDataSource(@Named("postgres") VirtualResourceInstance virtualResourceInstance, 
+            TestContext testContext) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(virtualResourceInstance.getAddress().getHostAddress());
+        dataSource.setPortNumber(virtualResourceInstance.findFirstExposedPort().get());
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

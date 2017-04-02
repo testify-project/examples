@@ -13,6 +13,19 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.2-SNAPSHOT]
+### Changed
+- Upgraded Testify API version to 0.9.3 and adopted Semantic Testing
+  - Updated references to @RequiresResource annotation to @LocalResource
+  - Updated references to @RequiresContainer annotation to @VirtualResource
+  - Updated references to ResourceProvder contract to LocalResourceProvider
+  - Updated references to ContainerProvider contract to VirtualResourceProvider
+  - Updated references to ResourceInstance contract to LocalResourceInstance
+  - Updated references to ContainerInstance contract to VirtualResourceInstance
+  - Updated references to DefaultContainerInstance to DefaultVirtualResourceInstance
+  - Updated references to DefaultResourceInstance to DefaultLocalResourceInstance
+  - Updated references to ResourceInstanceBuilder to LocalResourceInstanceBuilder
+
 ## [0.9.1] - 2017-03-21
 ### Changed
 - Updated Spring, SpringBoot, Jersey and Guice versions

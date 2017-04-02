@@ -34,7 +34,7 @@ import static org.mockito.Mockito.mock;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.annotation.Fixture;
-import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -42,7 +42,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
- * {@link RequiresResource @RequiresResource} annotation</li>
+ * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
  * <li>inject and replace the class under test's real collaborating
  * EntityManager instance with a fake instance using {@link Fake @Fake}
@@ -53,7 +53,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  *
  * @author saden
  */
-@RequiresResource(InMemoryHSQLResource.class)
+@LocalResource(InMemoryHSQLResource.class)
 @RunWith(HK2IntegrationTest.class)
 public class ListGreetingsIT {
 

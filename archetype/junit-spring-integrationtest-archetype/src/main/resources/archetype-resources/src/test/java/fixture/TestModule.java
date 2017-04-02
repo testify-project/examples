@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.testifyproject.ContainerInstance;
+import org.testifyproject.VirtualResourceInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -49,10 +49,10 @@ public class TestModule {
     @Primary
     @Singleton
     @Bean
-    DataSource dataSource(@Qualifier("postgres") ContainerInstance instance) {
+    DataSource dataSource(@Qualifier("postgres") VirtualResourceInstance virtualResourceInstance) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(virtualResourceInstance.getAddress().getHostAddress());
+        dataSource.setPortNumber(virtualResourceInstance.findFirstExposedPort().get());
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

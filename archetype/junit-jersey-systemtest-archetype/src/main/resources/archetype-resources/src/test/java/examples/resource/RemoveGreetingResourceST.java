@@ -46,7 +46,7 @@ public class RemoveGreetingResourceST {
     WebTarget cut;
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenExistingGreetingIdRemoveShouldRemoveGreeting() {
         //Act
         Response response = cut
                 .path("greetings")

@@ -52,7 +52,7 @@ public class CreateGreetingResourceST {
     ClientInstance<WebTarget> cut;
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenGreetingModelCreateShouldReturnCreated() {
         //Arrange 
         GreetingModel model = new GreetingModel("caio");
         Entity<GreetingModel> entity = Entity.json(model);

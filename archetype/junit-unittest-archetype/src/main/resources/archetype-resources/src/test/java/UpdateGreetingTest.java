@@ -29,6 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.UnitTest;
@@ -49,6 +50,16 @@ public class UpdateGreetingTest {
 
     @Virtual
     Map<UUID, GreetingModel> store = new HashMap<>();
+
+    @Test
+    public void givenMapStoreNewUpdateGreetingShouldNotDoWorkInConstructor() {
+        //Act
+        UpdateGreeting result = new UpdateGreeting(store);
+
+        //Assert
+        assertThat(result).isNotNull();
+        verifyZeroInteractions(store);
+    }
 
     @Test
     public void givenNonExistentIdUpdateShouldNotUpdateStore() {

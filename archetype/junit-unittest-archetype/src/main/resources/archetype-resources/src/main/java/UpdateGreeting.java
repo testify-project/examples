@@ -31,7 +31,7 @@ public class UpdateGreeting {
 
     private final Map<UUID, GreetingModel> store;
 
-    public UpdateGreeting(Map<UUID, GreetingModel> store) {
+    UpdateGreeting(Map<UUID, GreetingModel> store) {
         this.store = store;
     }
 

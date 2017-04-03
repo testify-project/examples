@@ -19,13 +19,14 @@
 package examples.greeting.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -35,16 +36,19 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "Greetings")
+@ToString
+@EqualsAndHashCode
 public class GreetingEntity implements Serializable {
 
     private UUID id;
     private String phrase;
 
     public GreetingEntity() {
+        this(null, null);
     }
 
     public GreetingEntity(String phrase) {
-        this.phrase = phrase;
+        this(null, phrase);
     }
 
     public GreetingEntity(UUID id, String phrase) {
@@ -71,38 +75,6 @@ public class GreetingEntity implements Serializable {
 
     public void setPhrase(String phrase) {
         this.phrase = phrase;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.phrase);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GreetingEntity other = (GreetingEntity) obj;
-        if (!Objects.equals(this.phrase, other.phrase)) {
-            return false;
-        }
-
-        return Objects.equals(this.id, other.id);
-    }
-
-    @Override
-    public String toString() {
-        return "GreetingEntity{" + "id=" + id + ", phrase=" + phrase + '}';
     }
 
 }

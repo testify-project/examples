@@ -31,25 +31,6 @@ public class GreetingsMain {
 
     public static final String BASE_URI = "http://localhost:8080/";
 
-    private GreetingsMain() {
-    }
-
-    /**
-     * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
-     * application.
-     *
-     * @return Grizzly HTTP server.
-     */
-    public static HttpServer startServer() {
-        // create a resource config that scans for JAX-RS resources and providers
-        // in com.example package
-        GreetingsResourceConfig resourceConfig = new GreetingsResourceConfig();
-
-        // create and start a new instance of grizzly http server
-        // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), resourceConfig);
-    }
-
     /**
      * Main method.
      *
@@ -57,10 +38,25 @@ public class GreetingsMain {
      * @throws IOException thrown in the vent of IOException.
      */
     public static void main(String[] args) throws IOException {
-        final HttpServer server = startServer();
+        // create a resource config that scans for JAX-RS resources and
+        // providers in com.example package
+        GreetingsResourceConfig resourceConfig = new GreetingsResourceConfig();
+
+        // create uri for the Jersey application from the BASE_URI
+        URI uri = URI.create(BASE_URI);
+
+        // create and start a new instance of grizzly http server
+        HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
+
+        // display application info and listen for keystroke to shutdown
         System.out.println(format("Greetings Application started (%s)", BASE_URI));
         System.out.println("Hit enter to stop the application.");
         System.in.read();
         server.shutdown();
+
+        System.exit(0);
+    }
+
+    private GreetingsMain() {
     }
 }

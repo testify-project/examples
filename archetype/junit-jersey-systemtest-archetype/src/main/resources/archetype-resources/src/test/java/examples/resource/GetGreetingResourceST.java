@@ -24,6 +24,7 @@ import fixture.TestModule;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.OK;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -56,7 +57,20 @@ public class GetGreetingResourceST {
     }
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenNoneExistentGreetingIdGetGreetingShouldReturn404() {
+        //Act
+        Response response = cut.getInstance()
+                .path("greetings")
+                .path("aa216415-1b8e-4ab9-8531-fcbd25d5966f")
+                .request()
+                .get();
+
+        //Assert
+        assertThat(response.getStatus()).isEqualTo(NOT_FOUND.getStatusCode());
+    }
+
+    @Test
+    public void givenExistingGreetingIdGetGreetingShouldReturnFoundGreeting() {
         //Act
         Response response = cut.getInstance()
                 .path("greetings")

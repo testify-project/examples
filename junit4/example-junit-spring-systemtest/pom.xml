@@ -83,46 +83,71 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.surefire}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <reuseForks>false</reuseForks>
+                            <parallel>classes</parallel>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>system-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <reuseForks>false</reuseForks>
+                            <parallel>classes</parallel>
+                            <includes>
+                                <include>**/*ST.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <failIfNoTests>false</failIfNoTests>
+                    <forkCount>0.75C</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads> 
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${plugin.jacoco}</version>
                 <executions>
                     <execution>
-                        <id>jacoco-prepare-agent-integration</id>
+                        <id>jacoco-prepare-agent</id>
                         <goals>
-                            <goal>prepare-agent-integration</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
-                            <propertyName>jacocoFailesafeArgs</propertyName>
+                            <propertyName>jacocoSurefireArgs</propertyName>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>jacoco-report-integration</id>
+                        <id>jacoco-report</id>
                         <goals>
-                            <goal>report-integration</goal>
+                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${plugin.failsafe}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <argLine>${jacocoFailesafeArgs} -client -Xms512m -Xmx2048m</argLine>
-                    <forkCount>0.75C</forkCount>
-                    <reuseForks>false</reuseForks>
-                    <includes>
-                        <include>**/*ST.java</include>
-                    </includes>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
@@ -301,6 +326,14 @@
             <artifactId>modelmapper</artifactId>
             <version>${modelmapper.version}</version>
         </dependency>
+
+        <!-- Misc Deps -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>        
     </dependencies>
     
     <profiles>

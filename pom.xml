@@ -58,12 +58,11 @@
         <plugin.compiler>3.5.1</plugin.compiler>
         <plugin.jar>3.0.2</plugin.jar>
         <plugin.surefire>2.19.1</plugin.surefire>
-        <plugin.failsafe>2.19.1</plugin.failsafe>
         <plugin.checkstyle>2.17</plugin.checkstyle>
         <plugin.enforcer>1.4.1</plugin.enforcer>
         <plugin.source>3.0.1</plugin.source>
         <plugin.javadoc>2.10.4</plugin.javadoc>
-        <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        <plugin.jacoco>0.7.9</plugin.jacoco>
         <plugin.pit>1.1.10</plugin.pit>
         <plugin.license>3.0</plugin.license>
         <plugin.sonatype>1.6.6</plugin.sonatype>
@@ -104,6 +103,7 @@
         <postgressql.version>9.4.1207</postgressql.version>
 
         <!-- Misc Dependencies -->
+        <lombok.version>1.16.16</lombok.version>
         <checkstyle.version>7.0</checkstyle.version>
 
     </properties>
@@ -313,46 +313,55 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${plugin.site}</version>
+                    <configuration>
+                        <skipDeploy>true</skipDeploy>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${plugin.surefire}</version>
+                    <executions>
+                        <execution>
+                            <id>integration-test</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <reuseForks>false</reuseForks>
+                                <parallel>classes</parallel>
+                                <includes>
+                                    <include>**/*IT.java</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>system-test</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <reuseForks>false</reuseForks>
+                                <parallel>classes</parallel>
+                                <includes>
+                                    <include>**/*ST.java</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
                     <configuration>
                         <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
                         <failIfNoTests>false</failIfNoTests>
                         <forkCount>0.75C</forkCount>
                         <reuseForks>true</reuseForks>
                         <parallel>methods</parallel>
-                        <useUnlimitedThreads>true</useUnlimitedThreads>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${plugin.failsafe}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <argLine>${jacocoFailesafeArgs} -client -Xms512m -Xmx2048m</argLine>
-                        <failIfNoTests>false</failIfNoTests>
-                        <forkCount>0.75C</forkCount>
-                        <reuseForks>false</reuseForks>
-                        <parallel>classes</parallel>
-                        <useUnlimitedThreads>true</useUnlimitedThreads>
+                        <useUnlimitedThreads>true</useUnlimitedThreads> 
                         <includes>
-                            <include>**/*IT.java</include>
-                            <include>**/*ST.java</include>
+                            <include>**/*Test.java</include>
                         </includes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${plugin.site}</version>
-                    <configuration>
-                        <skipDeploy>true</skipDeploy>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -370,24 +379,9 @@
                             </configuration>
                         </execution>
                         <execution>
-                            <id>jacoco-prepare-agent-integration</id>
-                            <goals>
-                                <goal>prepare-agent-integration</goal>
-                            </goals>
-                            <configuration>
-                                <propertyName>jacocoFailesafeArgs</propertyName>
-                            </configuration>
-                        </execution>
-                        <execution>
                             <id>jacoco-report</id>
                             <goals>
                                 <goal>report</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>jacoco-report-integration</id>
-                            <goals>
-                                <goal>report-integration</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -413,14 +407,11 @@
                         <historyOutputLocation>${project.build.directory}/pit.history</historyOutputLocation>
                         <timeoutConstant>10000</timeoutConstant>
                         <targetClasses>
-                            <param>org.testifyproject.*</param>
+                            <param>examples.*</param>
                         </targetClasses>
                         <targetTests>
-                            <param>org.testifyproject.*</param>
+                            <param>examples.*</param>
                         </targetTests>
-                        <excludedClasses>
-                            <param>org.testifyproject.*.*BadTestSetup</param>
-                        </excludedClasses>
                         <excludedMethods>
                             <param>equals</param>
                             <param>hashCode</param>
@@ -589,7 +580,7 @@
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>3.0.4</version>
                 <configuration>
-                    <onlyAnalyze>org.testifyproject.*</onlyAnalyze>
+                    <onlyAnalyze>examples.*</onlyAnalyze>
                 </configuration>
             </plugin>
             <plugin>
@@ -600,7 +591,6 @@
                     <reportSet>
                         <reports>
                             <report>report-only</report>
-                            <report>failsafe-report-only</report>
                         </reports>
                     </reportSet>
                 </reportSets>

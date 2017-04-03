@@ -15,8 +15,9 @@
  */
 package examples.resource.model;
 
-import java.util.Objects;
 import javax.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.validator.constraints.SafeHtml;
 
 /**
@@ -24,11 +25,14 @@ import org.hibernate.validator.constraints.SafeHtml;
  *
  * @author saden
  */
+@EqualsAndHashCode
+@ToString
 public class GreetingModel {
 
     private String phrase;
 
     public GreetingModel() {
+        this(null);
     }
 
     public GreetingModel(String phrase) {
@@ -43,33 +47,6 @@ public class GreetingModel {
 
     public void setPhrase(String phrase) {
         this.phrase = phrase;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.phrase);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GreetingModel other = (GreetingModel) obj;
-        return Objects.equals(this.phrase, other.phrase);
-    }
-
-    @Override
-    public String toString() {
-        return "GreetingModel{" + "phrase=" + phrase + '}';
     }
 
 }

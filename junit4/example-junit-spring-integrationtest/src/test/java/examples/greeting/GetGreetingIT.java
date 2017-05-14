@@ -24,10 +24,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -37,7 +37,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject the class under test's real collaborating GreetingRepository
  * instance using {@link Real @Real} annotation</li>
  * </ul>
@@ -49,8 +49,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 @RunWith(SpringIntegrationTest.class)
 public class GetGreetingIT {
 
-    @Cut
-    GetGreeting cut;
+    @Sut
+    GetGreeting sut;
 
     @Real
     GreetingRepository greetingRepository;
@@ -61,7 +61,7 @@ public class GetGreetingIT {
         UUID id = null;
 
         //Act
-        cut.getGreeting(id);
+        sut.getGreeting(id);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class GetGreetingIT {
         UUID id = UUID.fromString("aa216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingEntity> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -82,7 +82,7 @@ public class GetGreetingIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingEntity> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isPresent();

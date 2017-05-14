@@ -24,9 +24,9 @@ import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.willDoNothing;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.testifyproject.annotation.Cut;
-import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
@@ -37,7 +37,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>replace the class under test's collaborating GreetingRepository instance
  * with a virtual instance that delegates to the real instance using
  * {@link Virtual @Virtual} annotation</li>
@@ -50,8 +50,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 @RunWith(SpringIntegrationTest.class)
 public class RemoveGreetingIT {
 
-    @Cut
-    RemoveGreeting cut;
+    @Sut
+    RemoveGreeting sut;
 
     @Virtual
     GreetingRepository greetingRepository;
@@ -59,7 +59,7 @@ public class RemoveGreetingIT {
     @Test(expected = InvalidDataAccessApiUsageException.class)
     public void givenNullKeyRemoveGreetingShouldThrowException() {
         //Act
-        cut.removeGreeting(null);
+        sut.removeGreeting(null);
     }
 
     @Test(expected = EmptyResultDataAccessException.class)
@@ -68,7 +68,7 @@ public class RemoveGreetingIT {
         UUID id = UUID.fromString("aa216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class RemoveGreetingIT {
         willDoNothing().given(greetingRepository).delete(id);
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
 
         //Assert
         assertThat(greetingRepository.findOne(id)).isNotNull();

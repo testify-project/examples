@@ -20,7 +20,6 @@ package fixture;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
@@ -47,7 +46,6 @@ import org.testifyproject.VirtualResourceInstance;
 public class TestModule {
 
     @Primary
-    @Singleton
     @Bean
     DataSource dataSource(@Qualifier("postgres") VirtualResourceInstance virtualResourceInstance) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
@@ -62,7 +60,6 @@ public class TestModule {
     }
 
     @Primary
-    @Singleton
     @Bean
     EntityManagerFactory entityManagerFactory(DataSource dataSource) {
         Map<String, Object> properties = new HashMap<>();

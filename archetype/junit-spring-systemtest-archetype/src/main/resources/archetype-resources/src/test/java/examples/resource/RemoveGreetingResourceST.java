@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.SpringSystemTest;
@@ -42,13 +42,13 @@ import org.testifyproject.junit4.system.SpringSystemTest;
 @RunWith(SpringSystemTest.class)
 public class RemoveGreetingResourceST {
 
-    @Cut
-    WebTarget cut;
+    @Sut
+    WebTarget sut;
 
     @Test
     public void callToGetGreetingShouldReturn() {
         //Act
-        Response response = cut
+        Response response = sut
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

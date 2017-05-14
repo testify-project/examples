@@ -26,21 +26,21 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fake;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
 
 /**
  * A unit test that demonstrates the ability to verify class under test method
- * calls by setting {@link Cut#value()} to true.
+ * calls by setting {@link Sut#value()} to true.
  *
  * @author saden
  */
 @RunWith(UnitTest.class)
 public class ListGreetingsTest {
 
-    @Cut(true)
-    ListGreetings cut;
+    @Sut(true)
+    ListGreetings sut;
 
     @Fake
     Map<UUID, GreetingModel> store;
@@ -58,14 +58,14 @@ public class ListGreetingsTest {
     @Test
     public void givenEmptyStoreListGreetingShouldReturnAnEmptyCollection() {
         //Act
-        Collection<GreetingModel> result = cut.listGreetings();
+        Collection<GreetingModel> result = sut.listGreetings();
 
         //Assert
         assertThat(result).isEmpty();
         verify(store).values();
 
         //We can verify calls to the class under test
-        verify(cut).listGreetings();
+        verify(sut).listGreetings();
     }
 
     @Test
@@ -76,14 +76,14 @@ public class ListGreetingsTest {
         given(store.values()).willReturn(greetings);
 
         //Act
-        Collection<GreetingModel> result = cut.listGreetings();
+        Collection<GreetingModel> result = sut.listGreetings();
 
         //Assert
         assertThat(result).isSameAs(greetings);
         verify(store).values();
 
         //We can verify calls to the class under test
-        verify(cut).listGreetings();
+        verify(sut).listGreetings();
     }
 
 }

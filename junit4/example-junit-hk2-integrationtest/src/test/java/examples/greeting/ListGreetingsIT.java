@@ -28,10 +28,12 @@ import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Scan;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -40,7 +42,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject and replace the class under test's real collaborating
  * EntityManager instance with a fake instance using {@link Fake @Fake}
  * annotation</li>
@@ -50,12 +52,13 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  *
  * @author saden
  */
+@Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @LocalResource(InMemoryHSQLResource.class)
 @RunWith(HK2IntegrationTest.class)
 public class ListGreetingsIT {
 
-    @Cut
-    ListGreetings cut;
+    @Sut
+    ListGreetings sut;
 
     @Fake
     EntityManager entityManager;
@@ -69,7 +72,7 @@ public class ListGreetingsIT {
         given(query.getResultList()).willReturn(entities);
 
         //Act
-        Collection<GreetingEntity> result = cut.listGreetings();
+        Collection<GreetingEntity> result = sut.listGreetings();
 
         //Assert
         assertThat(result).isSameAs(entities);

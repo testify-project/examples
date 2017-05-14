@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
@@ -49,8 +49,8 @@ import org.testifyproject.junit4.system.Jersey2SystemTest;
 @RunWith(Jersey2SystemTest.class)
 public class UpdateGreetingResourceST {
 
-    @Cut
-    ClientInstance<WebTarget> cut;
+    @Sut
+    ClientInstance<WebTarget> sut;
 
     @ConfigHandler
     public void configureClient(ClientBuilder clientBuilder) {
@@ -64,7 +64,7 @@ public class UpdateGreetingResourceST {
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = cut.getInstance()
+        Response response = sut.getInstance()
                 .path("greetings")
                 .path("aa216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()
@@ -81,7 +81,7 @@ public class UpdateGreetingResourceST {
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = cut.getInstance()
+        Response response = sut.getInstance()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

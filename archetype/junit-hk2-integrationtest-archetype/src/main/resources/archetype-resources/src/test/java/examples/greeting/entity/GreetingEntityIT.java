@@ -27,10 +27,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fixture;
-import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Scan;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -39,7 +41,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject the class under test's real collaborating EntityManager instance
  * using {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
@@ -48,18 +50,19 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  *
  * @author saden
  */
+@Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @LocalResource(InMemoryHSQLResource.class)
 @RunWith(HK2IntegrationTest.class)
 public class GreetingEntityIT {
 
-    @Cut
-    EntityManagerFactory cut;
+    @Real
+    EntityManagerFactory entityManagerFactory;
 
     EntityManager entityManager;
 
     @Before
     public void init() {
-        entityManager = cut.createEntityManager();
+        entityManager = entityManagerFactory.createEntityManager();
     }
 
     @After
@@ -70,7 +73,6 @@ public class GreetingEntityIT {
     @Test
     public void givenNewGreetingEntityManagerShouldPersistCreateGreeting() {
         //Arrange
-
         String phrase = "hello";
         GreetingEntity entity = new GreetingEntity(phrase);
 

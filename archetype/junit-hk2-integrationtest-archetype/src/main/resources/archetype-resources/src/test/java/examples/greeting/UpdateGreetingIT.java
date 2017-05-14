@@ -28,11 +28,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.mock;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Scan;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
+import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 
 /**
@@ -41,7 +43,7 @@ import org.testifyproject.junit4.integration.HK2IntegrationTest;
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with a container based PostgreSQL
  * database using {@link VirtualResource @VirtualResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject the class under test's real collaborating EntityManager instance
  * using {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
@@ -51,17 +53,18 @@ import org.testifyproject.junit4.integration.HK2IntegrationTest;
  * @author saden
  */
 @Module(TestModule.class)
+@Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(HK2IntegrationTest.class)
 public class UpdateGreetingIT {
 
-    @Cut
-    UpdateGreeting cut;
+    @Sut
+    UpdateGreeting sut;
 
     @Real
     EntityManager entityManager;
 
-    @Inject
+    @Real
     EntityManagerFactory entityManagerFactory;
 
     @Test(expected = IllegalArgumentException.class)
@@ -71,7 +74,7 @@ public class UpdateGreetingIT {
         GreetingEntity entity = mock(GreetingEntity.class);
 
         //Act
-        cut.updateGreeting(id, entity);
+        sut.updateGreeting(id, entity);
     }
 
     @Test(expected = NullPointerException.class)
@@ -81,7 +84,7 @@ public class UpdateGreetingIT {
         GreetingEntity entity = null;
 
         //Act
-        cut.updateGreeting(id, entity);
+        sut.updateGreeting(id, entity);
     }
 
     @Test
@@ -92,7 +95,7 @@ public class UpdateGreetingIT {
         //Act
         String phrase = "ciao";
         GreetingEntity entity = new GreetingEntity(phrase);
-        cut.updateGreeting(id, entity);
+        sut.updateGreeting(id, entity);
 
         //Assert
         EntityManager testEntityManager = entityManagerFactory.createEntityManager();

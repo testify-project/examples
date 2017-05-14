@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.CollaboratorProvider;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
 
 /**
@@ -44,8 +44,8 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class GreetingModelTest {
 
-    @Cut
-    GreetingModel cut;
+    @Sut
+    GreetingModel sut;
 
     @CollaboratorProvider
     Object[] collaborators() {
@@ -72,7 +72,7 @@ public class GreetingModelTest {
         String phrase = "hello";
 
         //Act
-        String result = cut.getPhrase();
+        String result = sut.getPhrase();
 
         //Assert
         assertThat(result).isEqualTo(phrase);
@@ -84,10 +84,10 @@ public class GreetingModelTest {
         String phrase = "hello";
 
         //Act
-        cut.setPhrase(phrase);
+        sut.setPhrase(phrase);
 
         //Assert
-        assertThat(cut.getPhrase()).isEqualTo(phrase);
+        assertThat(sut.getPhrase()).isEqualTo(phrase);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class GreetingModelTest {
         String phrase = "hello";
         GreetingModel model = new GreetingModel(phrase);
         //Act
-        boolean result = cut.equals(model);
+        boolean result = sut.equals(model);
 
         //Assert
         assertThat(result).isTrue();
@@ -109,7 +109,7 @@ public class GreetingModelTest {
         GreetingModel model = new GreetingModel(phrase);
 
         //Act
-        boolean result = cut.equals(model);
+        boolean result = sut.equals(model);
 
         //Assert
         assertThat(result).isFalse();
@@ -121,7 +121,7 @@ public class GreetingModelTest {
         GreetingModel model = null;
 
         //Act
-        boolean result = cut.equals(model);
+        boolean result = sut.equals(model);
 
         //Assert
         assertThat(result).isFalse();
@@ -133,7 +133,7 @@ public class GreetingModelTest {
         Object object = new Object();
 
         //Act
-        boolean result = cut.equals(object);
+        boolean result = sut.equals(object);
 
         //Assert
         assertThat(result).isFalse();
@@ -142,7 +142,7 @@ public class GreetingModelTest {
     @Test
     public void givenSameObjectEqualsShouldReturnFalse() {
         //Act
-        boolean result = cut.equals(cut);
+        boolean result = sut.equals(sut);
 
         //Assert
         assertThat(result).isTrue();
@@ -154,7 +154,7 @@ public class GreetingModelTest {
         String phrase = "hello";
         GreetingModel model = new GreetingModel(phrase);
         //Act
-        int result = cut.hashCode();
+        int result = sut.hashCode();
 
         //Assert
         assertThat(result).isEqualTo(model.hashCode());
@@ -166,7 +166,7 @@ public class GreetingModelTest {
         String phrase = "hello";
 
         //Act
-        String result = cut.toString();
+        String result = sut.toString();
 
         //Assert
         assertThat(result).contains(phrase);

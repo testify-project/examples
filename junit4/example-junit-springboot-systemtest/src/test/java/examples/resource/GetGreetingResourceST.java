@@ -28,7 +28,7 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.SpringBootSystemTest;
@@ -44,13 +44,13 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
 @RunWith(SpringBootSystemTest.class)
 public class GetGreetingResourceST {
 
-    @Cut
-    ClientInstance<WebTarget> cut;
+    @Sut
+    ClientInstance<WebTarget> sut;
 
     @Test
     public void callToGetGreetingShouldReturnGreeting() {
         //Act
-        Response response = cut.getInstance()
+        Response response = sut.getInstance()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

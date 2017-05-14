@@ -19,7 +19,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
 
 /**
@@ -30,12 +30,12 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class RandomUuidSupplierTest {
 
-    @Cut
-    RandomUuidSupplier cut;
+    @Sut
+    RandomUuidSupplier sut;
 
     @Test
     public void callToGetShouldReturnUUID() {
-        UUID result = cut.get();
+        UUID result = sut.get();
         assertThat(result).isNotNull();
     }
 

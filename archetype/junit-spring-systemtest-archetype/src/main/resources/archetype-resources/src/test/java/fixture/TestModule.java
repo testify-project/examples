@@ -30,7 +30,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.testifyproject.VirtualResourceInstance;
-import org.testifyproject.annotation.Fixture;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -38,7 +37,6 @@ import org.testifyproject.annotation.Fixture;
  *
  * @author saden
  */
-@Fixture
 @Configuration
 public class TestModule {
 

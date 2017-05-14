@@ -26,10 +26,12 @@ import javax.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fixture;
-import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Scan;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -38,7 +40,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject the class under test's real collaborating EntityManager instance
  * using {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
@@ -47,12 +49,13 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  *
  * @author saden
  */
+@Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @LocalResource(InMemoryHSQLResource.class)
 @RunWith(HK2IntegrationTest.class)
 public class GetGreetingIT {
 
-    @Cut
-    GetGreeting cut;
+    @Sut
+    GetGreeting sut;
 
     @Real
     EntityManager entityManager;
@@ -63,7 +66,7 @@ public class GetGreetingIT {
         UUID id = null;
 
         //Act
-        cut.getGreeting(id);
+        sut.getGreeting(id);
     }
 
     @Test
@@ -72,7 +75,7 @@ public class GetGreetingIT {
         UUID id = UUID.fromString("aa216415-1b8e-4ab9-8531-fcbd25d596aa");
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingEntity> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -84,7 +87,7 @@ public class GetGreetingIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        Optional<GreetingEntity> result = cut.getGreeting(id);
+        Optional<GreetingEntity> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isNotEmpty();

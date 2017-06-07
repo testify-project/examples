@@ -19,14 +19,17 @@ import examples.GreetingsModule;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Fixture;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.integration.GuiceIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -34,8 +37,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
- * {@link RequiresResource @RequiresResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * {@link LocalResource @LocalResource} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject the class under test's real collaborating EntityManager instance
  * using {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
@@ -45,13 +48,24 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * @author saden
  */
 @Module(GreetingsModule.class)
-@RequiresResource(InMemoryHSQLResource.class)
+@LocalResource(InMemoryHSQLResource.class)
 @RunWith(GuiceIntegrationTest.class)
 public class GreetingEntityIT {
 
-    @Inject
-    @Fixture(destroy = "close")
+    @Real
+    EntityManagerFactory entityManagerFactory;
+
     EntityManager entityManager;
+
+    @Before
+    public void init() {
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @After
+    public void destroy() {
+        entityManager.close();
+    }
 
     @Test
     public void givenNewGreetingEntityManagerShouldPersistCreateGreeting() {

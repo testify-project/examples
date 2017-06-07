@@ -29,7 +29,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import org.testifyproject.annotation.Cut;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.UnitTest;
 
@@ -44,11 +45,21 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class UpdateGreetingTest {
 
-    @Cut
-    UpdateGreeting cut;
+    @Sut
+    UpdateGreeting sut;
 
     @Virtual
     Map<UUID, GreetingModel> store = new HashMap<>();
+
+    @Test
+    public void givenMapStoreNewUpdateGreetingShouldNotDoWorkInConstructor() {
+        //Act
+        UpdateGreeting result = new UpdateGreeting(store);
+
+        //Assert
+        assertThat(result).isNotNull();
+        verifyZeroInteractions(store);
+    }
 
     @Test
     public void givenNonExistentIdUpdateShouldNotUpdateStore() {
@@ -57,7 +68,7 @@ public class UpdateGreetingTest {
         GreetingModel model = mock(GreetingModel.class);
 
         //Act
-        cut.updateGreeting(id, model);
+        sut.updateGreeting(id, model);
 
         //Assert
         assertThat(store).doesNotContainEntry(id, model);
@@ -74,7 +85,7 @@ public class UpdateGreetingTest {
         GreetingModel model = mock(GreetingModel.class);
 
         //Act
-        cut.updateGreeting(id, model);
+        sut.updateGreeting(id, model);
 
         //Assert
         assertThat(store).containsEntry(id, model);

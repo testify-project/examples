@@ -18,6 +18,7 @@
  */
 package fixture;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -30,7 +31,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.testifyproject.ContainerInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -45,15 +45,15 @@ public class TestModule {
      * Create a datasource that takes precedence (@Primary) over the production
      * datasource that points to the postgres in the container resource.
      *
-     * @param instance the container instance.
+     * @param virtualResourceInstance the container instance.
      * @return the test data source
      */
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("postgres") ContainerInstance instance) {
+    DataSource testDataSource(@Qualifier("resource://postgres/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(inetAddress.getHostAddress());
+        dataSource.setPortNumber(5432);
 
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
@@ -74,7 +74,9 @@ public class TestModule {
     @Primary
     @Bean
     LocalContainerEntityManagerFactoryBean testEntityManagerFactory(
-            EntityManagerFactoryBuilder builder, DataSource dataSource, ApplicationContext applicationContext) {
+            EntityManagerFactoryBuilder builder,
+            DataSource dataSource,
+            ApplicationContext applicationContext) {
         Map<String, Object> properties = new HashMap<>();
         properties.put(DATASOURCE, dataSource);
         properties.put("hibernate.ejb.entitymanager_factory_name", applicationContext.getId());

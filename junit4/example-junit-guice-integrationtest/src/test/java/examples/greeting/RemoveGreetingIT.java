@@ -26,10 +26,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.integration.GuiceIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
@@ -38,8 +38,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
- * {@link RequiresResource @RequiresResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * {@link LocalResource @LocalResource} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>inject and replace the class under test's real collaborating
  * EntityManager instance with a virtual instance that delegates class to the
  * real instance using {@link Virtual @Virtual} annotation</li>
@@ -50,12 +50,12 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * @author saden
  */
 @Module(GreetingsModule.class)
-@RequiresResource(InMemoryHSQLResource.class)
+@LocalResource(InMemoryHSQLResource.class)
 @RunWith(GuiceIntegrationTest.class)
 public class RemoveGreetingIT {
 
-    @Cut
-    RemoveGreeting cut;
+    @Sut
+    RemoveGreeting sut;
 
     @Virtual
     EntityManager entityManager;
@@ -63,7 +63,7 @@ public class RemoveGreetingIT {
     @Test(expected = IllegalArgumentException.class)
     public void givenNullKeyRemoveGreetingShouldThrowException() {
         //Act
-        cut.removeGreeting(null);
+        sut.removeGreeting(null);
     }
 
     @Test(expected = EntityNotFoundException.class)
@@ -72,7 +72,7 @@ public class RemoveGreetingIT {
         UUID id = UUID.fromString("aa216415-1b8e-4ab9-8531-fcbd25d596aa");
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class RemoveGreetingIT {
         willDoNothing().given(entityManager).remove(entity);
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
 
         //Assert: the entity was not removed
         GreetingEntity result = entityManager.getReference(GreetingEntity.class, entity.getId());

@@ -24,9 +24,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
 
 /**
@@ -35,17 +35,17 @@ import org.testifyproject.junit4.system.Jersey2SystemTest;
  */
 @Application(GreetingsResourceConfig.class)
 @Module(TestModule.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(Jersey2SystemTest.class)
 public class RemoveGreetingResourceST {
 
-    @Cut
-    WebTarget cut;
+    @Sut
+    WebTarget sut;
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenExistingGreetingIdRemoveShouldRemoveGreeting() {
         //Act
-        Response response = cut
+        Response response = sut
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

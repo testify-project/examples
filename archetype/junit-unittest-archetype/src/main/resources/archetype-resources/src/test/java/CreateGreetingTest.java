@@ -29,7 +29,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.junit4.UnitTest;
 
@@ -43,8 +43,8 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class CreateGreetingTest {
 
-    @Cut
-    CreateGreeting cut;
+    @Sut
+    CreateGreeting sut;
 
     @Fake
     Map<UUID, GreetingModel> datastore;
@@ -70,7 +70,7 @@ public class CreateGreetingTest {
         //Act
         //Note that since we are using a fake Map to store values an NPE will
         //not be thrown but some Map implementations do not allow null values
-        cut.createGreeting(model);
+        sut.createGreeting(model);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CreateGreetingTest {
         given(randomUuidSupplier.get()).willReturn(id);
 
         //Act
-        cut.createGreeting(model);
+        sut.createGreeting(model);
 
         //Assert
         verify(randomUuidSupplier).get();

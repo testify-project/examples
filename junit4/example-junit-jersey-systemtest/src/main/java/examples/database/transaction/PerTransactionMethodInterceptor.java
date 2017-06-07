@@ -16,6 +16,7 @@
 package examples.database.transaction;
 
 import java.lang.reflect.Method;
+import java.util.Optional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -97,34 +98,38 @@ public class PerTransactionMethodInterceptor implements MethodInterceptor {
             return;
         }
 
-        Transactional transactional = getTransactional(methodInvocation);
-        boolean commit = true;
+        Optional<Transactional> result = getTransactional(methodInvocation);
 
-        for (Class<? extends Exception> rollbackOn : transactional.rollbackOn()) {
-            if (rollbackOn.isInstance(e)) {
-                commit = false;
+        if (result.isPresent()) {
+            Transactional transactional = result.get();
+            boolean commit = true;
 
-                for (Class<? extends Exception> exceptOn : transactional.dontRollbackOn()) {
-                    if (exceptOn.isInstance(e)) {
-                        commit = true;
-                        break;
+            for (Class<? extends Exception> rollbackOn : transactional.rollbackOn()) {
+                if (rollbackOn.isInstance(e)) {
+                    commit = false;
+
+                    for (Class<? extends Exception> exceptOn : transactional.dontRollbackOn()) {
+                        if (exceptOn.isInstance(e)) {
+                            commit = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!commit) {
-                    tx.rollback();
-                }
+                    if (!commit) {
+                        tx.rollback();
+                    }
 
-                break;
+                    break;
+                }
             }
-        }
 
-        if (commit && tx.isActive()) {
-            tx.commit();
+            if (commit && tx.isActive()) {
+                tx.commit();
+            }
         }
     }
 
-    private Transactional getTransactional(MethodInvocation methodInvocation) {
+    private Optional<Transactional> getTransactional(MethodInvocation methodInvocation) {
         Transactional transactional;
         Method method = methodInvocation.getMethod();
 
@@ -133,13 +138,9 @@ public class PerTransactionMethodInterceptor implements MethodInterceptor {
         if (transactional == null) {
             Class<?> targetClass = methodInvocation.getThis().getClass();
             transactional = targetClass.getAnnotation(Transactional.class);
-
-            if (transactional == null) {
-                transactional = TransactionalImpl.INSTANCE;
-            }
         }
 
-        return transactional;
+        return Optional.ofNullable(transactional);
     }
 
 }

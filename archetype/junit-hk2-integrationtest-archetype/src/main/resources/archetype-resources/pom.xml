@@ -25,7 +25,7 @@
     <name>Example JUnit4 HK2 Integration Test</name>
     <description>Creates a new quickstart project to integration test HK2 modules and services with Testify, JUnit4, Mockito, and AssertJ.</description>
     <version>${version}</version>
-    <url>https://github.com/testify-project/examples/tree/master/junit/${artifactId}</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit4/${artifactId}</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,46 +38,71 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.surefire}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <reuseForks>false</reuseForks>
+                            <parallel>classes</parallel>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>system-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <reuseForks>false</reuseForks>
+                            <parallel>classes</parallel>
+                            <includes>
+                                <include>**/*ST.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <argLine>\${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <failIfNoTests>false</failIfNoTests>
+                    <forkCount>0.75C</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads> 
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${plugin.jacoco}</version>
                 <executions>
                     <execution>
-                        <id>jacoco-prepare-agent-integration</id>
+                        <id>jacoco-prepare-agent</id>
                         <goals>
-                            <goal>prepare-agent-integration</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
-                            <propertyName>jacocoFailesafeArgs</propertyName>
+                            <propertyName>jacocoSurefireArgs</propertyName>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>jacoco-report-integration</id>
+                        <id>jacoco-report</id>
                         <goals>
-                            <goal>report-integration</goal>
+                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${plugin.failsafe}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <argLine>\${jacocoFailesafeArgs} -client -Xms512m -Xmx2048m</argLine>
-                    <forkCount>0.75C</forkCount>
-                    <reuseForks>false</reuseForks>
-                    <includes>
-                        <include>**/*IT.java</include>
-                    </includes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -93,13 +118,13 @@
         <dependency>
             <groupId>org.testifyproject.resources</groupId>
             <artifactId>hsql</artifactId>
-            <version>${resources.version}</version>
+            <version>${localresources.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testifyproject.container</groupId>
+            <groupId>org.testifyproject.virtual-resources</groupId>
             <artifactId>docker</artifactId>
-            <version>${testify.version}</version>
+            <version>${virtualresources.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -167,6 +192,14 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgressql.version}</version>
+        </dependency>
+        
+        <!-- Misc Deps -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

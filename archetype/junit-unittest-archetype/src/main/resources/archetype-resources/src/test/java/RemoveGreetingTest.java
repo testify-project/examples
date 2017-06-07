@@ -28,7 +28,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.junit4.UnitTest;
 
@@ -43,8 +43,8 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class RemoveGreetingTest {
 
-    @Cut
-    RemoveGreeting cut;
+    @Sut
+    RemoveGreeting sut;
 
     @Fake("datastore")
     Map<UUID, GreetingModel> store;
@@ -67,7 +67,7 @@ public class RemoveGreetingTest {
         given(store.remove(id)).willReturn(greeting);
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
 
         //Assert
         verify(store).remove(id);
@@ -81,7 +81,7 @@ public class RemoveGreetingTest {
         given(store.remove(id)).willReturn(greeting);
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
 
         //Assert
         verify(store).remove(id);
@@ -95,7 +95,7 @@ public class RemoveGreetingTest {
         given(store.remove(id)).willReturn(greeting);
 
         //Act
-        cut.removeGreeting(id);
+        sut.removeGreeting(id);
 
         //Assert
         verify(store).remove(id);

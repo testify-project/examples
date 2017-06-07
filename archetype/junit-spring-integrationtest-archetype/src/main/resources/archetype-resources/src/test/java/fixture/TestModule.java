@@ -18,9 +18,9 @@
  */
 package fixture;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
@@ -35,7 +35,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.testifyproject.ContainerInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -47,12 +46,11 @@ import org.testifyproject.ContainerInstance;
 public class TestModule {
 
     @Primary
-    @Singleton
     @Bean
-    DataSource dataSource(@Qualifier("postgres") ContainerInstance instance) {
+    DataSource dataSource(@Qualifier("resource://postgres/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(inetAddress.getHostAddress());
+        dataSource.setPortNumber(5432);
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");
@@ -62,7 +60,6 @@ public class TestModule {
     }
 
     @Primary
-    @Singleton
     @Bean
     EntityManagerFactory entityManagerFactory(DataSource dataSource) {
         Map<String, Object> properties = new HashMap<>();

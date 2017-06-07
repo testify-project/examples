@@ -18,13 +18,16 @@
  */
 package ${package}.model;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A greeting model.
  *
  * @author saden
  */
+@EqualsAndHashCode
+@ToString
 public class GreetingModel {
 
     private String phrase;
@@ -39,33 +42,6 @@ public class GreetingModel {
 
     public void setPhrase(String phrase) {
         this.phrase = phrase;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.phrase);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GreetingModel other = (GreetingModel) obj;
-        return Objects.equals(this.phrase, other.phrase);
-    }
-
-    @Override
-    public String toString() {
-        return "GreetingModel{" + "phrase=" + phrase + '}';
     }
 
 }

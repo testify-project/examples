@@ -27,10 +27,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresResource;
+import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
@@ -39,8 +39,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
  * <li>substitute the production database with an in-memory HSQL database using
- * {@link RequiresResource @RequiresResource} annotation</li>
- * <li>specify the the class under test using {@link Cut @Cut} annotation</li>
+ * {@link LocalResource @LocalResource} annotation</li>
+ * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
  * <li>replace the class under test's collaborating GreetingRepository instance
  * with a fake instance using {@link Fake @Fake} annotation</li>
  * </ul>
@@ -48,12 +48,12 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * @author saden
  */
 @Module(GreetingConfig.class)
-@RequiresResource(InMemoryHSQLResource.class)
+@LocalResource(InMemoryHSQLResource.class)
 @RunWith(SpringIntegrationTest.class)
 public class ListGreetingsIT {
 
-    @Cut
-    ListGreetings cut;
+    @Sut
+    ListGreetings sut;
 
     @Fake
     GreetingRepository greetingRepository;
@@ -65,7 +65,7 @@ public class ListGreetingsIT {
         given(greetingRepository.findAll()).willReturn(entities);
 
         //Act
-        Iterable<GreetingEntity> result = cut.listGreetings();
+        Iterable<GreetingEntity> result = sut.listGreetings();
 
         //Assert
         assertThat(result).isEqualTo(entities);

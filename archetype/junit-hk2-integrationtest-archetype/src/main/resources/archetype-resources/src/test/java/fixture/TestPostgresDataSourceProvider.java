@@ -18,6 +18,7 @@
  */
 package fixture;
 
+import java.net.InetAddress;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -25,7 +26,6 @@ import javax.sql.DataSource;
 import org.glassfish.hk2.api.Factory;
 import org.glassfish.hk2.api.Rank;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.testifyproject.ContainerInstance;
 
 /**
  * A provider of a JDBC PostgreSQL test DataSource. Note that we do not annotate
@@ -37,19 +37,19 @@ import org.testifyproject.ContainerInstance;
 @Rank(Integer.MAX_VALUE)
 public class TestPostgresDataSourceProvider implements Factory<DataSource> {
 
-    private final ContainerInstance instance;
+    private final InetAddress inetAddress;
 
     @Inject
-    TestPostgresDataSourceProvider(@Named("postgres") ContainerInstance instance) {
-        this.instance = instance;
+    TestPostgresDataSourceProvider(@Named("resource://postgres/resource") InetAddress inetAddress) {
+        this.inetAddress = inetAddress;
     }
 
     @Singleton
     @Override
     public DataSource provide() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(instance.getAddress().getHostAddress());
-        dataSource.setPortNumber(instance.findFirstExposedPort().get());
+        dataSource.setServerName(inetAddress.getHostAddress());
+        dataSource.setPortNumber(5432);
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

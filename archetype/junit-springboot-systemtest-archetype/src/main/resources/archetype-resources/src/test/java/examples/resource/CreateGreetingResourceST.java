@@ -32,9 +32,9 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Cut;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.SpringBootSystemTest;
 
 /**
@@ -44,12 +44,12 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
 @ConfigHandler(TestConfigHandler.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(SpringBootSystemTest.class)
 public class CreateGreetingResourceST {
 
-    @Cut
-    ClientInstance<WebTarget> cut;
+    @Sut
+    ClientInstance<WebTarget> sut;
 
     @Test
     public void callToCreateGreetingShouldCreateGreeting() {
@@ -58,7 +58,7 @@ public class CreateGreetingResourceST {
         Entity<GreetingEntity> entity = Entity.json(greetingEntity);
 
         //Act
-        Response response = cut.getInstance()
+        Response response = sut.getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

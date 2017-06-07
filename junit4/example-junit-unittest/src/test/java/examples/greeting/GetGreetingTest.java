@@ -28,7 +28,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import org.testifyproject.annotation.CollaboratorProvider;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.UnitTest;
 
@@ -42,8 +42,8 @@ import org.testifyproject.junit4.UnitTest;
 @RunWith(UnitTest.class)
 public class GetGreetingTest {
 
-    @Cut
-    GetGreeting cut;
+    @Sut
+    GetGreeting sut;
 
     @Virtual
     Map<UUID, GreetingModel> store;
@@ -71,7 +71,7 @@ public class GetGreetingTest {
         UUID id = null;
 
         //Act
-        Optional<GreetingModel> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -84,7 +84,7 @@ public class GetGreetingTest {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        Optional<GreetingModel> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).isEmpty();
@@ -99,7 +99,7 @@ public class GetGreetingTest {
         given(store.get(id)).willReturn(greeting);
 
         //Act
-        Optional<GreetingModel> result = cut.getGreeting(id);
+        Optional<GreetingModel> result = sut.getGreeting(id);
 
         //Assert
         assertThat(result).contains(greeting);

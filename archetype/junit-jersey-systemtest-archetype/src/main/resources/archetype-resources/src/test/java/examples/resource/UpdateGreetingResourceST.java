@@ -26,6 +26,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.ACCEPTED;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
@@ -33,9 +34,9 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Cut;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.RequiresContainer;
+import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
 
 /**
@@ -44,12 +45,12 @@ import org.testifyproject.junit4.system.Jersey2SystemTest;
  */
 @Application(GreetingsResourceConfig.class)
 @Module(TestModule.class)
-@RequiresContainer(value = "postgres", version = "9.4")
+@VirtualResource(value = "postgres", version = "9.4")
 @RunWith(Jersey2SystemTest.class)
 public class UpdateGreetingResourceST {
 
-    @Cut
-    ClientInstance<WebTarget> cut;
+    @Sut
+    ClientInstance<WebTarget> sut;
 
     @ConfigHandler
     public void configureClient(ClientBuilder clientBuilder) {
@@ -57,13 +58,30 @@ public class UpdateGreetingResourceST {
     }
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenNoneExistentGreetingIdUpdateShouldUpdateGreeting() {
         //Arrange 
         GreetingModel model = new GreetingModel("caio");
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = cut.getInstance()
+        Response response = sut.getValue()
+                .path("greetings")
+                .path("aa216415-1b8e-4ab9-8531-fcbd25d5966f")
+                .request()
+                .put(entity);
+
+        //Assert
+        assertThat(response.getStatus()).isEqualTo(NOT_FOUND.getStatusCode());
+    }
+
+    @Test
+    public void givenExistingGreetingIdUpdateShouldUpdateGreeting() {
+        //Arrange 
+        GreetingModel model = new GreetingModel("caio");
+        Entity<GreetingModel> entity = Entity.json(model);
+
+        //Act
+        Response response = sut.getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

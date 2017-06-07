@@ -13,7 +13,7 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
-## [0.9.2-SNAPSHOT]
+## [0.9.2] - 2017-06-07
 ### Changed
 - Upgraded Testify API version to 0.9.4 and adopted Semantic Testing
   - Updated references to @RequiresResource annotation to @LocalResource

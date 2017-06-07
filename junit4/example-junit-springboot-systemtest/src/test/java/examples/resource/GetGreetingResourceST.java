@@ -50,7 +50,7 @@ public class GetGreetingResourceST {
     @Test
     public void callToGetGreetingShouldReturnGreeting() {
         //Act
-        Response response = sut.getInstance()
+        Response response = sut.getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

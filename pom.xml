@@ -49,9 +49,10 @@
         <netbeans.inceptionYear>2016</netbeans.inceptionYear>
 
         <!-- Testify Dependency Versions -->
-        <buildtools.version>0.9.5</buildtools.version>
-        <testify.version>0.9.3-SNAPSHOT</testify.version>
-        <resources.version>0.9.3-SNAPSHOT</resources.version>
+        <buildtools.version>0.9.6</buildtools.version>
+        <testify.version>0.9.4</testify.version>
+        <localresources.version>0.9.3</localresources.version>
+        <virtualresources.version>0.9.0</virtualresources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.1</plugin.resource>
@@ -467,6 +468,8 @@
                             <exclude>nbproject/**</exclude>
                             <exclude>secrets/**</exclude>
                             <exclude>archetype.properties</exclude>
+                            <exclude>.mvn/**</exclude>
+                            <exclude>mvnw*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>

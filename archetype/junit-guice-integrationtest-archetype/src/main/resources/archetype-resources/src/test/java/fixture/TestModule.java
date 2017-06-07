@@ -21,6 +21,7 @@ package fixture;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.persist.jpa.JpaPersistModule;
+import java.net.InetAddress;
 import java.util.HashMap;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,7 +34,6 @@ import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.testifyproject.TestContext;
-import org.testifyproject.VirtualResourceInstance;
 import org.testifyproject.annotation.Fixture;
 
 /**
@@ -59,17 +59,17 @@ public class TestModule extends AbstractModule {
      * annotate this class with @Service because we don't want it to be
      * discovered and used every time.
      *
-     * @param virtualResourceInstance the container instance
-     * @param testContext
+     * @param inetAddress the container's address
+     * @param testContext the test context
      * @return a postgress data source
      */
     @Singleton
     @Provides
-    public DataSource testDataSource(@Named("postgres") VirtualResourceInstance virtualResourceInstance, 
+    public DataSource testDataSource(@Named("resource://postgres/resource") InetAddress inetAddress,
             TestContext testContext) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(virtualResourceInstance.getAddress().getHostAddress());
-        dataSource.setPortNumber(virtualResourceInstance.findFirstExposedPort().get());
+        dataSource.setServerName(inetAddress.getHostAddress());
+        dataSource.setPortNumber(5432);
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");
         dataSource.setUser("postgres");

@@ -121,13 +121,13 @@
         <dependency>
             <groupId>org.testifyproject.resources</groupId>
             <artifactId>hsql</artifactId>
-            <version>${resources.version}</version>
+            <version>${localresources.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testifyproject.container</groupId>
+            <groupId>org.testifyproject.virtual-resources</groupId>
             <artifactId>docker</artifactId>
-            <version>${testify.version}</version>
+            <version>${virtualresources.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

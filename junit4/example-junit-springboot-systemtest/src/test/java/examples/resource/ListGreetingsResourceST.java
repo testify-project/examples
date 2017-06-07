@@ -57,7 +57,7 @@ public class ListGreetingsResourceST {
     @Test
     public void callToListGreetingsShouldReturnGreetings() {
         //Act
-        Response response = sut.getInstance()
+        Response response = sut.getValue()
                 .path("greetings")
                 .path("list")
                 .request()

@@ -32,6 +32,7 @@ import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
+import org.testifyproject.trait.PropertiesReader;
 
 /**
  *
@@ -48,9 +49,11 @@ public class InMemoryHSQLResourceTest {
     public void configureAndStartRequiredResource() throws Exception {
         TestContext testContext = mock(TestContext.class);
         LocalResource localResource = mock(LocalResource.class);
+        PropertiesReader configReader = mock(PropertiesReader.class);
+
         given(testContext.getName()).willReturn("test");
 
-        JDBCDataSource config = sut.configure(testContext);
+        JDBCDataSource config = sut.configure(testContext, localResource, configReader);
         assertThat(config).isNotNull();
 
         LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(testContext, localResource, config);

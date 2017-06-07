@@ -15,7 +15,7 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [0.9.2-SNAPSHOT]
 ### Changed
-- Upgraded Testify API version to 0.9.3 and adopted Semantic Testing
+- Upgraded Testify API version to 0.9.4 and adopted Semantic Testing
   - Updated references to @RequiresResource annotation to @LocalResource
   - Updated references to @RequiresContainer annotation to @VirtualResource
   - Updated references to ResourceProvder contract to LocalResourceProvider

@@ -63,7 +63,7 @@ public class UpdateGreetingResourceST {
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = sut.getInstance()
+        Response response = sut.getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

@@ -15,6 +15,7 @@
  */
 package fixture;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -27,7 +28,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.testifyproject.VirtualResourceInstance;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -47,10 +47,10 @@ public class TestModule {
      */
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("postgres") VirtualResourceInstance virtualResourceInstance) {
+    DataSource testDataSource(@Qualifier("resource://postgres/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName(virtualResourceInstance.getAddress().getHostAddress());
-        dataSource.setPortNumber(virtualResourceInstance.findFirstExposedPort().get());
+        dataSource.setServerName(inetAddress.getHostAddress());
+        dataSource.setPortNumber(5432);
 
         //Default postgres image database name, user and postword
         dataSource.setDatabaseName("postgres");

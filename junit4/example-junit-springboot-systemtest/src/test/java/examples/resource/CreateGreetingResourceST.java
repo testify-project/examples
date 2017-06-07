@@ -55,7 +55,7 @@ public class CreateGreetingResourceST {
         Entity<GreetingEntity> entity = Entity.json(greetingEntity);
 
         //Act
-        Response response = sut.getInstance()
+        Response response = sut.getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

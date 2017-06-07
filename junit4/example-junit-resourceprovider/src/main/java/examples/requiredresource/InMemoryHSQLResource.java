@@ -24,6 +24,7 @@ import org.testifyproject.LocalResourceProvider;
 import org.testifyproject.TestContext;
 import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.core.LocalResourceInstanceBuilder;
+import org.testifyproject.trait.PropertiesReader;
 
 /**
  * An implementation of ResourceProvider that provides an in-memory HSQL
@@ -38,7 +39,9 @@ public class InMemoryHSQLResource
     private Connection client;
 
     @Override
-    public JDBCDataSource configure(TestContext testContext) {
+    public JDBCDataSource configure(TestContext testContext,
+            LocalResource localResource,
+            PropertiesReader configReader) {
         JDBCDataSource dataSource = new JDBCDataSource();
         String url = format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName());
         dataSource.setUrl(url);
@@ -57,9 +60,9 @@ public class InMemoryHSQLResource
         client = dataSource.getConnection();
 
         return LocalResourceInstanceBuilder.builder()
-                .resource(server, "inmemoryHSQLDataSource", DataSource.class)
-                .client(client, "inmemoryHSQLConnection", Connection.class)
-                .build();
+                .resource(server, DataSource.class)
+                .client(client, Connection.class)
+                .build("hsql");
     }
 
     @Override

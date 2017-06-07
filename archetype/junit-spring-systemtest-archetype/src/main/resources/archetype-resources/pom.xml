@@ -26,7 +26,7 @@
     <name>Example JUnit4 Spring System Test</name>
     <description>Creates a new quickstart project to system test Spring Application with Testify, JUnit4, Mockito, and AssertJ.</description>
     <version>${version}</version>
-    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-springt-systemtest</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit4/${artifactId}</url>
 
     <properties>
         <!-- Global Properties -->

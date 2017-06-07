@@ -28,7 +28,7 @@
 
     <name>Example JUnit4 Jersey 2 System Test</name>
     <description>Creates a new quickstart project to system test Jersey 2 Application with Testify, JUnit4, Mockito, and AssertJ.</description>
-    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-jersey-systemtest</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit4/example-junit-jersey-systemtest</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

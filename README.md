@@ -16,7 +16,7 @@ A repository that contains Testify Project examples and archtypes based on these
 - Example JUnit4 HK2 Integration Test
 - Example JUnit4 Jersey 2 System Test
 - Example JUnit4 Guice Integration Test
-- Example JUnit4 Resource Provider
+- Example JUnit4 Local Resource Provider
 
 ## Learning
 - Testify documentation is available [here][docs].

@@ -32,7 +32,7 @@
     <description>
         Creates a new quickstart project that demonstractes ResourceProvider SPI contract implementation.
     </description>
-    <url>https://github.com/testify-project/examples/tree/master/junit/example-junit-requiredresource</url>
+    <url>https://github.com/testify-project/examples/tree/master/junit4/example-junit-resourceprovider</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

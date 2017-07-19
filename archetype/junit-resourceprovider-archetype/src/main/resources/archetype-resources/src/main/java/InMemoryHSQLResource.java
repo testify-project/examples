@@ -35,8 +35,8 @@ import org.testifyproject.trait.PropertiesReader;
  *
  * @author saden
  */
-public class InMemoryHSQLResource
-        implements LocalResourceProvider<JDBCDataSource, DataSource, Connection> {
+public class InMemoryHSQLResource implements
+        LocalResourceProvider<JDBCDataSource, DataSource, Connection> {
 
     private JDBCDataSource server;
     private Connection client;
@@ -55,7 +55,7 @@ public class InMemoryHSQLResource
     }
 
     @Override
-    public LocalResourceInstance start(TestContext testContext,
+    public LocalResourceInstance<DataSource, Connection> start(TestContext testContext,
             LocalResource localResource,
             JDBCDataSource dataSource)
             throws Exception {
@@ -69,7 +69,9 @@ public class InMemoryHSQLResource
     }
 
     @Override
-    public void stop(TestContext testContext, LocalResource localResource)
+    public void stop(TestContext testContext,
+            LocalResource localResource,
+            LocalResourceInstance<DataSource, Connection> instance)
             throws Exception {
         server.getConnection()
                 .createStatement()

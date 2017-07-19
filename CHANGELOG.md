@@ -13,6 +13,14 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.3-SNAPSHOT] - 2017-07-19
+### Changed
+- Updated to Testify version to  0.9.6
+- Updated Build Tools version to 0.9.7
+- Updated Local Resource version to 0.9.4
+- Updated Virtual Resource version to 0.9.2
+- Updated Example code due to version updates
+
 ## [0.9.2] - 2017-06-07
 ### Changed
 - Upgraded Testify API version to 0.9.4 and adopted Semantic Testing

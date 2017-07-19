@@ -23,7 +23,7 @@
 
     <groupId>org.testifyproject.examples</groupId>
     <artifactId>parent</artifactId>
-    <version>0.9.2</version>
+    <version>0.9.3</version>
     <packaging>pom</packaging>
     
     <name>Examples</name>
@@ -49,10 +49,10 @@
         <netbeans.inceptionYear>2016</netbeans.inceptionYear>
 
         <!-- Testify Dependency Versions -->
-        <buildtools.version>0.9.6</buildtools.version>
-        <testify.version>0.9.4</testify.version>
-        <localresources.version>0.9.3</localresources.version>
-        <virtualresources.version>0.9.0</virtualresources.version>
+        <buildtools.version>0.9.7</buildtools.version>
+        <testify.version>0.9.6</testify.version>
+        <localresources.version>0.9.4</localresources.version>
+        <virtualresources.version>0.9.2</virtualresources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.1</plugin.resource>
@@ -353,10 +353,8 @@
                     <configuration>
                         <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
                         <failIfNoTests>false</failIfNoTests>
-                        <forkCount>0.75C</forkCount>
-                        <reuseForks>false</reuseForks>
-                        <parallel>classes</parallel>
-                        <useUnlimitedThreads>true</useUnlimitedThreads> 
+                        <forkCount>1</forkCount>
+                        <reuseForks>true</reuseForks>
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>

@@ -45,12 +45,12 @@ public class TestModule {
      * Create a datasource that takes precedence (@Primary) over the production
      * datasource that points to the postgres in the container resource.
      *
-     * @param virtualResourceInstance the container instance.
+     * @param inetAddress the container address.
      * @return the test data source
      */
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("resource://postgres/resource") InetAddress inetAddress) {
+    DataSource testDataSource(@Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());
         dataSource.setPortNumber(5432);

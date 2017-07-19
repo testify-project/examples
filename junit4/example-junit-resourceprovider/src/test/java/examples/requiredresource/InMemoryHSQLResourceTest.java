@@ -25,7 +25,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import org.testifyproject.LocalResourceInstance;
 import org.testifyproject.TestContext;
-import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
@@ -39,7 +38,6 @@ import org.testifyproject.trait.PropertiesReader;
 public class InMemoryHSQLResourceTest {
 
     @Sut
-    @Fixture(destroy = "stop")
     InMemoryHSQLResource sut;
 
     @Test
@@ -56,6 +54,8 @@ public class InMemoryHSQLResourceTest {
         LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(testContext, localResource, config);
         assertThat(localResourceInstance.getResource()).isNotNull();
         assertThat(localResourceInstance.getClient()).isPresent();
+        
+        sut.stop(testContext, localResource, localResourceInstance);
     }
 
 }

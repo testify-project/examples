@@ -44,7 +44,7 @@ public class TestModule {
 
     @Primary
     @Bean
-    DataSource dataSource(@Qualifier("resource://postgres/resource") InetAddress inetAddress) {
+    DataSource dataSource(@Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());
         dataSource.setPortNumber(5432);

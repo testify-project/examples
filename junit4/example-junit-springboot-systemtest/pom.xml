@@ -83,8 +83,6 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <reuseForks>false</reuseForks>
-                            <parallel>classes</parallel>
                             <includes>
                                 <include>**/*IT.java</include>
                             </includes>
@@ -97,8 +95,6 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <reuseForks>false</reuseForks>
-                            <parallel>classes</parallel>
                             <includes>
                                 <include>**/*ST.java</include>
                             </includes>
@@ -108,10 +104,8 @@
                 <configuration>
                     <argLine>${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
                     <failIfNoTests>false</failIfNoTests>
-                    <forkCount>0.75C</forkCount>
+                    <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
-                    <parallel>methods</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads> 
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>

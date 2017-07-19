@@ -65,7 +65,7 @@ public class TestModule extends AbstractModule {
      */
     @Singleton
     @Provides
-    public DataSource testDataSource(@Named("resource://postgres/resource") InetAddress inetAddress,
+    public DataSource testDataSource(@Named("resource:/postgres:9.4/resource") InetAddress inetAddress,
             TestContext testContext) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());

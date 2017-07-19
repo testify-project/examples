@@ -37,7 +37,7 @@ public class TestPostgresDataSourceProvider implements Factory<DataSource> {
     private final InetAddress inetAddress;
 
     @Inject
-    TestPostgresDataSourceProvider(@Named("resource://postgres/resource") InetAddress inetAddress) {
+    TestPostgresDataSourceProvider(@Named("resource:/postgres:9.4/resource") InetAddress inetAddress) {
         this.inetAddress = inetAddress;
     }
 

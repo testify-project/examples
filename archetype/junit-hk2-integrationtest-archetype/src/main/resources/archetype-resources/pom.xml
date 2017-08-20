@@ -124,7 +124,7 @@
         <dependency>
             <groupId>org.testifyproject.tools</groupId>
             <artifactId>test-logger</artifactId>
-            <version>${testify.version}</version>
+            <version>${buildtools.version}</version>
             <scope>test</scope>
         </dependency>
 

@@ -50,9 +50,9 @@
 
         <!-- Testify Dependency Versions -->
         <buildtools.version>0.9.7</buildtools.version>
-        <testify.version>0.9.6</testify.version>
+        <testify.version>0.9.9-SNAPSHOT</testify.version>
         <localresources.version>0.9.4</localresources.version>
-        <virtualresources.version>0.9.2</virtualresources.version>
+        <virtualresources.version>0.9.3</virtualresources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.1</plugin.resource>

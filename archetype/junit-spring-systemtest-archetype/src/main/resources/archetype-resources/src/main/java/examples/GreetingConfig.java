@@ -88,7 +88,7 @@ public class GreetingConfig {
         Map<String, Object> properties = new HashMap<>();
         properties.put(DATASOURCE, dataSource);
 
-        return createEntityManagerFactory("example.greeter", properties);
+        return createEntityManagerFactory("example.greetings", properties);
     }
 
     /**

@@ -24,12 +24,18 @@ import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
+import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
+import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.testifyproject.annotation.Fixture;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running
@@ -37,6 +43,7 @@ import org.springframework.context.annotation.Primary;
  *
  * @author saden
  */
+@Fixture
 @Configuration
 public class TestModule {
 
@@ -63,9 +70,17 @@ public class TestModule {
     @Primary
     @Bean
     EntityManagerFactory testEntityManagerFactory(DataSource dataSource) {
-        Map<String, Object> properties = new HashMap<>();
-        properties.put(DATASOURCE, dataSource);
+        try {
+            Map<String, Object> properties = new HashMap<>();
+            properties.put(DATASOURCE, dataSource);
+            properties.put(PHYSICAL_NAMING_STRATEGY, new PhysicalNamingStrategyStandardImpl());
+            properties.put(IMPLICIT_NAMING_STRATEGY, new ImplicitNamingStrategyComponentPathImpl());
+            properties.put(HBM2DDL_LOAD_SCRIPT_SOURCE, "META-INF/test-data.sql");
 
-        return createEntityManagerFactory("test.example.greeter", properties);
+            return createEntityManagerFactory("test.example.greetings", properties);
+        } catch (Exception e) {
+            System.out.println("");
+            throw e;
+        }
     }
 }

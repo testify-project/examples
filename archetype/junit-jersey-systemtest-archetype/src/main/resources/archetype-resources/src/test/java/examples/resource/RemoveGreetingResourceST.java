@@ -27,8 +27,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
 
@@ -46,7 +46,7 @@ public class RemoveGreetingResourceST {
     WebTarget sut;
 
     @Test
-    public void givenExistingGreetingIdRemoveShouldRemoveGreeting() {
+    public void givenGreetingIdDeleteGreetingShouldDeleteGreeting() {
         //Act
         Response response = sut
                 .path("greetings")

@@ -29,8 +29,8 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.SpringSystemTest;
 
@@ -53,9 +53,9 @@ public class GetGreetingResourceST {
     }
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenGreetingIdGetGreetingShouldReturnGreeting() {
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

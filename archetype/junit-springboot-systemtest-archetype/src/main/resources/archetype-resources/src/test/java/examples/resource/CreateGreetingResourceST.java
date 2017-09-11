@@ -52,13 +52,13 @@ public class CreateGreetingResourceST {
     ClientInstance<WebTarget> sut;
 
     @Test
-    public void callToCreateGreetingShouldCreateGreeting() {
-        //Arrange 
+    public void givenGreetingEntityPostGreetingShouldCreateGreeting() {
+        //Arrange
         GreetingEntity greetingEntity = new GreetingEntity("caio");
         Entity<GreetingEntity> entity = Entity.json(greetingEntity);
 
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

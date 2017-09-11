@@ -32,8 +32,8 @@ import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
 
@@ -52,13 +52,13 @@ public class CreateGreetingResourceST {
     ClientInstance<WebTarget> sut;
 
     @Test
-    public void givenGreetingModelCreateShouldReturnCreated() {
-        //Arrange 
+    public void givenGreetingEntityPostGreetingShouldCreateGreeting() {
+        //Arrange
         GreetingModel model = new GreetingModel("caio");
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

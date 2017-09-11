@@ -65,7 +65,7 @@ public class InMemoryHSQLResource implements
         return LocalResourceInstanceBuilder.builder()
                 .resource(server, DataSource.class)
                 .client(client, Connection.class)
-                .build("hsql");
+                .build("hsql", localResource);
     }
 
     @Override

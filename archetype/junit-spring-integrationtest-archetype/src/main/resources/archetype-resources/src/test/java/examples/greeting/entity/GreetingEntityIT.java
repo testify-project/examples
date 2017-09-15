@@ -18,19 +18,22 @@
  */
 package examples.greeting.entity;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.junit4.integration.SpringIntegrationTest;
+import org.testifyproject.resource.hsql.InMemoryHSQLResource;
+
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
-import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Sut;
-import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.LocalResource;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
-import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:

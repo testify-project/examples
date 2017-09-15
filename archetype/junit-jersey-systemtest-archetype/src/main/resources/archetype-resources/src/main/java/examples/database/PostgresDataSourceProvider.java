@@ -20,6 +20,7 @@ package examples.database;
 
 import javax.inject.Singleton;
 import javax.sql.DataSource;
+
 import org.glassfish.hk2.api.Factory;
 import org.jvnet.hk2.annotations.Service;
 import org.postgresql.ds.PGSimpleDataSource;

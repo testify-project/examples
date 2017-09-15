@@ -18,21 +18,25 @@
  */
 package examples.greeting;
 
+import static java.util.Collections.EMPTY_LIST;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.testifyproject.annotation.Fake;
+import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.junit4.integration.SpringIntegrationTest;
+import org.testifyproject.resource.hsql.InMemoryHSQLResource;
+
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
-import static java.util.Collections.EMPTY_LIST;
-import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.given;
-import org.testifyproject.annotation.Sut;
-import org.testifyproject.annotation.Fake;
-import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.LocalResource;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
-import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -41,8 +45,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>replace the class under test's collaborating GreetingRepository instance
- * with a fake instance using {@link Fake @Fake} annotation</li>
+ * <li>replace the class under test's collaborating GreetingRepository instance with a fake
+ * instance using {@link Fake @Fake} annotation</li>
  * </ul>
  *
  * @author saden

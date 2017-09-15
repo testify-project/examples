@@ -20,6 +20,7 @@ package examples;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

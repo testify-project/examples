@@ -18,9 +18,11 @@
  */
 package examples.resource;
 
-import examples.resource.entity.GreetingEntity;
-import examples.resource.model.GreetingModel;
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -30,9 +32,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import javax.ws.rs.core.Response;
+
+import examples.resource.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
 
 /**
  * A resource that updates an existing greeting.

@@ -15,25 +15,28 @@
  */
 package examples.greeting;
 
-import examples.greeting.common.RandomUuidSupplier;
-import examples.greeting.model.GreetingModel;
-import java.util.Map;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import org.testifyproject.annotation.Sut;
+
+import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Fake;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
 
+import examples.greeting.common.RandomUuidSupplier;
+import examples.greeting.model.GreetingModel;
+
 /**
- * A unit test that demonstrates discovery of collaborators based only on its
- * type. Notice that the name of the collaborator in this test is "datastore"
- * where as the name of the collaborator in {@link UpdateGreeting} is "store".
+ * A unit test that demonstrates discovery of collaborators based only on its type. Notice that
+ * the name of the collaborator in this test is "datastore" where as the name of the
+ * collaborator in {@link UpdateGreeting} is "store".
  *
  * @author saden
  */

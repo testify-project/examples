@@ -15,14 +15,13 @@
  */
 package examples.resource;
 
-import examples.resource.model.GreetingModel;
-import examples.resource.repository.GreetingRepository;
-import examples.resource.repository.entity.GreetingEntity;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
 import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import examples.resource.model.GreetingModel;
+import examples.resource.repository.GreetingRepository;
+import examples.resource.repository.entity.GreetingEntity;
 
 /**
  * A resource that creates a new greeting.

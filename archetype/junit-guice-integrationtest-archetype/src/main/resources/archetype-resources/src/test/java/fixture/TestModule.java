@@ -18,23 +18,27 @@
  */
 package fixture;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.persist.jpa.JpaPersistModule;
-import java.net.InetAddress;
-import java.util.HashMap;
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.sql.DataSource;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
 import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
+import java.net.InetAddress;
+import java.util.HashMap;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.sql.DataSource;
+
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.testifyproject.TestContext;
 import org.testifyproject.annotation.Fixture;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.persist.jpa.JpaPersistModule;
 
 /**
  *
@@ -55,9 +59,8 @@ public class TestModule extends AbstractModule {
     }
 
     /**
-     * A provider of a JDBC PostgreSQL test DataSource. Note that we do not
-     * annotate this class with @Service because we don't want it to be
-     * discovered and used every time.
+     * A provider of a JDBC PostgreSQL test DataSource. Note that we do not annotate this class
+     * with @Service because we don't want it to be discovered and used every time.
      *
      * @param inetAddress the container's address
      * @param testContext the test context
@@ -65,7 +68,8 @@ public class TestModule extends AbstractModule {
      */
     @Singleton
     @Provides
-    public DataSource testDataSource(@Named("resource:/postgres:9.4/resource") InetAddress inetAddress,
+    public DataSource testDataSource(
+            @Named("resource:/postgres:9.4/resource") InetAddress inetAddress,
             TestContext testContext) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());

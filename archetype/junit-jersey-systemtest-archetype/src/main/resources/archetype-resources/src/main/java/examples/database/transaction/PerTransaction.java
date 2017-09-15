@@ -20,16 +20,18 @@ package examples.database.transaction;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
-import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
 import javax.inject.Scope;
+
 import org.glassfish.hk2.api.Proxiable;
 
 /**
- * PerTransaction is a scope that operates like
- * {@link org.glassfish.hk2.api.PerThread} scope, except it is cleaned up after
- * a transaction is completed (committed or rolled back).
+ * PerTransaction is a scope that operates like {@link org.glassfish.hk2.api.PerThread} scope,
+ * except it is cleaned up after a transaction is completed (committed or rolled back).
  *
  * @author saden
  */

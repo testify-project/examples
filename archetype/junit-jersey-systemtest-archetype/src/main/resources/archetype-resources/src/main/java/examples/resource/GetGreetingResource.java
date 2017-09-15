@@ -18,8 +18,11 @@
  */
 package examples.resource;
 
-import examples.resource.entity.GreetingEntity;
+import static javax.ws.rs.core.Response.ok;
+import static javax.ws.rs.core.Response.status;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -30,8 +33,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.ok;
-import static javax.ws.rs.core.Response.status;
+
+import examples.resource.entity.GreetingEntity;
 
 /**
  * A resource that retrieves an existing greeting.

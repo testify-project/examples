@@ -18,10 +18,13 @@
  */
 package examples;
 
+import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.sql.DataSource;
-import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.modelmapper.convention.MatchingStrategies;

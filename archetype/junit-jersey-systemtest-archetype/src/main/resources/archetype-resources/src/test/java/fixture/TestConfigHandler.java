@@ -19,11 +19,11 @@
 package fixture;
 
 import javax.ws.rs.client.ClientBuilder;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
- * A class that has a handler method that configures the JAX-RS client when
- * testing resources.
+ * A class that has a handler method that configures the JAX-RS client when testing resources.
  *
  * @author saden
  */

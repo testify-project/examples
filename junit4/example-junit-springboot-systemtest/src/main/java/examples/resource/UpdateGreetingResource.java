@@ -15,12 +15,11 @@
  */
 package examples.resource;
 
-import examples.resource.model.GreetingModel;
-import examples.resource.repository.GreetingRepository;
-import examples.resource.repository.entity.GreetingEntity;
 import java.util.UUID;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import examples.resource.model.GreetingModel;
+import examples.resource.repository.GreetingRepository;
+import examples.resource.repository.entity.GreetingEntity;
 
 /**
  * A resource that updates an existing greeting.

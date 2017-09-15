@@ -42,15 +42,13 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.version>3.0.5</maven.version>
 
-        <!-- IDE Hints -->
+        <!-- IDE Properties -->
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
-        <netbeans.checkstyle.format>true</netbeans.checkstyle.format>
         <netbeans.hint.license>apache20</netbeans.hint.license>
-        <netbeans.inceptionYear>2016</netbeans.inceptionYear>
 
         <!-- Testify Dependency Versions -->
-        <buildtools.version>0.9.7</buildtools.version>
-        <testify.version>0.9.9-SNAPSHOT</testify.version>
+        <buildtools.version>0.9.8</buildtools.version>
+        <testify.version>0.9.9</testify.version>
         <localresources.version>0.9.5-SNAPSHOT</localresources.version>
         <virtualresources.version>0.9.5-SNAPSHOT</virtualresources.version>
 
@@ -106,8 +104,6 @@
 
         <!-- Misc Dependencies -->
         <lombok.version>1.16.16</lombok.version>
-        <checkstyle.version>7.0</checkstyle.version>
-
     </properties>
 
     <prerequisites>
@@ -491,6 +487,7 @@
                     </dependencies>
                     <configuration>
                         <configLocation>testify_checkstyle.xml</configLocation>
+                        <suppressionsLocation>testify_supressions.xml</suppressionsLocation>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
                     </configuration>

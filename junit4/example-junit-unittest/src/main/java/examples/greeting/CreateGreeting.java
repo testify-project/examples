@@ -15,10 +15,11 @@
  */
 package examples.greeting;
 
-import examples.greeting.common.RandomUuidSupplier;
-import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
+
+import examples.greeting.common.RandomUuidSupplier;
+import examples.greeting.model.GreetingModel;
 
 /**
  * A service that creates a new greeting.

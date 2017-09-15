@@ -18,9 +18,10 @@
  */
 package ${package};
 
-import ${package}.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
+
+import ${package}.model.GreetingModel;
 
 /**
  * A services that updates an existing greeting.

@@ -18,27 +18,29 @@
  */
 package ${package};
 
-import ${package}.model.GreetingModel;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.UnitTest;
 
+import ${package}.model.GreetingModel;
+
 /**
- * A unit test that demonstrates discovery of initialized collaborators and
- * creating virtual instance of the real collaborator of the class under test.
- * This is useful for SPI implementations which are not allowed to have
- * parameterized constructors.
+ * A unit test that demonstrates discovery of initialized collaborators and creating virtual
+ * instance of the real collaborator of the class under test. This is useful for SPI
+ * implementations which are not allowed to have parameterized constructors.
  *
  * @author saden
  */

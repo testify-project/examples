@@ -16,6 +16,7 @@
 package examples.greeting.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.CollaboratorProvider;
@@ -24,16 +25,15 @@ import org.testifyproject.junit4.UnitTest;
 
 /**
  * <p>
- * A unit test that demonstrates the ability to explictly specify the
- * collaborators of the class under test. This is sometimes necessary due
- * collaborators being final classes (i.e. UUID) that can not be mocked due to
- * JVM restrictions.
+ * A unit test that demonstrates the ability to explictly specify the collaborators of the class
+ * under test. This is sometimes necessary due collaborators being final classes (i.e. UUID)
+ * that can not be mocked due to JVM restrictions.
  * </p>
  * <p>
- * Notice the {@link Collaborators} annotation on {@link #collaborators()}
- * method which test testify how to create an instance of the class under test
- * with the given collaborators. That the name of the method does not matter but
- * it must not take parameters and must return an array of objects.
+ * Notice the {@link Collaborators} annotation on {@link #collaborators()} method which test
+ * testify how to create an instance of the class under test with the given collaborators. That
+ * the name of the method does not matter but it must not take parameters and must return an
+ * array of objects.
  * </p>
  *
  * @author saden

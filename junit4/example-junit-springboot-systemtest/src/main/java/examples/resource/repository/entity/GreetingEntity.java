@@ -15,19 +15,23 @@
  */
 package examples.resource.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.SafeHtml;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A greeting entity.

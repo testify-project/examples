@@ -17,6 +17,7 @@ package examples.database;
 
 import javax.inject.Provider;
 import javax.sql.DataSource;
+
 import org.postgresql.ds.PGSimpleDataSource;
 
 /**

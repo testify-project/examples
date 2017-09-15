@@ -18,24 +18,28 @@
  */
 package examples.greeting;
 
-import examples.GreetingsModule;
-import examples.greeting.entity.GreetingEntity;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Fixture;
-import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.integration.GuiceIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
+
+import examples.GreetingsModule;
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -43,9 +47,9 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject and replace the class under test's real collaborating
- * EntityManager instance with a virtual instance that delegates class to the
- * real instance using {@link Virtual @Virtual} annotation</li>
+ * <li>inject and replace the class under test's real collaborating EntityManager instance with
+ * a virtual instance that delegates class to the real instance using {@link Virtual @Virtual}
+ * annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
  * {@link Fixture @Fixture} annotations for verification purpose</li>
  * </ul>

@@ -18,12 +18,13 @@
  */
 package examples.resource;
 
-import examples.GreetingsResourceConfig;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.NO_CONTENT;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
@@ -31,6 +32,9 @@ import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
+
+import examples.GreetingsResourceConfig;
+import fixture.TestModule;
 
 /**
  *

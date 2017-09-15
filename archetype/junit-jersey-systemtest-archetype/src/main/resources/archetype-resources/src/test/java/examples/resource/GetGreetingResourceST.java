@@ -18,15 +18,15 @@
  */
 package examples.resource;
 
-import examples.GreetingsResourceConfig;
-import examples.resource.entity.GreetingEntity;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import static javax.ws.rs.core.Response.Status.OK;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
-import static javax.ws.rs.core.Response.Status.OK;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +37,10 @@ import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.system.Jersey2SystemTest;
+
+import examples.GreetingsResourceConfig;
+import examples.resource.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  *

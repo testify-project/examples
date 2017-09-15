@@ -18,10 +18,11 @@
  */
 package examples.greeting;
 
-import examples.greeting.repository.GreetingRepository;
-import examples.greeting.repository.entity.GreetingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import examples.greeting.repository.GreetingRepository;
+import examples.greeting.repository.entity.GreetingEntity;
 
 /**
  * A service that updates an existing greeting.

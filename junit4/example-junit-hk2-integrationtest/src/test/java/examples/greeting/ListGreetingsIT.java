@@ -15,19 +15,22 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
-import java.util.Collection;
 import static java.util.Collections.EMPTY_LIST;
-import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+
+import java.util.Collection;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.annotation.Fixture;
 import org.testifyproject.annotation.LocalResource;
@@ -37,15 +40,16 @@ import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
+import examples.greeting.entity.GreetingEntity;
+
 /**
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject and replace the class under test's real collaborating
- * EntityManager instance with a fake instance using {@link Fake @Fake}
- * annotation</li>
+ * <li>inject and replace the class under test's real collaborating EntityManager instance with
+ * a fake instance using {@link Fake @Fake} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
  * {@link Fixture @Fixture} annotations for verification purpose</li>
  * </ul>

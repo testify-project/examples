@@ -15,26 +15,29 @@
  */
 package fixture;
 
+import static javax.persistence.Persistence.createEntityManagerFactory;
+
+import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
+import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
-import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
+
 import org.glassfish.hk2.api.Factory;
 import org.glassfish.hk2.api.Rank;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
-import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
-import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
-import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 
 /**
- * A provider of a JDBC PostgreSQL test DataSource. Note that we do not annotate
- * this class with @Service because we don't want it to be discovered and used
- * every time.
+ * A provider of a JDBC PostgreSQL test DataSource. Note that we do not annotate this class with
+ * @Service because we don't want it to be discovered and used every time.
  *
  * @author saden
  */

@@ -18,12 +18,14 @@
  */
 package examples.database;
 
-import examples.database.transaction.PerTransaction;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
 import org.glassfish.hk2.api.Factory;
 import org.jvnet.hk2.annotations.Service;
+
+import examples.database.transaction.PerTransaction;
 
 /**
  * A factory that provides an entity manager.

@@ -15,12 +15,10 @@
  */
 package examples.greeting;
 
-import examples.GreetingConfig;
-import examples.greeting.repository.GreetingRepository;
-import examples.greeting.repository.entity.GreetingEntity;
-import fixture.TestModule;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Module;
@@ -28,6 +26,11 @@ import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
+
+import examples.GreetingConfig;
+import examples.greeting.repository.GreetingRepository;
+import examples.greeting.repository.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -54,7 +57,7 @@ public class CreateGreetingIT {
     @Real
     GreetingRepository greetingRepository;
 
-   // @Test(expected = IllegalArgumentException.class)
+    // @Test(expected = IllegalArgumentException.class)
     public void givenNullGreetingSaveGreetingShouldThrowException() {
         sut.createGreeting(null);
     }

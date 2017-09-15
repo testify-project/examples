@@ -18,12 +18,13 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
-import fixture.TestModule;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Fixture;
@@ -34,6 +35,9 @@ import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.di.hk2.HK2Properties;
 import org.testifyproject.junit4.integration.HK2IntegrationTest;
+
+import examples.greeting.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  * An integration test that demonstrates the ability to:

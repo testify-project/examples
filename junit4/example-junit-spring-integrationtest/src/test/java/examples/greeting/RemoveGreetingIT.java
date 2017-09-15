@@ -15,13 +15,13 @@
  */
 package examples.greeting;
 
-import examples.GreetingConfig;
-import examples.greeting.repository.GreetingRepository;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.willDoNothing;
+
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.willDoNothing;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testifyproject.annotation.LocalResource;
@@ -31,6 +31,9 @@ import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.integration.SpringIntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
+import examples.GreetingConfig;
+import examples.greeting.repository.GreetingRepository;
+
 /**
  * An integration test that demonstrates the ability to:
  * <ul>
@@ -38,9 +41,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>replace the class under test's collaborating GreetingRepository instance
- * with a virtual instance that delegates to the real instance using
- * {@link Virtual @Virtual} annotation</li>
+ * <li>replace the class under test's collaborating GreetingRepository instance with a virtual
+ * instance that delegates to the real instance using {@link Virtual @Virtual} annotation</li>
  * </ul>
  *
  * @author saden

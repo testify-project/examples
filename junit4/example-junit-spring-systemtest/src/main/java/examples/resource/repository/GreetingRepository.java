@@ -15,10 +15,12 @@
  */
 package examples.resource.repository;
 
-import examples.resource.repository.entity.GreetingEntity;
 import java.util.UUID;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
+
+import examples.resource.repository.entity.GreetingEntity;
 
 /**
  * Greetings Spring Data repository contract.

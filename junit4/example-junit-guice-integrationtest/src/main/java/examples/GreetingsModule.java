@@ -15,25 +15,30 @@
  */
 package examples;
 
+import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
+import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.sql.DataSource;
+
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
+
 import examples.database.PostgresDataSourceProvider;
 import examples.greeting.CreateGreeting;
 import examples.greeting.GetGreeting;
 import examples.greeting.ListGreetings;
 import examples.greeting.RemoveGreeting;
 import examples.greeting.UpdateGreeting;
-import java.util.HashMap;
-import java.util.Map;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.sql.DataSource;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
-import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
-import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
-import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
 
 /**
  * A module that defines Greetings bindings.
@@ -68,7 +73,8 @@ public class GreetingsModule extends AbstractModule {
     void startPersistService(PersistService service, DataSource dataSource) {
         jpaProperties.put(DATASOURCE, dataSource);
         jpaProperties.put(PHYSICAL_NAMING_STRATEGY, new PhysicalNamingStrategyStandardImpl());
-        jpaProperties.put(IMPLICIT_NAMING_STRATEGY, new ImplicitNamingStrategyComponentPathImpl());
+        jpaProperties.put(IMPLICIT_NAMING_STRATEGY,
+                new ImplicitNamingStrategyComponentPathImpl());
         service.start();
     }
 

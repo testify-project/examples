@@ -18,19 +18,23 @@
  */
 package examples.database;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
-import javax.sql.DataSource;
-import org.glassfish.hk2.api.Factory;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
+
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+import org.glassfish.hk2.api.Factory;
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.jvnet.hk2.annotations.Service;
 
 /**

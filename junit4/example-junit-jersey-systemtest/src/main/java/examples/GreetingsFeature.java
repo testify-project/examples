@@ -16,11 +16,13 @@
 package examples;
 
 import java.io.IOException;
+
 import javax.inject.Inject;
 import javax.ws.rs.ConstrainedTo;
 import javax.ws.rs.RuntimeType;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
+
 import org.glassfish.hk2.api.DynamicConfiguration;
 import org.glassfish.hk2.api.DynamicConfigurationService;
 import org.glassfish.hk2.api.Populator;
@@ -29,8 +31,7 @@ import org.glassfish.hk2.extras.ExtrasUtilities;
 import org.glassfish.hk2.utilities.ClasspathDescriptorFileFinder;
 
 /**
- * Discovers service descriptor files and configure and populates the service
- * locator.
+ * Discovers service descriptor files and configure and populates the service locator.
  *
  * @author saden
  */

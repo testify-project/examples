@@ -18,18 +18,22 @@
  */
 package fixture;
 
-import java.net.InetAddress;
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
-import javax.sql.DataSource;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
+
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
 import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
+import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

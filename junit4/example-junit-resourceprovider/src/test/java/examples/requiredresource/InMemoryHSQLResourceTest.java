@@ -15,15 +15,18 @@
  */
 package examples.requiredresource;
 
-import java.sql.Connection;
-import javax.sql.DataSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+
+import java.sql.Connection;
+
+import javax.sql.DataSource;
+
 import org.hsqldb.jdbc.JDBCDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import org.testifyproject.LocalResourceInstance;
 import org.testifyproject.TestContext;
 import org.testifyproject.annotation.LocalResource;
@@ -52,7 +55,8 @@ public class InMemoryHSQLResourceTest {
         JDBCDataSource config = sut.configure(testContext, localResource, configReader);
         assertThat(config).isNotNull();
 
-        LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(testContext, localResource, config);
+        LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(
+                testContext, localResource, config);
         assertThat(localResourceInstance.getResource()).isNotNull();
         assertThat(localResourceInstance.getClient()).isPresent();
 

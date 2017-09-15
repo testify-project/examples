@@ -16,8 +16,8 @@
 package examples.resource.repository;
 
 /**
- * Type-safe alternative to EnableJpaRepositories.basePackages() for specifying
- * the packages to scan for annotated components.
+ * Type-safe alternative to EnableJpaRepositories.basePackages() for specifying the packages to
+ * scan for annotated components.
  *
  * @author saden
  */

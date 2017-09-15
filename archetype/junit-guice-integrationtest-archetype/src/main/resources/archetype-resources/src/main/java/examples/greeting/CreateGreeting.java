@@ -18,10 +18,12 @@
  */
 package examples.greeting;
 
-import com.google.inject.persist.Transactional;
-import examples.greeting.entity.GreetingEntity;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
+import com.google.inject.persist.Transactional;
+
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * A service that creates a new greeting.

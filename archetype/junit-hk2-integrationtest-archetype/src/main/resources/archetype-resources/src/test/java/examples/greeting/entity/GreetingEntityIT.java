@@ -18,11 +18,14 @@
  */
 package examples.greeting.entity;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,8 +45,8 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating EntityManager instance
- * using {@link Real @Real} annotation</li>
+ * <li>inject the class under test's real collaborating EntityManager instance using
+ * {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
  * {@link Fixture @Fixture} annotations for verification purpose</li>
  * </ul>

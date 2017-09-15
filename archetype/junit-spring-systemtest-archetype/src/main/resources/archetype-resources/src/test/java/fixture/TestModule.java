@@ -18,18 +18,22 @@
  */
 package fixture;
 
-import java.net.InetAddress;
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
-import javax.sql.DataSource;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
+
 import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
 import static org.hibernate.cfg.AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE;
 import static org.hibernate.cfg.AvailableSettings.IMPLICIT_NAMING_STRATEGY;
 import static org.hibernate.cfg.AvailableSettings.PHYSICAL_NAMING_STRATEGY;
+
+import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -38,8 +42,8 @@ import org.springframework.context.annotation.Primary;
 import org.testifyproject.annotation.Fixture;
 
 /**
- * Test fixture module that defines the datasource of a postgreSQL running
- * inside of a container.
+ * Test fixture module that defines the datasource of a postgreSQL running inside of a
+ * container.
  *
  * @author saden
  */
@@ -49,7 +53,8 @@ public class TestModule {
 
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
+    DataSource testDataSource(
+            @Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());
         dataSource.setPortNumber(5432);
@@ -74,7 +79,8 @@ public class TestModule {
             Map<String, Object> properties = new HashMap<>();
             properties.put(DATASOURCE, dataSource);
             properties.put(PHYSICAL_NAMING_STRATEGY, new PhysicalNamingStrategyStandardImpl());
-            properties.put(IMPLICIT_NAMING_STRATEGY, new ImplicitNamingStrategyComponentPathImpl());
+            properties.put(IMPLICIT_NAMING_STRATEGY,
+                    new ImplicitNamingStrategyComponentPathImpl());
             properties.put(HBM2DDL_LOAD_SCRIPT_SOURCE, "META-INF/test-data.sql");
 
             return createEntityManagerFactory("test.example.greetings", properties);

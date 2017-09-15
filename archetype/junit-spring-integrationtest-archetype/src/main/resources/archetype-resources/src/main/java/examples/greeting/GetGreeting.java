@@ -18,12 +18,14 @@
  */
 package examples.greeting;
 
-import examples.greeting.repository.GreetingRepository;
-import examples.greeting.repository.entity.GreetingEntity;
 import java.util.Optional;
 import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import examples.greeting.repository.GreetingRepository;
+import examples.greeting.repository.entity.GreetingEntity;
 
 /**
  * A service that retrieve an existing greeting.

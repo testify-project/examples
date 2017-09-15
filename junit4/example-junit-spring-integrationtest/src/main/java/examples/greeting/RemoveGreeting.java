@@ -15,10 +15,12 @@
  */
 package examples.greeting;
 
-import examples.greeting.repository.GreetingRepository;
 import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import examples.greeting.repository.GreetingRepository;
 
 /**
  * A service that removes an existing greeting.

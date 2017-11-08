@@ -1,3 +1,5 @@
+#set($C = ":")
+#set($D = "$")
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
@@ -37,12 +39,12 @@
         <snakeyaml.version>1.17</snakeyaml.version>
         
         <!-- Plugin Version Properties-->
-        <plugin.dependency.version>2.10</plugin.dependency.version>
         <plugin.war.version>2.6</plugin.war.version>
+        <modelmapper.version>0.7.7</modelmapper.version>
         <plugin.compiler.version>3.5.1</plugin.compiler.version>
         <plugin.failsafe>2.19.1</plugin.failsafe>
         <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
-        <modelmapper.version>0.7.7</modelmapper.version>
+        <plugin.dependency>3.0.2</plugin.dependency>
     </properties>
 
     <dependencyManagement>
@@ -99,7 +101,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <argLine>\${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <argLine>${D}{jacocoSurefireArgs} -javaagent:${D}{org.testifyproject${C}core${C}jar} -client -Xms512m -Xmx2048m</argLine>
                     <failIfNoTests>false</failIfNoTests>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
@@ -131,16 +133,15 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${plugin.war.version}</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${plugin.dependency.version}</version>
+                <version>${plugin.dependency}</version>
                 <executions>
+                    <execution>
+                        <id>properties</id>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <phase>validate</phase>
                         <goals>
@@ -159,6 +160,13 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${plugin.war.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>

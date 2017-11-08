@@ -38,7 +38,7 @@ import fixture.TestModule;
  * @author saden
  */
 @Application(GreetingsResourceConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(Jersey2SystemTest.class)
 public class RemoveGreetingResourceST {

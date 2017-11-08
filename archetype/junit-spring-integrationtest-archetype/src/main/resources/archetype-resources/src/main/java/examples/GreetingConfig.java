@@ -61,8 +61,8 @@ public class GreetingConfig {
 
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean bean
-                = new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean bean =
+                new LocalContainerEntityManagerFactoryBean();
         bean.setDataSource(dataSource);
         bean.setPersistenceUnitName("example.greetings");
 
@@ -77,8 +77,8 @@ public class GreetingConfig {
      */
     @Bean
     PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager
-                = new JpaTransactionManager(entityManagerFactory);
+        JpaTransactionManager transactionManager =
+                new JpaTransactionManager(entityManagerFactory);
 
         return transactionManager;
     }

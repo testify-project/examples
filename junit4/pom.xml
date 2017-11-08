@@ -28,8 +28,8 @@
     <artifactId>junit4</artifactId>
     <packaging>pom</packaging>
 
-    <name>JUnit 4 Examples</name>
-    <description>Parent module of example projects</description>
+    <name>[JUnit4]</name>
+    <description>Parent module of JUnit 4 example projects</description>
 
     <modules>
         <module>example-junit-unittest</module>

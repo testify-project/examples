@@ -39,17 +39,17 @@ import fixture.TestModule;
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
- * <li>substitute the production database with a container based PostgreSQL
- * database using {@link VirtualResource @VirtualResource} annotation</li>
+ * <li>substitute the production database with a container based PostgreSQL database using
+ * {@link VirtualResource @VirtualResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating GreetingRepository
- * instance using {@link Real @Real} annotation</li>
+ * <li>inject the class under test's real collaborating GreetingRepository instance using
+ * {@link Real @Real} annotation</li>
  * </ul>
  *
  * @author saden
  */
 @Module(GreetingConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(SpringIntegrationTest.class)
 public class CreateGreetingIT {

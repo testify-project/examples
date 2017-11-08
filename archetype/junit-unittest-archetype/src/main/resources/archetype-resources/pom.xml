@@ -1,3 +1,5 @@
+#set($C = ":")
+#set($D = "$")
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
@@ -67,7 +69,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <argLine>\${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <argLine>${D}{jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
                     <failIfNoTests>false</failIfNoTests>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>

@@ -1,3 +1,5 @@
+#set($C = ":")
+#set($D = "$")
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
@@ -42,10 +44,11 @@
         <!-- Plugin Version Properties -->
         <plugin.dependency.version>2.10</plugin.dependency.version>
         <plugin.war.version>2.6</plugin.war.version>
-        <plugin.compiler>3.5.1</plugin.compiler>
-        <plugin.failsafe>2.19.1</plugin.failsafe>
-        <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        <plugin.compiler>3.5.1</plugin.compiler>        
         <modelmapper.version>0.7.7</modelmapper.version>
+        <plugin.surefire>2.19.1</plugin.surefire>
+        <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        <plugin.dependency>3.0.2</plugin.dependency>
     </properties>
 
     <dependencyManagement>
@@ -109,7 +112,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <argLine>\${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <argLine>${D}{jacocoSurefireArgs} -javaagent:${D}{org.testifyproject${C}core${C}jar} -client -Xms512m -Xmx2048m</argLine>
                     <failIfNoTests>false</failIfNoTests>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
@@ -136,6 +139,18 @@
                         <id>jacoco-report</id>
                         <goals>
                             <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${plugin.dependency}</version>
+                <executions>
+                    <execution>
+                        <id>properties</id>
+                        <goals>
+                            <goal>properties</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -47,7 +47,7 @@ import fixture.TestModule;
  * @author saden
  */
 @Module(GreetingConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(SpringIntegrationTest.class)
 public class UpdateGreetingIT {

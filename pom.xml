@@ -26,7 +26,7 @@
     <version>0.9.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     
-    <name>Examples</name>
+    <name>[Examples]</name>
     <description>Parent module of Testify Examples and Archetypes</description>
     <url>https://testify-project.github.io</url>
 
@@ -47,10 +47,10 @@
         <netbeans.hint.license>apache20</netbeans.hint.license>
 
         <!-- Testify Dependency Versions -->
-        <buildtools.version>0.9.8</buildtools.version>
-        <testify.version>0.9.9</testify.version>
-        <localresources.version>0.9.5</localresources.version>
-        <virtualresources.version>0.9.5</virtualresources.version>
+        <buildtools.version>0.9.9-SNAPSHOT</buildtools.version>
+        <testify.version>1.0.0-SNAPSHOT</testify.version>
+        <localresources.version>0.9.6-SNAPSHOT</localresources.version>
+        <virtualresources.version>0.9.6-SNAPSHOT</virtualresources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.1</plugin.resource>

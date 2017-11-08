@@ -51,7 +51,7 @@ import fixture.TestModule;
  *
  * @author saden
  */
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @Module(GreetingsModule.class)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(GuiceIntegrationTest.class)

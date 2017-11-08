@@ -42,10 +42,10 @@ import examples.greeting.repository.entity.GreetingEntity;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating EntityManager instance
- * using {@link Real @Real} annotation</li>
- * <li>inject the real GreetingRepository instance using {@link Real @Real}
- * annotation for verification purpose</li>
+ * <li>inject the class under test's real collaborating EntityManager instance using
+ * {@link Real @Real} annotation</li>
+ * <li>inject the real GreetingRepository instance using {@link Real @Real} annotation for
+ * verification purpose</li>
  * </ul>
  *
  * @author saden

@@ -22,6 +22,7 @@ import static javax.ws.rs.core.Response.Status.CREATED;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
@@ -53,7 +54,7 @@ import fixture.TestModule;
 public class CreateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @Test
     public void givenGreetingEntityPostGreetingShouldCreateGreeting() {

@@ -34,7 +34,6 @@ import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.testifyproject.TestContext;
-import org.testifyproject.annotation.Fixture;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -44,7 +43,6 @@ import com.google.inject.persist.jpa.JpaPersistModule;
  *
  * @author saden
  */
-@Fixture
 public class TestModule extends AbstractModule {
 
     private HashMap<Object, Object> properties;

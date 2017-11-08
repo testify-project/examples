@@ -20,6 +20,7 @@ import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -45,13 +46,13 @@ import fixture.TestModule;
  * @author saden
  */
 @Application(GreetingsResourceConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(Jersey2SystemTest.class)
 public class UpdateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     public void configureClient(ClientBuilder clientBuilder) {

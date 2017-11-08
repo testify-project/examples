@@ -41,8 +41,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * Test fixture module that defines the datasource of a postgreSQL running
- * inside of a container.
+ * Test fixture module that defines the datasource of a postgreSQL running inside of a
+ * container.
  *
  * @author saden
  */

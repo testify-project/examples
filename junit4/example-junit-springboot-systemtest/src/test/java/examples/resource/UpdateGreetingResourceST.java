@@ -19,6 +19,7 @@ import static javax.ws.rs.core.Response.Status.ACCEPTED;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -50,7 +51,7 @@ import fixture.TestModule;
 public class UpdateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     void configureClient(ClientBuilder clientBuilder) {

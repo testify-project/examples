@@ -36,7 +36,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.testifyproject.annotation.Fixture;
 
 /**
  * Test fixture module that defines the datasource of a postgreSQL running inside of a
@@ -44,7 +43,6 @@ import org.testifyproject.annotation.Fixture;
  *
  * @author saden
  */
-@Fixture
 @Configuration
 public class TestModule {
 

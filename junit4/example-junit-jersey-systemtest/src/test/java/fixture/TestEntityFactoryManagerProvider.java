@@ -37,7 +37,7 @@ import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 
 /**
  * A provider of a JDBC PostgreSQL test DataSource. Note that we do not annotate this class with
- * @Service because we don't want it to be discovered and used every time.
+ * {@literal @Service}because we don't want it to be discovered and used every time.
  *
  * @author saden
  */

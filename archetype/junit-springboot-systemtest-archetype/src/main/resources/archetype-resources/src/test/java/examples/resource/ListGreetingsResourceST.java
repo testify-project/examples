@@ -24,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -55,7 +56,7 @@ import fixture.TestModule;
 public class ListGreetingsResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     void configureClient(ClientBuilder clientBuilder) {

@@ -41,7 +41,7 @@ import fixture.TestModule;
  * @author saden
  */
 @Application(GreetingApplication.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
 @RunWith(SpringSystemTest.class)
 public class RemoveGreetingResourceST {

@@ -26,7 +26,7 @@ import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
@@ -49,7 +49,7 @@ import fixture.TestModule;
 @Module(GreetingConfig.class)
 @Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class UpdateGreetingIT {
 
     @Sut

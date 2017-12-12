@@ -37,7 +37,7 @@ import org.testifyproject.annotation.ConfigHandler;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.SpringBootSystemTest;
+import org.testifyproject.junit4.SystemTest;
 
 import examples.GreetingApplication;
 import examples.resource.model.GreetingModel;
@@ -50,7 +50,7 @@ import fixture.TestModule;
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringBootSystemTest.class)
+@RunWith(SystemTest.class)
 public class UpdateGreetingResourceST {
 
     @Sut

@@ -36,7 +36,7 @@ import org.testifyproject.annotation.Scan;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.di.hk2.HK2Properties;
-import org.testifyproject.junit4.integration.HK2IntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 
 import examples.greeting.entity.GreetingEntity;
 import fixture.TestModule;
@@ -59,7 +59,7 @@ import fixture.TestModule;
 @Module(value = TestModule.class, test = true)
 @Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(HK2IntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class UpdateGreetingIT {
 
     @Sut

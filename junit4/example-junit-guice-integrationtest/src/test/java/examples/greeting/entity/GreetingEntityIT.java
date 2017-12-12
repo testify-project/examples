@@ -32,7 +32,7 @@ import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Sut;
-import org.testifyproject.junit4.integration.GuiceIntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 import examples.GreetingsModule;
@@ -53,7 +53,7 @@ import examples.GreetingsModule;
  */
 @Module(GreetingsModule.class)
 @LocalResource(InMemoryHSQLResource.class)
-@RunWith(GuiceIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class GreetingEntityIT {
 
     @Real

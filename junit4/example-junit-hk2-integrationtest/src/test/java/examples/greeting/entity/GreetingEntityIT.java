@@ -33,7 +33,7 @@ import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Scan;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.di.hk2.HK2Properties;
-import org.testifyproject.junit4.integration.HK2IntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
@@ -52,7 +52,7 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  */
 @Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @LocalResource(InMemoryHSQLResource.class)
-@RunWith(HK2IntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class GreetingEntityIT {
 
     @Real

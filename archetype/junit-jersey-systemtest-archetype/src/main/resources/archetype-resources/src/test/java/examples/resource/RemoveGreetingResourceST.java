@@ -31,7 +31,7 @@ import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.Jersey2SystemTest;
+import org.testifyproject.junit4.SystemTest;
 
 import examples.GreetingsResourceConfig;
 import fixture.TestModule;
@@ -43,7 +43,7 @@ import fixture.TestModule;
 @Application(GreetingsResourceConfig.class)
 @Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(Jersey2SystemTest.class)
+@RunWith(SystemTest.class)
 public class RemoveGreetingResourceST {
 
     @Sut

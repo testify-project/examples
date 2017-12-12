@@ -30,7 +30,7 @@ import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.integration.GuiceIntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 
 import examples.GreetingsModule;
 import examples.greeting.entity.GreetingEntity;
@@ -54,7 +54,7 @@ import fixture.TestModule;
 @Module(value = TestModule.class, test = true)
 @Module(GreetingsModule.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(GuiceIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class UpdateGreetingIT {
 
     @Sut

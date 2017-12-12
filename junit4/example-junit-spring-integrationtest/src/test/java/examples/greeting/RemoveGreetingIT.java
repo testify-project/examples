@@ -28,7 +28,7 @@ import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 import examples.GreetingConfig;
@@ -49,7 +49,7 @@ import examples.greeting.repository.GreetingRepository;
  */
 @Module(GreetingConfig.class)
 @LocalResource(InMemoryHSQLResource.class)
-@RunWith(SpringIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class RemoveGreetingIT {
 
     @Sut

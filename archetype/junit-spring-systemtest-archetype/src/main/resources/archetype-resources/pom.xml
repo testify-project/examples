@@ -203,7 +203,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testifyproject.resources</groupId>
+            <groupId>org.testifyproject.local-resources</groupId>
             <artifactId>hsql</artifactId>
             <version>${localresources.version}</version>
             <scope>test</scope>

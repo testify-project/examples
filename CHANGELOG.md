@@ -13,10 +13,13 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
-## [0.9.4-SNAPSHOT]
+## [1.0.0-SNAPSHOT]
+### Added
+- Added gRPC example
+
 ### Changed
-- Updated Testify version to 0.9.9
-- Updated Virtual Resource version to 0.9.3
+- Updated Testify version to 1.0.2
+- Updated Virtual Resource version to 1.0.2
 - Updated Example code due to version updates
 
 ## [0.9.3] - 2017-07-19

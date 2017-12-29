@@ -46,6 +46,6 @@ public class RemoveGreeting {
      * @param id the greeting id
      */
     public void removeGreeting(UUID id) {
-        greetingRepository.delete(id);
+        greetingRepository.deleteById(id);
     }
 }

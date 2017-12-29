@@ -65,15 +65,12 @@ public class UpdateGreetingResource {
     public ResponseEntity updateGreeting(@NotNull @PathVariable("id") UUID id,
             @Valid @RequestBody GreetingEntity model) {
 
-        GreetingEntity existingEntity = greetingRepository.findOne(id);
+        return greetingRepository.findById(id).map(entity -> {
+            modelMapper.map(model, entity);
+            greetingRepository.save(entity);
 
-        if (existingEntity == null) {
-            return ResponseEntity.notFound().build();
-        }
+            return ResponseEntity.accepted().build();
+        }).orElse(ResponseEntity.accepted().build());
 
-        modelMapper.map(model, existingEntity);
-        greetingRepository.save(existingEntity);
-
-        return ResponseEntity.accepted().build();
     }
 }

@@ -77,13 +77,13 @@ public class RemoveGreetingIT {
     public void givenExistingGreetingRemoveGreetingShouldNotRemoveGreeting() {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
-        willDoNothing().given(greetingRepository).delete(id);
+        willDoNothing().given(greetingRepository).deleteById(id);
 
         //Act
         sut.removeGreeting(id);
 
         //Assert
-        assertThat(greetingRepository.findOne(id)).isNotNull();
+        assertThat(greetingRepository.findById(id)).isNotNull();
     }
 
 }

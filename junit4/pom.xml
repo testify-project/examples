@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.testifyproject.examples</groupId>
         <artifactId>parent</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     
     <groupId>org.testifyproject.examples</groupId>
@@ -39,6 +39,7 @@
         <module>example-junit-hk2-integrationtest</module>
         <module>example-junit-jersey-systemtest</module>
         <module>example-junit-guice-integrationtest</module>
+        <module>example-junit-grpc-systemtest</module>
         <module>example-junit-resourceprovider</module>
     </modules>
     

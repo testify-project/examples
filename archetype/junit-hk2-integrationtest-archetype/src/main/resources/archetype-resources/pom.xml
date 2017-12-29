@@ -33,11 +33,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <plugin.surefire>2.19.1</plugin.surefire>
+        
+        <!-- Plugin Version Properties-->
+        <plugin.surefire>2.20</plugin.surefire>
         <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
         <plugin.dependency>3.0.2</plugin.dependency>
     </properties>
-
 
     <build>
         <plugins>
@@ -116,26 +117,46 @@
             </plugin>
         </plugins>
     </build>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testifyproject</groupId>
+                <artifactId>testify-bom</artifactId>
+                <version>${testify.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testifyproject.local-resources</groupId>
+                <artifactId>local-resources-bom</artifactId>
+                <version>${localresources.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testifyproject.virtual-resources</groupId>
+                <artifactId>virtual-resources-bom</artifactId>
+                <version>${virtualresources.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Testify Test Deps -->
         <dependency>
             <groupId>org.testifyproject.junit4</groupId>
             <artifactId>hk2-integration-test</artifactId>
-            <version>${testify.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testifyproject.local-resources</groupId>
             <artifactId>hsql</artifactId>
-            <version>${localresources.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testifyproject.virtual-resources</groupId>
             <artifactId>docker</artifactId>
-            <version>${virtualresources.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testifyproject.tools</groupId>
@@ -145,12 +166,6 @@
         </dependency>
 
         <!-- Test Deps -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>

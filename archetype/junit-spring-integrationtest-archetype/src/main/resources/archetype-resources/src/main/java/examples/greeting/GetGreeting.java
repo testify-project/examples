@@ -49,7 +49,7 @@ public class GetGreeting {
      * @return the optional containing the greeting, empty otherwise
      */
     public Optional<GreetingEntity> getGreeting(UUID id) {
-        return Optional.ofNullable(greetingRepository.findOne(id));
+        return greetingRepository.findById(id);
     }
 
 }

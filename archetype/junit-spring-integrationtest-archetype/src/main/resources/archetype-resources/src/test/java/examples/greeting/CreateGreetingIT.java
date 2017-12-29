@@ -20,6 +20,7 @@ package examples.greeting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -77,8 +78,8 @@ public class CreateGreetingIT {
         //Assert
         UUID id = entity.getId();
         assertThat(id).isNotNull();
-        GreetingEntity result = greetingRepository.findOne(entity.getId());
-        assertThat(result).isEqualTo(entity);
+        Optional<GreetingEntity> result = greetingRepository.findById(entity.getId());
+        assertThat(result).contains(entity);
     }
 
 }

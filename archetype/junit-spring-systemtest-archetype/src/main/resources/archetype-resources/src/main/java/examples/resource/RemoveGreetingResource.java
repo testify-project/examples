@@ -53,7 +53,7 @@ public class RemoveGreetingResource {
             method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity removeGreeting(@NotNull @PathVariable("id") UUID id) {
-        greetingRepository.delete(id);
+        greetingRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
 

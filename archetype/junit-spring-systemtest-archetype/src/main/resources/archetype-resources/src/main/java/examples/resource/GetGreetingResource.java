@@ -18,6 +18,7 @@
  */
 package examples.resource;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -56,8 +57,9 @@ public class GetGreetingResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity getGreeting(@NotNull @PathVariable("id") UUID id) {
-        GreetingEntity result = greetingRepository.findOne(id);
+        Optional<GreetingEntity> result = greetingRepository.findById(id);
 
-        return ResponseEntity.ok(result);
+        return result.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

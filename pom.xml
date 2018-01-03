@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016-2017 Testify Project.
+    Copyright 2016-2018 Testify Project.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -48,10 +48,9 @@
         <netbeans.inceptionYear>2016</netbeans.inceptionYear>
 
         <!-- Testify Dependency Versions -->
-        <buildtools.version>1.0.0</buildtools.version>
-        <testify.version>1.0.2-SNAPSHOT</testify.version>
-        <localresources.version>1.0.2-SNAPSHOT</localresources.version>
-        <virtualresources.version>1.0.2-SNAPSHOT</virtualresources.version>
+        <testify.version>1.0.2</testify.version>
+        <localresources.version>1.0.2</localresources.version>
+        <virtualresources.version>1.0.2</virtualresources.version>
 
         <!-- Plugin Versions -->
         <plugin.resource>3.0.2</plugin.resource>
@@ -95,6 +94,7 @@
         <jersey.version>2.26</jersey.version>
         <jersey.hk2.version>2.5.0-b42</jersey.hk2.version>
         <guice.version>4.1.0</guice.version>
+        <grpc.version>1.7.0</grpc.version>
         <guava.version>23.2-jre</guava.version>
         <reflections.version>0.9.10</reflections.version>
 
@@ -434,6 +434,7 @@
                     <executions>
                         <execution>
                             <id>license-check</id>
+                            <phase>process-resources</phase>
                             <goals>
                                 <goal>check</goal>
                             </goals>
@@ -441,13 +442,18 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.testifyproject.buildtools</groupId>
+                            <groupId>org.testifyproject.tools</groupId>
                             <artifactId>coding-conventions</artifactId>
-                            <version>${buildtools.version}</version>
+                            <version>${testify.version}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
                         <header>license.txt</header>
+                        <errorMessage> Please insure the file(s) listed above:
+                            a) have a license header
+                            b) the header is formatted correctly
+                            c) the header contains the correct license year date range
+                        </errorMessage>
                         <properties>
                             <owner>${project.organization.name}</owner>
                         </properties>
@@ -490,9 +496,9 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.testifyproject.buildtools</groupId>
+                            <groupId>org.testifyproject.tools</groupId>
                             <artifactId>coding-conventions</artifactId>
-                            <version>${buildtools.version}</version>
+                            <version>${testify.version}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -635,7 +641,6 @@
         <dependency>
             <groupId>org.testifyproject.tools</groupId>
             <artifactId>test-logger</artifactId>
-            <version>${buildtools.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -648,6 +653,12 @@
                 <artifactId>assertj-core</artifactId>
                 <version>${assertj.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testifyproject.tools</groupId>
+                <artifactId>test-logger</artifactId>
+                <version>${testify.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

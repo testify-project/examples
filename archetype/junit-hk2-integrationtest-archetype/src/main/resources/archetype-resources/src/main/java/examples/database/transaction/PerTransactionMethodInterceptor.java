@@ -20,10 +20,12 @@ package examples.database.transaction;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.glassfish.hk2.extras.operation.OperationHandle;
@@ -31,9 +33,8 @@ import org.glassfish.hk2.extras.operation.OperationManager;
 import org.jvnet.hk2.annotations.Service;
 
 /**
- * A method interceptor that intercepts methods annotated with @Transactional.
- * This interceptor begins, commits, and rolls back the currently active entity
- * manager.
+ * A method interceptor that intercepts methods annotated with @Transactional. This interceptor
+ * begins, commits, and rolls back the currently active entity manager.
  *
  * @author saden
  */
@@ -44,7 +45,8 @@ public class PerTransactionMethodInterceptor implements MethodInterceptor {
     private final EntityManager entityManager;
 
     @Inject
-    PerTransactionMethodInterceptor(OperationManager operationManager, EntityManager entityManager) {
+    PerTransactionMethodInterceptor(OperationManager operationManager,
+            EntityManager entityManager) {
         this.operationManager = operationManager;
         this.entityManager = entityManager;
     }
@@ -84,7 +86,8 @@ public class PerTransactionMethodInterceptor implements MethodInterceptor {
     }
 
     private synchronized OperationHandle<PerTransaction> getOperationHandle() {
-        OperationHandle<PerTransaction> handler = operationManager.getCurrentOperation(PerTransactionImpl.INSTANCE);
+        OperationHandle<PerTransaction> handler = operationManager.getCurrentOperation(
+                PerTransactionImpl.INSTANCE);
 
         if (handler == null) {
             handler = operationManager.createAndStartOperation(PerTransactionImpl.INSTANCE);
@@ -94,7 +97,8 @@ public class PerTransactionMethodInterceptor implements MethodInterceptor {
 
     }
 
-    private void doRollbackOrCommit(MethodInvocation methodInvocation, Exception e, EntityTransaction tx) {
+    private void doRollbackOrCommit(MethodInvocation methodInvocation, Exception e,
+            EntityTransaction tx) {
         if (tx.getRollbackOnly()) {
             tx.rollback();
 

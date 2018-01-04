@@ -15,9 +15,10 @@
  */
 package examples.greeting;
 
-import examples.greeting.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
+
+import examples.greeting.model.GreetingModel;
 
 /**
  * A services that updates an existing greeting.

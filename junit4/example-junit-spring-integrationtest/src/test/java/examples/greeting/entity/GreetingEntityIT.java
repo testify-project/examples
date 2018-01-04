@@ -15,19 +15,23 @@
  */
 package examples.greeting.entity;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.testifyproject.annotation.LocalResource;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.junit4.IntegrationTest;
+import org.testifyproject.resource.hsql.InMemoryHSQLResource;
+
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
-import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Sut;
-import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.LocalResource;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
-import org.testifyproject.resource.hsql.InMemoryHSQLResource;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -36,17 +40,17 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating EntityManager instance
- * using {@link Real @Real} annotation</li>
- * <li>inject the real GreetingRepository instance using {@link Real @Real}
- * annotation for verification purpose</li>
+ * <li>inject the class under test's real collaborating EntityManager instance using
+ * {@link Real @Real} annotation</li>
+ * <li>inject the real GreetingRepository instance using {@link Real @Real} annotation for
+ * verification purpose</li>
  * </ul>
  *
  * @author saden
  */
 @Module(GreetingConfig.class)
 @LocalResource(InMemoryHSQLResource.class)
-@RunWith(SpringIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class GreetingEntityIT {
 
     @Real
@@ -63,9 +67,8 @@ public class GreetingEntityIT {
 
         //Assert
         assertThat(entity).isNotNull();
-        GreetingEntity result = greetingRepository.findOne(entity.getId());
-        assertThat(result).isEqualTo(entity);
-        assertThat(result.hashCode()).isEqualTo(entity.hashCode());
+        Optional<GreetingEntity> result = greetingRepository.findById(entity.getId());
+        assertThat(result).contains(entity);
     }
 
     @Test
@@ -73,15 +76,15 @@ public class GreetingEntityIT {
         //Arrange
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
         String phrase = "caio";
-        GreetingEntity existingEntity = greetingRepository.findOne(id);
+        Optional<GreetingEntity> existingEntity = greetingRepository.findById(id);
         GreetingEntity updatedEntity = new GreetingEntity(id, phrase);
 
         //Act
         greetingRepository.save(updatedEntity);
 
         //Assert
-        assertThat(existingEntity).isNotEqualTo(updatedEntity);
-        assertThat(existingEntity.hashCode()).isNotEqualTo(updatedEntity.hashCode());
+        assertThat(existingEntity).isPresent();
+        assertThat(existingEntity.get()).isNotEqualTo(updatedEntity);
     }
 
     @Test
@@ -90,8 +93,8 @@ public class GreetingEntityIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        GreetingEntity entity1 = greetingRepository.findOne(id);
-        GreetingEntity entity2 = greetingRepository.findOne(id);
+        Optional<GreetingEntity> entity1 = greetingRepository.findById(id);
+        Optional<GreetingEntity> entity2 = greetingRepository.findById(id);
 
         //Assert
         assertThat(entity1).isEqualTo(entity2);
@@ -116,9 +119,10 @@ public class GreetingEntityIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        GreetingEntity entity = greetingRepository.findOne(id);
+        Optional<GreetingEntity> entity = greetingRepository.findById(id);
 
         //Act & Assert
+        assertThat(entity).isNotEmpty();
         assertThat(entity).isEqualTo(entity);
     }
 
@@ -128,10 +132,11 @@ public class GreetingEntityIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        GreetingEntity entity = greetingRepository.findOne(id);
+        Optional<GreetingEntity> entity = greetingRepository.findById(id);
 
         //Act & Assert
-        assertThat(entity).isNotEqualTo(null);
+        assertThat(entity).isNotEmpty();
+        assertThat(entity.get()).isNotEqualTo(null);
     }
 
     @Test
@@ -140,10 +145,11 @@ public class GreetingEntityIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        GreetingEntity entity = greetingRepository.findOne(id);
+        Optional<GreetingEntity> entity = greetingRepository.findById(id);
 
         //Act & Assert
-        assertThat(entity).isNotEqualTo(new Object());
+        assertThat(entity).isNotEmpty();
+        assertThat(entity.get()).isNotEqualTo(new Object());
     }
 
     @Test
@@ -152,10 +158,11 @@ public class GreetingEntityIT {
         UUID id = UUID.fromString("0d216415-1b8e-4ab9-8531-fcbd25d5966f");
 
         //Act
-        GreetingEntity entity = greetingRepository.findOne(id);
+        Optional<GreetingEntity> entity = greetingRepository.findById(id);
 
         //Act & Assert
-        assertThat(entity.toString()).contains(id.toString(), "hello");
+        assertThat(entity).isNotEmpty();
+        assertThat(entity.get().toString()).contains(id.toString(), "hello");
     }
 
 }

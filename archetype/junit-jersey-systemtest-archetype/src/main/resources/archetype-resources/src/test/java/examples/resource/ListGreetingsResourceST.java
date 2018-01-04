@@ -18,39 +18,45 @@
  */
 package examples.resource;
 
-import examples.GreetingsResourceConfig;
-import examples.resource.entity.GreetingEntity;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.OK;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
+
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.OK;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.Jersey2SystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingsResourceConfig;
+import examples.resource.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  *
  * @author saden
  */
 @Application(GreetingsResourceConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(Jersey2SystemTest.class)
+@RunWith(SystemTest.class)
 public class ListGreetingsResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     public void configureClient(ClientBuilder clientBuilder) {
@@ -58,9 +64,9 @@ public class ListGreetingsResourceST {
     }
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void callToListGreetingsShouldReturnListOfGreetings() {
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .path("list")
                 .request()
@@ -68,7 +74,8 @@ public class ListGreetingsResourceST {
 
         //Assert
         assertThat(response.getStatus()).isEqualTo(OK.getStatusCode());
-        GenericType<List<GreetingEntity>> genericType = new GenericType<List<GreetingEntity>>() {
+        GenericType<List<GreetingEntity>> genericType =
+                new GenericType<List<GreetingEntity>>() {
         };
         List<GreetingEntity> result = response.readEntity(genericType);
         assertThat(result).hasSize(1);

@@ -19,9 +19,11 @@
 package examples.resource.model;
 
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.validator.constraints.SafeHtml;
 
 /**
  * A greeting model.

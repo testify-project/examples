@@ -15,36 +15,38 @@
  */
 package examples.greeting;
 
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Real;
+import org.testifyproject.annotation.Sut;
+import org.testifyproject.annotation.VirtualResource;
+import org.testifyproject.junit4.IntegrationTest;
+
 import examples.GreetingConfig;
 import examples.greeting.repository.GreetingRepository;
 import examples.greeting.repository.entity.GreetingEntity;
 import fixture.TestModule;
-import java.util.UUID;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.testifyproject.annotation.Sut;
-import org.testifyproject.annotation.Module;
-import org.testifyproject.annotation.Real;
-import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
 
 /**
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
- * <li>substitute the production database with a container based PostgreSQL
- * database using {@link VirtualResource @VirtualResource} annotation</li>
+ * <li>substitute the production database with a container based PostgreSQL database using
+ * {@link VirtualResource @VirtualResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating EntityManager instance
- * using {@link Real @Real} annotation</li>
+ * <li>inject the class under test's real collaborating EntityManager instance using
+ * {@link Real @Real} annotation</li>
  * </ul>
  *
  * @author saden
  */
 @Module(GreetingConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class UpdateGreetingIT {
 
     @Sut

@@ -15,11 +15,14 @@
  */
 package examples.greeting;
 
-import com.google.inject.persist.Transactional;
-import examples.greeting.entity.GreetingEntity;
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
+import com.google.inject.persist.Transactional;
+
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * A service that removes an existing greeting.

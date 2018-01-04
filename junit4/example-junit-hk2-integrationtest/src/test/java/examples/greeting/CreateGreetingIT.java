@@ -15,12 +15,13 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
-import fixture.TestModule;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Fixture;
@@ -30,27 +31,30 @@ import org.testifyproject.annotation.Scan;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
 import org.testifyproject.di.hk2.HK2Properties;
-import org.testifyproject.junit4.integration.HK2IntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
+
+import examples.greeting.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  * An integration test that demonstrates the ability to:
  * <ul>
  * <li>load a module using {@link Module @Module} annotation</li>
- * <li>substitute the production database with a container based PostgreSQL
- * database using {@link VirtualResource @VirtualResource} annotation</li>
+ * <li>substitute the production database with a container based PostgreSQL database using
+ * {@link VirtualResource @VirtualResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating EntityManager instance
- * using {@link Real @Real} annotation</li>
+ * <li>inject the class under test's real collaborating EntityManager instance using
+ * {@link Real @Real} annotation</li>
  * <li>inject a managed EntityManager instance using {@link Inject @Inject} and
  * {@link Fixture @Fixture} annotations for verification purpose</li>
  * </ul>
  *
  * @author saden
  */
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @Scan(HK2Properties.DEFAULT_DESCRIPTOR)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(HK2IntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class CreateGreetingIT {
 
     @Sut

@@ -15,19 +15,23 @@
  */
 package examples.resource;
 
-import examples.GreetingApplication;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.NO_CONTENT;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Application;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.SpringBootSystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingApplication;
+import fixture.TestModule;
 
 /**
  *
@@ -36,14 +40,14 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringBootSystemTest.class)
+@RunWith(SystemTest.class)
 public class RemoveGreetingResourceST {
 
     @Sut
     WebTarget sut;
 
     @Test
-    public void callToGetGreetingShouldReturn() {
+    public void givenGreetingIdDeleteGreetingShouldDeleteGreeting() {
         //Act
         Response response = sut
                 .path("greetings")

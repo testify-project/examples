@@ -23,7 +23,8 @@ import org.glassfish.hk2.api.AnnotationLiteral;
  * @author saden
  */
 @SuppressWarnings("AnnotationAsSuperInterface")
-public class PerTransactionImpl extends AnnotationLiteral<PerTransaction> implements PerTransaction {
+public class PerTransactionImpl extends AnnotationLiteral<PerTransaction> implements
+        PerTransaction {
 
     public static final PerTransaction INSTANCE = new PerTransactionImpl();
 }

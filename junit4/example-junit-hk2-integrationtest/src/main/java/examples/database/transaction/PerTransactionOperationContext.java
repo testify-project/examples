@@ -16,12 +16,12 @@
 package examples.database.transaction;
 
 import java.lang.annotation.Annotation;
+
 import org.glassfish.hk2.extras.operation.OperationContext;
 import org.jvnet.hk2.annotations.Service;
 
 /**
- * An implementation of {@link OperationContext} contract for the
- * {@link PerTransaction} scope.
+ * An implementation of {@link OperationContext} contract for the {@link PerTransaction} scope.
  *
  * @author saden
  */

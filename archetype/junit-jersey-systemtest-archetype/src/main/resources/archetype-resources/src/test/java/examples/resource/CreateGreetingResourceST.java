@@ -18,47 +18,52 @@
  */
 package examples.resource;
 
-import examples.GreetingsResourceConfig;
-import examples.resource.model.GreetingModel;
-import fixture.TestConfigHandler;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.CREATED;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.CREATED;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.Jersey2SystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingsResourceConfig;
+import examples.resource.model.GreetingModel;
+import fixture.TestConfigHandler;
+import fixture.TestModule;
 
 /**
  *
  * @author saden
  */
 @Application(GreetingsResourceConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @ConfigHandler(TestConfigHandler.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(Jersey2SystemTest.class)
+@RunWith(SystemTest.class)
 public class CreateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @Test
-    public void givenGreetingModelCreateShouldReturnCreated() {
-        //Arrange 
+    public void givenGreetingEntityPostGreetingShouldCreateGreeting() {
+        //Arrange
         GreetingModel model = new GreetingModel("caio");
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

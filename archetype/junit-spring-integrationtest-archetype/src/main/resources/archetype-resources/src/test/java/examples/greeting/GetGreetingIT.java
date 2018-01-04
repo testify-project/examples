@@ -18,12 +18,11 @@
  */
 package examples.greeting;
 
-import examples.GreetingConfig;
-import examples.greeting.repository.GreetingRepository;
-import examples.greeting.repository.entity.GreetingEntity;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Optional;
 import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -31,8 +30,12 @@ import org.testifyproject.annotation.LocalResource;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Real;
 import org.testifyproject.annotation.Sut;
-import org.testifyproject.junit4.integration.SpringIntegrationTest;
+import org.testifyproject.junit4.IntegrationTest;
 import org.testifyproject.resource.hsql.InMemoryHSQLResource;
+
+import examples.GreetingConfig;
+import examples.greeting.repository.GreetingRepository;
+import examples.greeting.repository.entity.GreetingEntity;
 
 /**
  * An integration test that demonstrates the ability to:
@@ -41,15 +44,15 @@ import org.testifyproject.resource.hsql.InMemoryHSQLResource;
  * <li>substitute the production database with an in-memory HSQL database using
  * {@link LocalResource @LocalResource} annotation</li>
  * <li>specify the the class under test using {@link Sut @Sut} annotation</li>
- * <li>inject the class under test's real collaborating GreetingRepository
- * instance using {@link Real @Real} annotation</li>
+ * <li>inject the class under test's real collaborating GreetingRepository instance using
+ * {@link Real @Real} annotation</li>
  * </ul>
  *
  * @author saden
  */
 @Module(GreetingConfig.class)
 @LocalResource(InMemoryHSQLResource.class)
-@RunWith(SpringIntegrationTest.class)
+@RunWith(IntegrationTest.class)
 public class GetGreetingIT {
 
     @Sut

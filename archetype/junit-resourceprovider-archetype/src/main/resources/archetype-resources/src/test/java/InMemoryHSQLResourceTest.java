@@ -18,14 +18,18 @@
  */
 package ${package};
 
-import java.sql.Connection;
-import javax.sql.DataSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+
+import java.sql.Connection;
+
+import javax.sql.DataSource;
+
 import org.hsqldb.jdbc.JDBCDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import org.mockito.Answers;
 import org.testifyproject.LocalResourceInstance;
 import org.testifyproject.TestContext;
 import org.testifyproject.annotation.LocalResource;
@@ -46,7 +50,7 @@ public class InMemoryHSQLResourceTest {
     @Test
     public void configureAndStartRequiredResource() throws Exception {
         TestContext testContext = mock(TestContext.class);
-        LocalResource localResource = mock(LocalResource.class);
+        LocalResource localResource = mock(LocalResource.class, Answers.RETURNS_MOCKS);
         PropertiesReader configReader = mock(PropertiesReader.class);
 
         given(testContext.getName()).willReturn("test");
@@ -54,10 +58,11 @@ public class InMemoryHSQLResourceTest {
         JDBCDataSource config = sut.configure(testContext, localResource, configReader);
         assertThat(config).isNotNull();
 
-        LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(testContext, localResource, config);
+        LocalResourceInstance<DataSource, Connection> localResourceInstance = sut.start(
+                testContext, localResource, config);
         assertThat(localResourceInstance.getResource()).isNotNull();
         assertThat(localResourceInstance.getClient()).isPresent();
-        
+
         sut.stop(testContext, localResource, localResourceInstance);
     }
 

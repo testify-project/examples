@@ -18,10 +18,11 @@
  */
 package examples.resource;
 
-import examples.resource.repository.GreetingRepository;
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import examples.resource.repository.GreetingRepository;
 
 /**
  * A resource that removes an existing greeting.
@@ -50,7 +53,7 @@ public class RemoveGreetingResource {
             method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity removeGreeting(@NotNull @PathVariable("id") UUID id) {
-        greetingRepository.delete(id);
+        greetingRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
 

@@ -19,8 +19,11 @@
 package ${package};
 
 import static java.lang.String.format;
+
 import java.sql.Connection;
+
 import javax.sql.DataSource;
+
 import org.hsqldb.jdbc.JDBCDataSource;
 import org.testifyproject.LocalResourceInstance;
 import org.testifyproject.LocalResourceProvider;
@@ -30,8 +33,8 @@ import org.testifyproject.core.LocalResourceInstanceBuilder;
 import org.testifyproject.trait.PropertiesReader;
 
 /**
- * An implementation of ResourceProvider that provides an in-memory HSQL
- * DataSource and connection.
+ * An implementation of ResourceProvider that provides an in-memory HSQL DataSource and
+ * connection.
  *
  * @author saden
  */
@@ -65,7 +68,7 @@ public class InMemoryHSQLResource implements
         return LocalResourceInstanceBuilder.builder()
                 .resource(server, DataSource.class)
                 .client(client, Connection.class)
-                .build("hsql");
+                .build("hsql", localResource);
     }
 
     @Override

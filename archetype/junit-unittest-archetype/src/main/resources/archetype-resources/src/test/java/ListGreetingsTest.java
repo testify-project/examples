@@ -18,24 +18,27 @@
  */
 package ${package};
 
-import ${package}.model.GreetingModel;
-import java.util.Collection;
-import java.util.Map;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Fake;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.junit4.UnitTest;
 
+import ${package}.model.GreetingModel;
+
 /**
- * A unit test that demonstrates the ability to verify class under test method
- * calls by setting {@link Sut${symbol_pound}value()} to true.
+ * A unit test that demonstrates the ability to verify class under test method calls by setting
+ * {@link Sut${symbol_pound}value()} to true.
  *
  * @author saden
  */

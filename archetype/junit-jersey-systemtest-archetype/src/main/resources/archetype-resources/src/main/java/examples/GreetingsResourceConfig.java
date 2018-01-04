@@ -19,7 +19,9 @@
 package examples;
 
 import java.util.logging.Logger;
+
 import javax.ws.rs.ApplicationPath;
+
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -37,7 +39,8 @@ public class GreetingsResourceConfig extends ResourceConfig {
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
         property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
         register(GreetingsFeature.class);
-        LoggingFeature loggingFeature = new LoggingFeature(Logger.getGlobal(), LoggingFeature.Verbosity.PAYLOAD_ANY);
+        LoggingFeature loggingFeature = new LoggingFeature(Logger.getGlobal(),
+                LoggingFeature.Verbosity.PAYLOAD_ANY);
 
         register(loggingFeature);
     }

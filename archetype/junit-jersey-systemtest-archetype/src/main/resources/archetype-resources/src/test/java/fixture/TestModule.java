@@ -21,11 +21,12 @@ package fixture;
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 /**
- * Test fixture module that defines the datasource of a postgreSQL running
- * inside of a container.
+ * Test fixture module that defines the datasource of a postgreSQL running inside of a
+ * container.
  *
  * @author saden
  */

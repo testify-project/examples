@@ -15,11 +15,14 @@
  */
 package fixture;
 
+import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.sql.DataSource;
-import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -30,8 +33,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
- * Test fixture module that defines the datasource of a postgreSQL running
- * inside of a container.
+ * Test fixture module that defines the datasource of a postgreSQL running inside of a
+ * container.
  *
  * @author saden
  */
@@ -39,15 +42,16 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 public class TestModule {
 
     /**
-     * Create a datasource that takes precedence (@Primary) over the production
-     * datasource that points to the postgres in the container resource.
+     * Create a datasource that takes precedence (@Primary) over the production datasource that
+     * points to the postgres in the container resource.
      *
      * @param inetAddress the container address.
      * @return the test data source
      */
     @Primary
     @Bean
-    DataSource testDataSource(@Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
+    DataSource testDataSource(
+            @Qualifier("resource:/postgres:9.4/resource") InetAddress inetAddress) {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setServerName(inetAddress.getHostAddress());
         dataSource.setPortNumber(5432);

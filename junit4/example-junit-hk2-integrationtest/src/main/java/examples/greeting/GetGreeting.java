@@ -15,14 +15,18 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
-import java.util.Optional;
 import static java.util.Optional.ofNullable;
+
+import java.util.Optional;
 import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
 import org.jvnet.hk2.annotations.Service;
+
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * A service that retrieve an existing greeting.

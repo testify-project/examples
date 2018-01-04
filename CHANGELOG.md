@@ -13,9 +13,24 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
-## [0.9.3-SNAPSHOT] - 2017-07-19
+## [1.0.0] - 2018-01-04
+### Added
+- Added gRPC example
+
 ### Changed
-- Updated to Testify version to  0.9.6
+- Updated Testify version to 1.0.2
+- Updated Virtual Resource version to 1.0.2
+- Updated Example code due to version updates
+- Updated Spring version to 5.0.2.RELEASE
+- Updated SpringBoot version to 1.5.7.RELEASE
+- Updated HK2 version to 2.5.0-b42
+- Updated Jersey 2 version to 2.26
+- Updated Guice version to 4.1.0
+
+
+## [0.9.3] - 2017-07-19
+### Changed
+- Updated Testify version to 0.9.6
 - Updated Build Tools version to 0.9.7
 - Updated Local Resource version to 0.9.4
 - Updated Virtual Resource version to 0.9.2

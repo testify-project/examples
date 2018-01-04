@@ -36,12 +36,18 @@ do
     ARCHETYPE_DIR="$ARCHETYPES_DIR/$MODULE_NAME-archetype"
     ARCHETYPE_SRC_DIR="$ARCHETYPE_DIR/src"
 
-    # Escape certain configuration properties so they are not replaced        
-    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoSurefireArgs}/\\\$\{jacocoSurefireArgs\}/g'
-    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/${jacocoFailesafeArgs}/\\\$\{jacocoFailesafeArgs\}/g'
+    # Escape certain configuration properties so they are not replaced
+    # NOTE: This whole thing is a complete hack to work around the terrible nature of Velocity
+    # template engine which is what is used by the maven archetype plugin
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/\${jacocoSurefireArgs}/${D}{jacocoSurefireArgs}/g'
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i 's/\${org.testifyproject:core:jar}/${D}{org.testifyproject${C}core${C}jar}/g'
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i '1s/^/#set($D = "$")\n/'
+    find $EXAMPLE_SRC_DIR -name "pom.xml" | xargs sed -i '1s/^/#set($C = ":")\n/'
 
-    # Updating goal.txt to verify
-    #find -name "goal.txt" -exec sh -c "echo verify > {}" \;
+    # Updating goal.txt to run the verify goal to test the archetype artifacts.
+    # NOTE: This slows down the build time but at least we don't have to assume the archetype
+    # work as expected because the examples pass.
+    find -name "goal.txt" -exec sh -c "echo verify > {}" \;
 
     echo "Replacing $ARCHETYPE_SRC_DIR with $EXAMPLE_SRC_DIR"
     rm -rf "$ARCHETYPE_SRC_DIR"
@@ -52,7 +58,7 @@ echo "Building Archetypes"
 
 pushd $CURRENT_DIR
 cd $ARCHETYPES_DIR
-mvn -B clean install -Pbuild
+mvn -B clean install archetype:update-local-catalog -Pbuild
 popd
 
 echo "Arechetypes Updated. All Done!"

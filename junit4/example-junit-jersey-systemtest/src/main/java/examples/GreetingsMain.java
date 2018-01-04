@@ -15,9 +15,11 @@
  */
 package examples;
 
-import java.io.IOException;
 import static java.lang.String.format;
+
+import java.io.IOException;
 import java.net.URI;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 

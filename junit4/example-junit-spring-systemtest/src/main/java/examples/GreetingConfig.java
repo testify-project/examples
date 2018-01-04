@@ -15,13 +15,16 @@
  */
 package examples;
 
-import examples.resource.repository.RepositoryPackage;
+import static javax.persistence.Persistence.createEntityManagerFactory;
+
+import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.persistence.EntityManagerFactory;
-import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.sql.DataSource;
-import static org.hibernate.cfg.AvailableSettings.DATASOURCE;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.convention.NamingConventions;
@@ -35,6 +38,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import examples.resource.repository.RepositoryPackage;
+
 /**
  * Greeter Application Spring MVC Java Config.
  *
@@ -47,8 +52,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class GreetingConfig {
 
     /**
-     * Adds supports common Java annotations out of the box. Including JPA
-     * annotations.
+     * Adds supports common Java annotations out of the box. Including JPA annotations.
      *
      * @return common annotation processor instance.
      */
@@ -85,7 +89,7 @@ public class GreetingConfig {
         Map<String, Object> properties = new HashMap<>();
         properties.put(DATASOURCE, dataSource);
 
-        return createEntityManagerFactory("example.greeter", properties);
+        return createEntityManagerFactory("example.greetings", properties);
     }
 
     /**
@@ -96,7 +100,8 @@ public class GreetingConfig {
      */
     @Bean
     PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
+        JpaTransactionManager transactionManager = new JpaTransactionManager(
+                entityManagerFactory);
 
         return transactionManager;
     }
@@ -112,8 +117,10 @@ public class GreetingConfig {
 
         org.modelmapper.config.Configuration configuration = mapper.getConfiguration();
         configuration.setMatchingStrategy(MatchingStrategies.STRICT);
-        configuration.setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
-        configuration.setMethodAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
+        configuration.setFieldAccessLevel(
+                org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
+        configuration.setMethodAccessLevel(
+                org.modelmapper.config.Configuration.AccessLevel.PUBLIC);
         configuration.setAmbiguityIgnored(false);
         configuration.setDestinationNamingConvention(NamingConventions.JAVABEANS_MUTATOR);
         configuration.setSourceNamingConvention(NamingConventions.JAVABEANS_ACCESSOR);

@@ -15,15 +15,15 @@
  */
 package examples.resource;
 
-import examples.GreetingApplication;
-import examples.resource.repository.entity.GreetingEntity;
-import fixture.TestConfigHandler;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.CREATED;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.CREATED;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
@@ -32,7 +32,12 @@ import org.testifyproject.annotation.ConfigHandler;
 import org.testifyproject.annotation.Module;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.SpringBootSystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingApplication;
+import examples.resource.repository.entity.GreetingEntity;
+import fixture.TestConfigHandler;
+import fixture.TestModule;
 
 /**
  *
@@ -42,20 +47,20 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
 @Module(TestModule.class)
 @ConfigHandler(TestConfigHandler.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringBootSystemTest.class)
+@RunWith(SystemTest.class)
 public class CreateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @Test
-    public void callToCreateGreetingShouldCreateGreeting() {
-        //Arrange 
+    public void givenGreetingEntityPostGreetingShouldCreateGreeting() {
+        //Arrange
         GreetingEntity greetingEntity = new GreetingEntity("caio");
         Entity<GreetingEntity> entity = Entity.json(greetingEntity);
 
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .request()
                 .post(entity);

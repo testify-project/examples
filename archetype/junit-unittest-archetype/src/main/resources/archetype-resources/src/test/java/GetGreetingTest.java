@@ -18,27 +18,29 @@
  */
 package ${package};
 
-import ${package}.model.GreetingModel;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.testifyproject.annotation.CollaboratorProvider;
 import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Virtual;
 import org.testifyproject.junit4.UnitTest;
 
+import ${package}.model.GreetingModel;
+
 /**
- * A basic unit tests that demonstrates the ability to specify a class under
- * test's collaborators by annotating a method in the test class with
- * {@link CollaboratorProvider}.
+ * A basic unit tests that demonstrates the ability to specify a class under test's
+ * collaborators by annotating a method in the test class with {@link CollaboratorProvider}.
  *
  * @author saden
  */

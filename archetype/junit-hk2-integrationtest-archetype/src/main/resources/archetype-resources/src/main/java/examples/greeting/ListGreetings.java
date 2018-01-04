@@ -18,13 +18,16 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
 import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+
 import org.jvnet.hk2.annotations.Service;
+
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * A service that retrieves all greetings.

@@ -18,25 +18,30 @@
  */
 package examples.resource;
 
-import examples.GreetingApplication;
-import examples.resource.model.GreetingModel;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.ACCEPTED;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.ACCEPTED;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.SpringBootSystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingApplication;
+import examples.resource.model.GreetingModel;
+import fixture.TestModule;
 
 /**
  *
@@ -45,11 +50,11 @@ import org.testifyproject.junit4.system.SpringBootSystemTest;
 @Application(GreetingApplication.class)
 @Module(TestModule.class)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(SpringBootSystemTest.class)
+@RunWith(SystemTest.class)
 public class UpdateGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     void configureClient(ClientBuilder clientBuilder) {
@@ -57,13 +62,13 @@ public class UpdateGreetingResourceST {
     }
 
     @Test
-    public void callToUpdateGreetingShouldUpdateGreeting() {
-        //Arrange 
+    public void givenGreetingEntityPutGreetingShouldUpdateGreeting() {
+        //Arrange
         GreetingModel model = new GreetingModel("caio");
         Entity<GreetingModel> entity = Entity.json(model);
 
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

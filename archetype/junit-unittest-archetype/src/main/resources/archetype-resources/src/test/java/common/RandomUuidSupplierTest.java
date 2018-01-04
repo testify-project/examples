@@ -18,8 +18,10 @@
  */
 package ${package}.common;
 
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.annotation.Sut;

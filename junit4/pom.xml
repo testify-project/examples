@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016-2017 Testify Project.
+    Copyright 2016-2018 Testify Project.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -21,15 +21,15 @@
     <parent>
         <groupId>org.testifyproject.examples</groupId>
         <artifactId>parent</artifactId>
-        <version>0.9.3</version>
+        <version>1.0.0</version>
     </parent>
     
     <groupId>org.testifyproject.examples</groupId>
     <artifactId>junit4</artifactId>
     <packaging>pom</packaging>
 
-    <name>JUnit 4 Examples</name>
-    <description>Parent module of example projects</description>
+    <name>[JUnit4]</name>
+    <description>Parent module of JUnit 4 example projects</description>
 
     <modules>
         <module>example-junit-unittest</module>
@@ -39,6 +39,7 @@
         <module>example-junit-hk2-integrationtest</module>
         <module>example-junit-jersey-systemtest</module>
         <module>example-junit-guice-integrationtest</module>
+        <module>example-junit-grpc-systemtest</module>
         <module>example-junit-resourceprovider</module>
     </modules>
     

@@ -18,38 +18,43 @@
  */
 package examples.resource;
 
-import examples.GreetingsResourceConfig;
-import examples.resource.entity.GreetingEntity;
-import fixture.TestModule;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import static javax.ws.rs.core.Response.Status.OK;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
-import static javax.ws.rs.core.Response.Status.OK;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testifyproject.ClientInstance;
 import org.testifyproject.annotation.Application;
 import org.testifyproject.annotation.ConfigHandler;
-import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.Module;
+import org.testifyproject.annotation.Sut;
 import org.testifyproject.annotation.VirtualResource;
-import org.testifyproject.junit4.system.Jersey2SystemTest;
+import org.testifyproject.junit4.SystemTest;
+
+import examples.GreetingsResourceConfig;
+import examples.resource.entity.GreetingEntity;
+import fixture.TestModule;
 
 /**
  *
  * @author saden
  */
 @Application(GreetingsResourceConfig.class)
-@Module(TestModule.class)
+@Module(value = TestModule.class, test = true)
 @VirtualResource(value = "postgres", version = "9.4")
-@RunWith(Jersey2SystemTest.class)
+@RunWith(SystemTest.class)
 public class GetGreetingResourceST {
 
     @Sut
-    ClientInstance<WebTarget> sut;
+    ClientInstance<WebTarget, Client> sut;
 
     @ConfigHandler
     public void configureClient(ClientBuilder clientBuilder) {
@@ -57,9 +62,9 @@ public class GetGreetingResourceST {
     }
 
     @Test
-    public void givenNoneExistentGreetingIdGetGreetingShouldReturn404() {
+    public void givenGreetingIdGetGreetingShouldReturnGreeting() {
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .path("aa216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()
@@ -72,7 +77,7 @@ public class GetGreetingResourceST {
     @Test
     public void givenExistingGreetingIdGetGreetingShouldReturnFoundGreeting() {
         //Act
-        Response response = sut.getValue()
+        Response response = sut.getClient().getValue()
                 .path("greetings")
                 .path("0d216415-1b8e-4ab9-8531-fcbd25d5966f")
                 .request()

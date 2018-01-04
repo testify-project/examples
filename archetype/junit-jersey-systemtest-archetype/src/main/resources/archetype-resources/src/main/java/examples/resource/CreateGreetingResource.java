@@ -18,9 +18,8 @@
  */
 package examples.resource;
 
-import examples.resource.entity.GreetingEntity;
-import examples.resource.model.GreetingModel;
 import java.net.URI;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -31,7 +30,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 import org.modelmapper.ModelMapper;
+
+import examples.resource.entity.GreetingEntity;
+import examples.resource.model.GreetingModel;
 
 /**
  * A resource that creates a new greeting.

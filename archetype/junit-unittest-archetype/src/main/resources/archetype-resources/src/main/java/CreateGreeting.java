@@ -18,10 +18,11 @@
  */
 package ${package};
 
-import ${package}.common.RandomUuidSupplier;
-import ${package}.model.GreetingModel;
 import java.util.Map;
 import java.util.UUID;
+
+import ${package}.common.RandomUuidSupplier;
+import ${package}.model.GreetingModel;
 
 /**
  * A service that creates a new greeting.

@@ -15,10 +15,11 @@
  */
 package examples.greeting;
 
-import examples.greeting.model.GreetingModel;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
+
+import examples.greeting.model.GreetingModel;
 
 /**
  * A service that retrieves all greetings.

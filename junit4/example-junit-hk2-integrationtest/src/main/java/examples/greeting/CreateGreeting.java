@@ -15,11 +15,13 @@
  */
 package examples.greeting;
 
-import examples.greeting.entity.GreetingEntity;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
 import org.jvnet.hk2.annotations.Service;
+
+import examples.greeting.entity.GreetingEntity;
 
 /**
  * A service that creates a new greeting.

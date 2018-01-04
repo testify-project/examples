@@ -15,14 +15,17 @@
  */
 package examples.database.transaction;
 
+import static java.util.Arrays.asList;
+import static java.util.Optional.ofNullable;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Optional;
-import static java.util.Optional.ofNullable;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
 import org.aopalliance.intercept.ConstructorInterceptor;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.glassfish.hk2.api.Filter;
@@ -31,8 +34,8 @@ import org.glassfish.hk2.utilities.BuilderHelper;
 import org.jvnet.hk2.annotations.Service;
 
 /**
- * An HK2 interception service that configures the interception of methods
- * annotated with {@link Transactional} annotation.
+ * An HK2 interception service that configures the interception of methods annotated with
+ * {@link Transactional} annotation.
  *
  * @author saden
  */

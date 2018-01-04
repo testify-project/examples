@@ -1,7 +1,9 @@
+#set($C = ":")
+#set($D = "$")
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2016-2017 Testify Project.
+    Copyright 2016-2018 Testify Project.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -31,8 +33,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <plugin.surefire>2.19.1</plugin.surefire>
-        <plugin.jacoco>0.7.7.201606060606</plugin.jacoco>
+        
+        <!-- Plugin Version Properties-->
+        <plugin.surefire>2.20</plugin.surefire>
+        <plugin.jacoco>0.7.9</plugin.jacoco>
     </properties>
 
     <build>
@@ -67,7 +71,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <argLine>\${jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
+                    <argLine>${D}{jacocoSurefireArgs} -client -Xms512m -Xmx2048m</argLine>
                     <failIfNoTests>false</failIfNoTests>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
@@ -101,32 +105,36 @@
         </plugins>
     </build>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testifyproject</groupId>
+                <artifactId>testify-bom</artifactId>
+                <version>${testify.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <dependencies>
         <!-- Testify Test Deps -->
         <dependency>
             <groupId>org.testifyproject.junit4</groupId>
             <artifactId>unit-test</artifactId>
-            <version>${testify.version}</version>
+        </dependency>
+
+        <!-- Test Deps -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testifyproject.tools</groupId>
             <artifactId>test-logger</artifactId>
             <version>${testify.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Test Deps -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
 

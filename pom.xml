@@ -93,7 +93,7 @@
         <hk2.version>2.5.0-b42</hk2.version>
         <jersey.version>2.26</jersey.version>
         <jersey.hk2.version>2.5.0-b42</jersey.hk2.version>
-        <guice.version>4.1.0</guice.version>
+        <guice.version>4.2.1</guice.version>
         <grpc.version>1.7.0</grpc.version>
         <guava.version>23.2-jre</guava.version>
         <reflections.version>0.9.10</reflections.version>
@@ -270,7 +270,7 @@
                         <debuglevel>lines,vars,source</debuglevel>
                         <compilerArguments>
                             <!-- enable runtime discover of parameter names -->
-                            <parameters />
+                            <parameters/>
                         </compilerArguments>
                     </configuration>
                 </plugin>
@@ -798,7 +798,7 @@
                             -->
                             <debug>false</debug>
                             <compilerArguments>
-                                <parameters />
+                                <parameters/>
                             </compilerArguments>
                         </configuration>
                     </plugin>

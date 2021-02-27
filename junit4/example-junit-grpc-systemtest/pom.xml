@@ -43,7 +43,7 @@
         
         <!-- Dependency Version Properties-->
         <grpc.version>1.7.0</grpc.version>
-        <guice.version>4.1.0</guice.version>
+        <guice.version>5.0.0</guice.version>
     </properties>
 
     <build>

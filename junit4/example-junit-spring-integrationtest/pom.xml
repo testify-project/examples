@@ -42,7 +42,7 @@
         <plugin.dependency>3.0.2</plugin.dependency>
         
           <!-- Dependency Version Properties -->
-        <spring.version>5.0.2.RELEASE</spring.version>
+        <spring.version>5.0.19.RELEASE</spring.version>
         <spring.data.version>Kay-SR2</spring.data.version>
     </properties>
 

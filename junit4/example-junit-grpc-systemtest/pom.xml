@@ -42,7 +42,7 @@
         <plug.os>1.5.0.Final</plug.os>
         
         <!-- Dependency Version Properties-->
-        <grpc.version>1.7.0</grpc.version>
+        <grpc.version>1.42.0</grpc.version>
         <guice.version>4.1.0</guice.version>
     </properties>
 

@@ -48,7 +48,7 @@
         <!-- Dependency Version Properties -->
         <spring.version>5.0.2.RELEASE</spring.version>
         <spring.data.version>Kay-SR2</spring.data.version>        
-        <spring.hateoas.version>0.23.0.RELEASE</spring.hateoas.version>
+        <spring.hateoas.version>1.0.0.RELEASE</spring.hateoas.version>
         <jackson.version>2.9.2</jackson.version>
         <modelmapper.version>0.7.7</modelmapper.version>
     </properties>
@@ -60,7 +60,7 @@
                 <version>${plugin.compiler}</version>
                 <configuration>
                     <compilerArguments>
-                        <parameters />
+                        <parameters/>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
                 </configuration>

@@ -45,7 +45,7 @@
         
         <!-- Dependency Version Properties-->
         <springboot.version>1.5.7.RELEASE</springboot.version>
-        <snakeyaml.version>1.17</snakeyaml.version>
+        <snakeyaml.version>1.32</snakeyaml.version>
         <modelmapper.version>0.7.7</modelmapper.version>
         <jackson.version>2.9.2</jackson.version>
     </properties>
@@ -97,7 +97,7 @@
                 <version>${plugin.compiler.version}</version>
                 <configuration>
                     <compilerArguments>
-                        <parameters />
+                        <parameters/>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
                 </configuration>

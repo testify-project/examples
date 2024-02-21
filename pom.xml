@@ -105,7 +105,7 @@
         <jsoup.version>1.9.2</jsoup.version>
         <javax.transaction.version>1.2</javax.transaction.version>
         <javax.interceptor.version>1.2</javax.interceptor.version>
-        <postgressql.version>9.4.1207</postgressql.version>
+        <postgressql.version>42.7.2</postgressql.version>
 
         <!-- Misc Dependencies -->
         <lombok.version>1.16.18</lombok.version>
@@ -270,7 +270,7 @@
                         <debuglevel>lines,vars,source</debuglevel>
                         <compilerArguments>
                             <!-- enable runtime discover of parameter names -->
-                            <parameters />
+                            <parameters/>
                         </compilerArguments>
                     </configuration>
                 </plugin>
@@ -798,7 +798,7 @@
                             -->
                             <debug>false</debug>
                             <compilerArguments>
-                                <parameters />
+                                <parameters/>
                             </compilerArguments>
                         </configuration>
                     </plugin>
